@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>SVG</title>                                        
+</head>
+<body>        
+	<svg width="10cm" height="10cm"  viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+		
+		<defs>       
+			<symbol id="train" overflow="visible">                                       
+				<rect x="-15" y="-5" width="30" height="10" stroke="blue" fill="black" />
+			</symbol>
+			<symbol id="train1" overflow="visible">                                       
+				<rect x="-15" y="-5" width="30" height="10" stroke="red" fill="black" transform="translate(33, 8) rotate(24)" />
+			</symbol>
+			<symbol id="train2" overflow="visible">                                       
+				<rect x="-15" y="-5" width="30" height="10" stroke="green" fill="black" transform="translate(60, 30) rotate(50)" />
+			</symbol>
+		</defs>
+
+             
+
+		<g>
+	  		<path id="track" fill="none" stroke="black" d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"/>
+			<use xlink:href="#train">
+		       <animateMotion id="animMotionZurGen" dur="10s" repeatCount="indefinite" rotate="auto-reverse">
+                        <mpath xlink:href="#track"/>
+               </animateMotion>
+			</use>
+                             
+			<use xlink:href="#train1">
+		       <animateMotion id="animMotionZurGen" dur="10s" repeatCount="indefinite" rotate="auto-reverse">
+                        <mpath xlink:href="#track"/>
+               </animateMotion>
+			</use>
+
+			<use xlink:href="#train2">
+		       <animateMotion id="animMotionZurGen" dur="10s" repeatCount="indefinite" rotate="auto-reverse">
+                        <mpath xlink:href="#track"/>
+               </animateMotion>
+			</use>
+		</g>
+		<g>
+			<path id="track1" fill="none" stroke="black" d="M230,100c0,0-21-57,18-67s49-4,65,8 s30,41,53,27s66,4,58,32s-5,44,18,57s22,46,0,45s-54-40-68-16s-40,88-83,48s11-61-11-80s-79-7-70-41z"/>		                                                                                                   
+			<use xlink:href="#train">
+		       <animateMotion id="animMotionZurGen" dur="10s" repeatCount="indefinite" rotate="auto-reverse">
+                        <mpath xlink:href="#track1"/>
+               </animateMotion>
+			</use>
+        </g>
+	</svg>	
+</body>
+</html>
