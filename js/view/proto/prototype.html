@@ -1,0 +1,152 @@
+﻿<h3>Прототипы</h3>
+<p>Все объекты в JavaScript
+содержат внутреннюю ссылку на объект, известный как прототип. Любые свойства прототипа становятся свойствами другого объекта, для которого он является прототипом. То есть, говоря другими словами, любой объект в JavaScript <strong>наследует</strong> свойства своего прототипа.</p>
+<p>Оператор <strong>new</strong> создает пустой объект
+и затем вызывает функцию-конструктор. После создания пустого объекта оператор <strong>new</strong> устанавливает в этом объекте ссылку на прототип. Прототипом объекта является значение свойства <strong>prototype</strong>
+функции-конструктора. Все функции имеют свойство <strong>prototype</strong>, которое инициализируется в момент определения функции. Начальным значением этого
+свойства является объект с единственным свойством. Это свойство называется <strong>constructor</strong> и значением его является ссылка на саму функцию-конструктор, с которой этот прототип ассоциируется. Любые свойства, добавленные к прототипу, автоматически становятся свойствами объектов, инициализируемых конструктором.</p>
+<p>
+	<code>function Person(name, phoneNumber){</code>
+	<br />
+	<code>&nbsp;&nbsp;this.name = name;</code>
+	<br />
+	<code>&nbsp;&nbsp;this.phoneNumber = phoneNumber;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>Person.prototype.getInfo = function(){</code>
+	<br />
+	<code>&nbsp;&nbsp;return this.name + "'s phone number is " + this.phoneNumber;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>var person1 = new Person('John', '1-456-879-54');</code>
+	<br />
+	<code>var person2 = new Person('Bill', '1-157-423-77');</code>
+</p>
+
+<p>Конструктор определяет "класс" объектов и инициализирует свойства, такие как
+name и phoneNumber, которые могут отличаться для каждого экземпляра класса. Объект-прототип связан с конструктором, и каждый объект, инициализируемый конструктором, наследует тот набор свойств, который имеется в прототипе. Это значит,
+что объект-прототип – идеальное место для методов и других свойств-констант.</p>
+<p>Обратите внимание, что наследование осуществляется автоматически как часть
+процесса поиска значения свойства. Свойства не копируются из объекта-прототипа в новый объект; они просто присутствуют, как если бы были свойствами
+этих объектов.</p>
+<ul>
+	<li>Использование объектов-прототипов может в значительной степени уменьшить объем памяти, требуемый для каждого объекта, т. к. объекты могут наследовать многие из своих свойств</li>
+	<li>Объект наследует свойства, даже если они были добавлены в прототип после создания объекта. Это означает наличие возможности добавлять новые методы к существующим классам</li>
+</ul>
+
+<h4>Расширение встроенных типов</h4>
+<p>Не только пользовательские классы имеют прототипы. Встроенные классы, такие как String и Date, также имеют прототипы, и вы можете присваивать им значения. Например, следующий фрагмент опреде
+ляет новый метод, доступный всем объектам String:</p>
+<p>
+	<code>String.prototype.currencyFormat = function(){</code>
+	<br />
+	<code>&nbsp;&nbsp;return '$' + this;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>console.log('100'.currencyFormat());</code>
+</p>
+<p>Расширение встроенных типов считается плохой практикой, потому что создается самостоятельная версия базового прикладного JavaScript интерфейса и ваш код станет тяжело поддерживаемым.
+Также никогда не следует добавлять свойства к объекту Object.prototype. Любые добавляемые свойства и методы становятся перечислимыми для
+цикла for/in, поэтому добавив их к объекту Object.prototype, вы сделаете их доступными во всех JavaScript объектах. Пустой объект {}, как предполагается,
+не имеет перечислимых свойств. Любое расширение Object.prototype превратится в перечислимое свойство пустого объекта, что, скорее всего, приведет к нарушениям в функционировании программного кода, который работает с объектами как с ассоциативными массивами.</p>
+<p>Случай, который допускает расширение встроенных объектов применим только при добавлении стандартных методов
+прототипов в старых несовместимых реализациях JavaScript, где эти свойства
+и методы отсутствуют. Например, если необходимо задействовать метод Array.map() и при этом желательно сохранить совместимость с платформами, где
+этот метод не поддерживается.</p>
+<p>
+	<code>if (!Array.prototype.map) {</code>
+	<br />
+	<code>&nbsp;&nbsp;Array.prototype.map = function(f, thisObject) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;var results = [];</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;for(var len = this.length, i = 0; i < len; i++) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;results.push(f.call(thisObject, this[i], i, this));</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;return results;</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>}</code>
+</p>
+<h4>Наследование</h4>
+<p>В JavaScript отсутствует классическая модель наследования — вместо неё используется прототипная модель. Смысл прототипного наследования в том, что один объект можно сделать прототипом другого. При этом если свойство не найдено в объекте — оно берётся из прототипа. В JavaScript оно реализовано на уровне языка.</p>
+<ul>
+	<li>
+		<p><strong>__proto__</strong></p>
+		<p>__proto__ не является частью стандартного интерфейса JavaScript(до ES6), поэтому используйте его только в ознакомительных целях. <a href="http://learn.javascript.ru/prototype#наследование-через-ссылку-proto">Подробнее.</a></p>
+		<p>
+			<code>var obj1 = { type: 'Object 1' };</code>
+			<br />
+			<code>var obj2 = { };</code>
+			<br />
+			<code>obj2.__proto__ = obj1;</code>
+			<br />
+			<code>console.log(obj2.type);</code>
+			<br />
+			<code>console.log(obj1.isPrototypeOf(obj2));</code>
+		</p>
+	</li>
+	<li>
+		<p><strong>Object.create( /* some object */ )</strong></p>
+		<p>Создает пустой объект с прототипом "some object".</p>
+		<p><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create">Документация</a>. Доступно в ES5. Для старых браузеров доступно через <a href="https://github.com/kriskowal/es5-shim">es5-shim</a>.</p>
+		<p>
+			<code>var obj1 = { type: 'Object 1' };</code>
+			<br />
+			<code>var obj2 = Object.create(obj1);</code>
+			<br />
+			<code>console.log(obj2.type);</code>
+		</p>
+		<p>Можно передать объект в Object.create для добавления специфических свойств нового объекта</p>
+		<p>
+			<code>var obj2 = Object.create(obj1, {foo: {value: 5}});</code>
+			<br />
+			<code>console.log(obj2.foo);</code>
+		</p>
+	</li>
+	<li>
+		<p><strong>Function prototype</strong></p>
+		<p>Каждая функция в JavaScript имеет специальное свойство prototype. При создании объекта через new, в его прототип __proto__ записывается ссылка из prototype функции-конструктора.</p>
+		<p>
+			<code>var obj1 = { type: 'Object 1' };</code>
+			<br />
+			<code>function SimpleObj(name){</code>
+			<br />
+			<code>&nbsp;&nbsp;this.name = name;</code>
+			<br />
+			<code>}</code>
+			<br />
+			<code>SimpleObj.prototype = obj1;</code>
+			<br />
+			<code>var obj2 = new SimpleObj('Second');</code>
+			<br />
+			<code>console.log(obj2.type);</code>
+		</p>
+	</li>
+</ul>
+<p>Вызов Object.create( /* some object */ ), который создаёт пустой объект с данным прототипом, можно эмулировать, так что он будет работать во всех браузерах:</p>
+<p>
+	<code>function objInherit(obj){</code>
+	<br />
+	<code>&nbsp;&nbsp;function F(){};</code>
+	<br />
+	<code>&nbsp;&nbsp;F.prototype = obj;</code>
+	<br />
+	<code>&nbsp;&nbsp;return new F;</code>
+	<br />
+	<code>}</code>
+</p>
+<p>
+	<code>var obj1 = { type: 'Object 1' };</code>
+	<br />
+	<code>var obj2 = objInherit(obj1);</code>
+	<br />
+	<code>console.log(obj2.type);</code>
+</p>

@@ -1,0 +1,79 @@
+﻿<h3>The Singleton Pattern</h3>
+<p>Суть шаблона
+единственного объекта состоит в том, чтобы обеспечить
+возможность создать только один экземпляр определенного класса. Это
+означает, что при попытке создать второй экземпляр того же класса вы
+зывающая программа должна получить объект, созданный при первой
+попытке.</p>
+<p>Применение: конфиг, в котором хранятся настройки всего приложения, обращаться к нему необходима из разных модулей приложения.</p>
+<p>
+	<code>var mySingleton = (function () {</code>
+	<br />
+	<code>// Instance stores a reference to the Singleton</code>
+	<br />
+	<code>var instance;</code>
+	<br />
+	<code>function init() {</code>
+	<br />
+	<code>// Singleton</code>
+	<br />
+	<code>// Private methods and variables</code>
+	<br />
+	<code>function privateMethod(){</code>
+	<br />
+	<code>console.log( "I am private" );</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>var privateVariable = "Im also private";</code>
+	<br />
+	<code>var privateRandomNumber = Math.random();</code>
+	<br />
+	<code>return {</code>
+	<br />
+	<code>// Public methods and variables</code>
+	<br />
+	<code>publicMethod: function () {</code>
+	<br />
+	<code>console.log( "The public can see me!" );</code>
+	<br />
+	<code>},</code>
+	<br />
+	<code>publicProperty: "I am also public",</code>
+	<br />
+	<code>getRandomNumber: function() {</code>
+	<br />
+	<code>return privateRandomNumber;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>};</code>
+	<br />
+	<code>};</code>
+	<br />
+	<code>return {</code>
+	<br />
+	<code>// Get the Singleton instance if one exists or create one if it doesn't</code>
+	<br />
+	<code>getInstance: function () {</code>
+	<br />
+	<code>if ( !instance ) {</code>
+	<br />
+	<code>instance = init();</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>return instance;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>};</code>
+	<br />
+	<code>})();</code>
+	<br />
+	<code>var singleA = mySingleton.getInstance();</code>
+	<br />
+	<code>var singleB = mySingleton.getInstance();</code>
+	<br />
+	<code>console.log( singleA.getRandomNumber() === singleB.getRandomNumber() ); // true</code>
+</p>

@@ -1,0 +1,200 @@
+﻿<h3>jQuery</h3>
+<p>Библиотека JavaScript, которая упрощает работу и взаимодействие с объектами и элементами DOM, а также позволяет реагировать на различные события, которые проиходят внутри окна браузера.</p>
+<p>Вызов jQuery:<code>jQuery</code> или <code>$</code></p>
+<p>Использует "chaining" подход. <a href="http://www.w3schools.com/jquery/jquery_chaining.asp">Read more</a></p>
+<h3>Доступ к элементам (селекторы)</h3>
+<p>Функция $ может возвращать различные элементы DOM и её результат на прямую зависит от того какие значения мы передаём в эту функцию. В эту функцию мы можем передавать строчные значения. Часто сюда передают название селектора - который определяет какие элементы нужно отобрать из всей структуры документа.</p>
+<h4>Селеткоры</h4>
+<p>Вызов jQuery([selector]). Например, <code>jQuery('body')</code>.</p>
+<ul>
+	<li><code>$('#sidebar')</code> - все элементы с идентификатором <code>sidebar</code></li>
+	<li><code>$('.post')</code> - все элементы с классом <code>post</code></li>
+	<li><code>$('div')</code> - все элементы <code>div</code></li>
+	<li><code>$('div.post')</code> - все элементы <code>div</code> с классом <code>post</code></li>
+	<li><code>$('div span')</code> - все элементы <code>span</code> внутри <code>div</code></li>
+	<li><code>$('div').find('span')</code> - все элементы <code>span</code> внутри <code>div</code></li>
+	<li><code>$('div &gt; span')</code> - все элементы <code>span</code> внутри <code>div</code>, при этом <code>span</code> должен быть прямым потомком <code>div</code></li>
+	<li><code>$('div, span')</code> - все <code>div</code> и <code>span</code></li>
+	<li><code>$('span + img')</code> - все <code>img</code> после <code>span</code></li>
+	<li><code>$('#banner').prev()</code> - элемент перед <code>#banner</code></li>
+	<li><code>$('#banner').next()</code> - элемент после <code>#banner</code></li>
+	<li><code>$('*')</code> - всё</li>
+	<li><code>$('p &gt; *')</code> - все потомки элемента <code>p</code></li>
+	<li><code>$('p').children()</code> - все потомки <code>p</code></li>
+	<li><code>$('p').parent()</code> - все непосредственные предки <code>p</code></li>
+	<li><code>$('p').parents()</code> - все предки <code>p</code></li>
+	<li><code>$('p').parents('div')</code> - все предки <code>p</code>, которые <code>div</code></li>
+</ul>
+<h4>Фильтры</h4>
+<p>Фильтра позволяют больше конкретизировать выборку элементов и сделать селекторы более гибкими.</p>
+<ul>
+	<li><code>$('div:first')</code> - первый <code>div</code></li>
+	<li><code>$('div:last')</code> - последний <code>div</code></li>
+	<li><code>$('div:not(.post)')</code> - <code>div</code> у которых нет класса <code>post</code></li>
+	<li><code>$('div:even')</code> - четные <code>div</code></li>
+	<li><code>$('div:odd')</code> - нечетные <code>div</code></li>
+	<li><code>$('div:eq(3)')</code> - <code>div</code>, 3-й по счету</li>
+	<li><code>$('div:gt(3)')</code> - <code>div</code> с индексом <code>&gt; 3</code></li>
+	<li><code>$('div:lt(3)')</code> - <code>div</code> с индексом <code>&lt; 3</code></li>
+	<li><code>$(':header')</code> - все заголовки <code>h1</code>, <code>h2</code>, <code>h3</code> и т.д.</li>
+	<li><code>$('div:contains("Copyright")')</code> - <code>div</code> содержащие текст <code>Copyright</code></li>
+	<li><code>$('div:empty')</code> - пустые <code>div</code></li>
+	<li><code>$('div:has(p)')</code> - <code>div</code> содержащие <code>p</code></li>
+	<li><code>$('div').filter('.post')</code> - <code>div</code> содержащие класс <code>post</code></li>
+	<li><code>$('div:hidden')</code> - скрытые <code>div</code></li>
+	<li><code>$('div:visible')</code> - видимые <code>div</code></li>
+	<li><code>$("div[class]")</code> - все <code>div</code> с атрибутом <code>class</code></li>
+	<li><code>$("div[title = 'title']")</code> - все <code>div</code> с атрибутом <code>title="title"</code></li>
+	<li><code>$("div[title != 'title']")</code> - все <code>div</code> с атрибутом <code>title</code> не равным <code>"title"</code></li>
+	<li><code>$("div[title ^= 'ti']")</code> - все <code>div</code> с атрибутом <code>title</code> начинающимся с <code>"ti"</code></li>
+	<li><code>$("div[title $= 'le']")</code> - все <code>div</code> с атрибутом <code>title</code> заканчивающимся на <code>"le"</code></li>
+	<li><code>$("div[title *= 'itl']")</code> - все <code>div</code> с атрибутом <code>title</code> содержащим <code>"itl"</code></li>
+	<li><code>$(":text")</code> - все <code>input</code> с типом <code>text</code></li>
+	<li><code>$(":radio")</code> - все <code>input</code> с типом <code>radio</code></li>
+	<li><code>$("input:enabled")</code> - все включенные элементы <code>input</code></li>
+	<li><code>$("input:checked")</code> - все отмеченные чекбоксы</li>
+	<li><code>$("div[title = 'title']:visible:has(p)")</code> - <code>div</code> с атрибутом <code>title="title"</code>, видимый, содержащий теги <code>p</code></li>
+	<li><code>$("form select option:selected")</code> - выбранные элементы <code>select</code></li>
+	<li><code>$("form :radio[name=some]:checked").val()</code> - получение выбранного значения радиобатона с именем <code>some</code></li>
+	<li><code>$("form :checkbox:checked")</code> - выбор всех выбранных чекбоксов</li>
+</ul>
+<h3>Tree Traversal</h3>
+<ul>
+	<li>
+		<code>.children(?selector)</code>
+		<p>Опционально принимает селетор, как аргумент. Вернет массив прямых потомков. Например, <code>jQuery('body').children('div')</code> и <code>jQuery('body > div')</code></p>
+	</li>
+	<li>
+		<code>.closest(selector)</code>
+		<p>Вернет первого родителя подходящего под селектор. Например, <code>jQuery('p').closest('.page')</code></p>
+	</li>
+	<li>
+		<code>.find()</code>
+		<p>Вернет всех потомков каждого элемента в текущем наборе соответствующих элементов. Например, <code>jQuery('.somediv').find('p')</code> и <code>jQuery('.somediv p')</code></p>
+	</li>
+	<li>
+		<code>.next()</code>
+		<p>Вернет следующий элемент для каждого элемента в текущем наборе соответствующих элементов. Например, <code>jQuery('.somediv').next()</code></p>
+	</li>
+	<li>
+		<code>.parent()</code>
+		<p>Вернет прямой родительский элемент. Например, <code>jQuery(someElement).parent()</code></p>
+	</li>
+	<li>
+		<code>.parents(?selector)</code>
+		<p>Вернет все родительские элементы. Например, <code>jQuery(someElement).parents('div')</code></p>
+	</li>
+	<li>
+		<code>.prev()</code>
+		<p>Вернет предыдущий элемент для каждого элемента в текущем наборе соответствующих элементов. Например, <code>jQuery('.somediv').prev()</code></p>
+	</li>
+	<li>
+		<code>.siblings()</code>
+		<p>Вернет соседние элементы для каждого элемента в текущем наборе соответствующих элементов. Например, <code>jQuery('.somediv').siblings()</code></p>
+	</li>
+</ul>
+<h4>Методы для создания элементов</h4>
+<ul>
+	<li>
+		<code>jQuery(element)</code>
+		<p>Создает новый элемент с указанным тегом. Также можно сразу указать все необходимые аттрибуты.</p>
+		<p><code>jQuery('&lt;div&gt;');</code></p>
+		<p><code>jQuery('&lt;div class="someclass" style="color: black" id="id0"&gt;');</code></p>
+	</li>
+	<li>
+		<code>jQuery(elem).clone(boolean)</code>
+		<p>Клонирует элемент elem, вместе с атрибутами, true - включая вложенные в него, false - без подэлементов</p>
+		<p><code>jQuery(elem).clone(true);</code></p>
+	</li>
+</ul>
+<h4>Вставка и удаление элементов</h4>
+<ul>
+	<li>
+		<code>.append()</code>
+		<p>Добавляет новый элемент в конец списка</p>
+		<p><code>jQuery('div.someEl').append(elem);</code></p>
+	</li>
+	<li>
+		<code>elem.appendTo(dist)</code>
+		<p>Вставляет elem в конец списка дочерних dist.</p>
+		<p><code>jQuery('&lt;div&gt;').appendTo(jQuery('body'));</code></p>
+	</li>
+	<li>
+		<code>.prepend()</code>
+		<p>Добавляет новый элемент в начало списка.</p>
+		<p><code>jQuery('div.someEl').prepend(elem);</code></p>
+	</li>
+	<li>
+		<code>elem.prependTo(disc)</code>
+		<p>Вставляет elem в конец списка дочерних dist.</p>
+		<p><code>jQuery('&lt;div&gt;').prependTo(jQuery('body'));</code></p>
+	</li>
+	<li>
+		<code>.after()</code>
+		<p>Вставляет содержимое, после каждого элемента в наборе совпавших элементов.</p>
+		<p><code>jQuery('div').after('&lt;p&gt;some content&lt;/p&gt;')</code></p>
+	</li>
+	<li>
+		<code>.before()</code>
+		<p>Вставляет содержимое, перед каждым элементом в наборе совпавших элементов.</p>
+		<p><code>jQuery('div').before('&lt;p&gt;some content&lt;/p&gt;')</code></p>
+	</li>
+	<li>
+		<code>elem.insertAfter(dist)</code>
+		<p>Вставляет elem, после dist.</p>
+		<p><code>jQuery('&lt;p&gt;some content&lt;/p&gt;').insertAfter('.someEl')</code></p>
+	</li>
+	<li>
+		<code>elem.insertBefore(dist)</code>
+		<p>Вставляет elem, перед dist.</p>
+		<p><code>jQuery('&lt;p&gt;some content&lt;/p&gt;').instertBefore('.someEl')</code></p>
+	</li>
+</ul>
+<h4>Содержимое элемента</h4>
+<ul>
+	<li>
+		<code>.html()</code>
+		<p>Получить HTML содержимое или установить HTML для каждого совпавшего элемента.</p>
+		<p><code>jQuery('#main').html('&lt;p&gt;some content&lt;/p&gt;'); // set</code></p>
+		<p><code>jQuery('#main').html(); //get</code></p>
+	</li>
+	<li>
+		<code>.text()</code>
+		<p>Вернет сводный текст, содержание каждого элемента в наборе соответствующих элементов, включая их потомков, или установит текстовое содержимое элемента набора.</p>
+		<p><code>jQuery('p.stext').text();</code></p>
+		<p><code>jQuery('p.stext').text('Hello world!');</code></p>
+	</li>
+</ul>
+<h4>Атрибуты</h4>
+<ul>
+	<li>
+		<code>.attr()</code>
+		<p>Вернет значение атрибута для первого элемента в наборе совпавших элементов или установит один или несколько атрибутов для каждого элемента набора.</p>
+		<p><code>someElem.attr()</code></p>
+		<p><code>someElem.attr('class', 'someNewClass')</code></p>
+		<p><code>someElem.attr({id: 'id0', class: 'anotherClassName'})</code></p>
+	</li>
+	<li>
+		<code>.removeAttr(attr)</code>
+		<p>Удаляет атрибут. <code>someElem.removeAttr('style');</code></p>
+	</li>
+</ul>
+<ul>
+	<li>
+		<code>.addClass()</code>
+		<p>Добвит новое имя класса. Например, <code>jQuery('#main').addClass('someNewClassName')</code></p>
+	</li>
+	<li>
+		<code>.hasClass()</code>
+		<p>Проверяет существование имени класса у элемента, возвращает true/false. <code>jQuery('#main').hasClass('someNewClassName')</code></p>
+	</li>
+	<li>
+		<code>.removeClass()</code>
+		<p>Удаляет имя класса. <code>jQuery('#main').removeClass('someNewClassName')</code></p>
+	</li>
+	<li>
+		<code>.toggleClass()</code>
+		<p>Добавляет или удаляет один или несколько классов для каждого элемента в наборе соответствующих элементов, в зависимости от присутствия класса или значения аргумента переключателя.</p>
+		<p>jQuery('div.tumble').toggleClass('bounce');</p>
+	</li>
+</ul>

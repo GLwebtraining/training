@@ -1,0 +1,52 @@
+﻿<h3>Пространство имен</h3>
+<p>Пространства имен помогают уменьшить количество глобальных пере
+менных, необходимых нашим программам, и одновременно избежать
+конфликтов имен и чрезмерного употребления префиксов.</p>
+<p>Вместо того чтобы засорять глобальное пространство имен
+большим количеством функций, объектов и других переменных, можно создать один (в идеале только один) глобальный объект, который бу
+дет служить пространством имен для приложения или библиотеки.</p>
+<p>Простой пример использования:</p>
+<p>
+	<code>var App = {};</code>
+	<br />
+	<code>App.someMethod = function(){/*...*/};</code>
+	<br />
+	<code>App.var_a = 1;</code>
+	<br />
+	<code>App.modules = {};</code>
+	<br />
+	<code>App.modules.someChildModule = {};</code>
+</p>
+<p>Универсальная функция
+для создания пространства имен</p>
+<p>
+	<code>var App = App || {};</code>
+	<br />
+	<code>App.namespace = function (ns_string) {</code>
+	<br />
+	<code>&nbsp;&nbsp;var parts = ns_string.split('.'),</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;parent = MYAPP, i;</code>
+	<br />
+	<code>&nbsp;&nbsp;if (parts[0] === “MYAPP”) parts = parts.slice(1);</code>
+	<br />
+	<code>&nbsp;&nbsp;for (i = 0; i < parts.length; i++){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;if (typeof parent[parts[i]] === 'undefined') parent[parts[i]] = {};</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;parent = parent[parts[i]];</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;return parent;</code>
+	<br />
+	<code>};</code>
+</p>
+<p>Использование:</p>
+<p>
+	<code>// присваивать возвращаемое значение локальной переменной</code>
+	<br />
+	<code>var module2 = App.namespace('App.modules.module2');</code>
+	<br />
+	<code>App.namespace('modules.module51');</code>
+</p>

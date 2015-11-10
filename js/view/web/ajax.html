@@ -1,0 +1,135 @@
+﻿<h4>AJAX («Asynchronous Javascript And Xml») — технология обращения к серверу без перезагрузки страницы.</h4>
+<p>За счет этого уменьшается время отклика, полезен для небольших элементов, связанных с элементарными действиями: добавить в корзину, подписаться; живой поиск — классический пример использования AJAX, взятый на вооружение современными поисковыми системами.
+Пользователь начинает печатать поисковую фразу, а JavaScript предлагает возможные варианты, получая список самых вероятных дополнений с сервера.</p>
+<h4>XMLHttpRequest</h4>
+<p>Объект XMLHttpRequest дает возможность браузеру делать HTTP-запросы к серверу без перезагрузки страницы, может работать с данными в любом текстовом формате, и даже c бинарными данными.</p>
+<p>В зависимости от браузера, код для создания объекта может быть разный. <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest#Browser_Compatibility">Browser compatibility</a></p>
+<p>Кроссбраузерная функция создания XMLHttpRequest:</p>
+<p>
+	<code>function getXmlHttp(){</code>
+	<br />
+	<code>&nbsp;&nbsp;var xmlhttp;</code>
+	<br />
+	<code>&nbsp;&nbsp;try {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");</code>
+	<br />
+	<code>&nbsp;&nbsp;} catch (e) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;try {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;} catch (E) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp = false;</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;if (!xmlhttp && typeof XMLHttpRequest!='undefined') {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;xmlhttp = new XMLHttpRequest();</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;return xmlhttp;</code>
+	<br />
+	<code>}</code>
+</p>
+<h4>Методы управления основным потоком запроса</h4>
+<ul>
+	<li>
+		<code>open(method, URL, async, user, password)</code>
+		<p>Конфигурация объекта. Обязательны только первые два аргумента. Метод open сам по себе не открывает соединение, это делает send().</p>
+		<ul>
+			<li>
+				<code>method</code>
+				<p>HTTP-метод. Как правило, используется GET либо POST, хотя доступны и TRACE/DELETE/PUT и т.п.</p>
+			</li>
+			<li>
+				<code>URL</code>
+				<p>адрес запроса. Можно использовать не только HTTP/HTTPS, но и другие протоколы, например ftp:// и file://. При этом есть ограничения безопасности, называемые «Same Origin Policy»: запрос со страницы можно отправлять только на тот же протокол://домен:порт, с которого она пришла.</p>
+			</li>
+			<li>
+				<code>async</code>
+				<p>если установлено в false, то запрос производится синхронно, если true — асинхронно.</p>
+			</li>
+			<li>
+				<code>user, password</code>
+				<p>логин и пароль для HTTP-авторизации.</p>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<code>send(body)</code>
+		<p>Отправляет запрос на сервер. В body находится тело запроса.</p>
+	</li>
+	<li>
+		<code>abort()</code>
+		<p>Прерывает выполнение запроса</p>
+	</li>
+</ul>
+<h4>Получение результата</h4>
+<p>Событие <code>readystatechange</code></p>
+<p>Происходит несколько раз в процессе отсылки и получения ответа. При этом можно посмотреть «текущее состояние запроса» в свойстве xhr.readyState, которое принимает значения от 0 до 4.</p>
+<ul>
+	<li>const unsigned short UNSENT = 0; // начальное состояние</li>
+	<li>const unsigned short OPENED = 1; // вызван open</li>
+	<li>const unsigned short HEADERS_RECEIVED = 2; // получены заголовки</li>
+	<li>const unsigned short LOADING = 3; // загружается тело</li>
+	<li>const unsigned short DONE = 4; // запрос завершён</li>
+</ul>
+<p>Свойства <code>status</code> и <code>statusText</code>.</p>
+<p>Эти свойства содержат HTTP-статус ответа и его описание, например: status = 404, statusText = Not Found. Когда ошибка не связана с кодом ответа сервера (например, не удалось соединение), свойство status равно нулю, а в statusText — пустая строка.</p>
+<p>Свойства <code>responseText</code> и <code>responseXML</code></p>
+<p>После завершения запроса становится доступно свойство responseText, которое содержит текст ответа сервера. В современных браузерах оно доступно даже при неоконченном запросе и содержит текст, полученный к текущему моменту.</p>
+<p>Если сервер прислал HTML/XML с Content-Type: text/xml, то браузер превращает его в полноценный документ и записывает в responseXML. По такому документу можно производить XPath-запросы, делать XSLT-преобразования и т.п.</p>
+<h4>Заголовки</h4>
+<ul>
+	<li>
+		<code>setRequestHeader(name, value)</code>
+		<p>Устанавливает заголовок name запроса со значением value. Если заголовок с таким name уже есть — он заменяется.</p>
+		<p><code>xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');</code></p>
+	</li>
+	<li>
+		<code>getResponseHeader(name)</code>
+		<p>Возвращает значение заголовка ответа name, кроме Set-Cookie и Set-Cookie2.</p>
+		<p><code>xhr.getResponseHeader('Content-Type') == 'text/plain';</code></p>
+	</li>
+	<li>
+		<code>getAllResponseHeaders()</code>
+		<p>Возвращает все заголовки ответа, кроме Set-Cookie и Set-Cookie2. Заголовки возвращаются в виде единой строки.</p>
+	</li>
+</ul>
+<h4>Кэширование</h4>
+<p>Результат запроса XMLHttpRequest, как и обычная страница, может быть закэширован браузером. IE&lt;10 автоматически кэширует ответы, не снабжённые антикэш-заголовком.</p>
+<p><code>Cache-Control: no-cache</code></p>
+<p>Альтернативный вариант — добавить в URL запроса случайный параметр, предотвращающий кэширование.</p>
+<p><code>xhr.open('GET', '/some/path?r=' + Math.random())</code></p>
+
+<h3>Пример запроса XMLHttpRequest</h3>
+<p>
+	<code>var xhr = new XMLHttpRequest();</code>
+	<br />
+	<code>xhr.open('GET', '/my/url', true);</code>
+	<br />
+	<code>xhr.onreadystatechange = function() {</code>
+	<br />
+	<code>&nbsp;&nbsp;if (this.readyState != 4) return;</code>
+	<br />
+	<code>&nbsp;&nbsp;if (this.status != 200) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;// handle error</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;return;</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;// available result from this.responseText or this.responseXML</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>xhr.send('');</code>
+</p>

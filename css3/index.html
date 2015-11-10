@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CSS3</title>
+		<style type="text/css">
+			@font-face{
+				font-family: Orange;
+				src: url(orange_juice.ttf);
+			}
+			@-webkit-keyframes simple {
+				0% { -webkit-transform: rotate(0deg); }
+				100% { -webkit-transform: rotate(360deg); }
+			}
+			body{
+				margin: 0;
+				padding: 0;
+				font: 14px/16px sans-serif;
+			}
+
+			.container{
+				width: 1000px;
+				margin: 0 auto;
+				padding: 50px 0 0;
+			}
+
+			/* common styles */
+			article{
+				width: 100%;
+				margin: 0 0 15px;
+				box-shadow: 0 0 10px 1px #000;
+				border-radius: 7px;
+			}
+			article .title{
+				border-bottom: 1px solid #eee;
+				padding: 10px;
+				margin: 0;
+				font-size: 16px;
+				line-height: 18px;
+			}
+			article .body{
+				width: 100%;
+				padding: 10px;
+				margin: 0 0 10px;
+				overflow: hidden;
+				position: relative;
+				box-sizing: border-box;
+			}
+			article .body .frame{
+				width: 100%;
+				min-height: 100px;
+				border: 1px dotted #ccc;
+				box-sizing: border-box;
+			}
+			article .body .frame .code{
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+				border-bottom: 1px dotted #ccc;
+			}
+			article .body .frame .code:before{
+				content:'';
+				position: absolute;
+				left: 48%;
+				top: 0;
+				width: 1px;
+				height: 100%;
+				border-left: 1px dotted #ccc;
+			}
+			article .body .frame .code > div {
+				float: left;
+				width: 45%;
+				padding: 0 15px;
+			}
+			article .body .frame .code strong{
+				display: block;
+				padding: 5px;
+				margin: 0 0 5px;
+			}
+			article .body .frame .code code{
+				display: block;
+				padding: 0 0 10px;
+				width: 100%;
+				min-height: 20px;
+				outline: none;
+				font: 14px/16px Arial, Verdana, sans-serif;
+				letter-spacing: 1px;
+			}
+			article .body .frame .preview{
+				padding: 20px 20px 10px;
+				position: relative;
+				overflow: hidden;
+			}
+			article .footer{
+				width: 100%;
+				overflow: hidden;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<article>
+				<p class="title">Border radius</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="bg"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="bg border-1"&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;margin: 0 auto 10px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+									<br>}
+									<br>
+									<br>.bg{
+										<br>&nbsp;&nbsp;border: none;
+										<br>&nbsp;&nbsp;background: #39f;
+									<br>}
+									<br>
+									<br>.border-1{
+										<br>&nbsp;&nbsp;border-radius:0;
+										<br>&nbsp;&nbsp;border-top-left-radius:10px;
+										<br>&nbsp;&nbsp;border-top-right-radius:10px;
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Font face</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									<br>@font-face{
+										<br>&nbsp;&nbsp;font-family: Orange;
+										<br>&nbsp;&nbsp;src: url(orange_juice.ttf);
+									<br>}
+									<br>
+									<br>div{
+										<br>&nbsp;&nbsp;width: 400px;
+										<br>&nbsp;&nbsp;height: 200px;
+										<br>&nbsp;&nbsp;margin: 0 auto 10px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+										<br>&nbsp;&nbsp;font-family: Orange;
+										<br>&nbsp;&nbsp;font-size: 80px;
+										<br>&nbsp;&nbsp;line-height: 200px;
+										<br>&nbsp;&nbsp;text-align:center;
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Box shadow</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div class="shadow-1"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="shadow-2"&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;margin: 0 auto 20px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+									<br>}
+									<br>
+									<br>/* x, y, blur, scale */
+									<br>.shadow-1{
+										<br>&nbsp;&nbsp;box-shadow: 0 0 100px 1px rgba(0,0,0,0.5);
+									<br>}
+									<br>
+									<br>.shadow-2{
+										<br>&nbsp;&nbsp;box-shadow: inset 0 0 100px 1px rgba(0,0,0,0.5); 
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Gradient</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div class="gradient-1"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-2"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-3"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-4"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-5"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-6"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-7"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-8"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="gradient-9"&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;float: left;
+										<br>&nbsp;&nbsp;margin: 0 20px 20px 0;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+									<br>}
+									<br>
+									<br>.gradient-1{
+										<br>&nbsp;&nbsp;background: linear-gradient(to top, black, white);
+									<br>}
+									<br>
+									<br>.gradient-2{
+										<br>&nbsp;&nbsp;background: linear-gradient(to left, black 70%, white 30%); 
+									<br>}
+									<br>
+									<br>.gradient-3{
+										<br>&nbsp;&nbsp;background: linear-gradient(to top left, transparent 50%, #39f 50%); 
+									<br>}
+									<br>
+									<br>.gradient-4{
+										<br>&nbsp;&nbsp;background: linear-gradient(-75deg, black 50%, white 50%); 
+									<br>}
+									<br>
+									<br>.gradient-5{
+										<br>&nbsp;&nbsp;background: linear-gradient(to top, rgba(30,87,153,0), rgba(30,87,153,0.8), rgba(30,87,153,1),
+                      rgba(30,87,153,1), rgba(41,137,216,1), rgba(30,87,153,1), rgba(30,87,153,1),
+                      rgba(30,87,153,0.8),rgba(30,87,153,0)); 
+									<br>}
+									<br>
+									<br>/* center, shape size, start-color, ..., last-color */
+									<br>/* center - top = top center = center top = 50% 0% */
+									<br>/* shape - circle | ellipse */
+									<br>/* size - contain | closest-corner | farthest-side | cover */
+									<br>
+									<br>.gradient-6{
+										<br>&nbsp;&nbsp;background: -webkit-radial-gradient(center, circle cover, #fff 50%, #000 50%); 
+									<br>}
+									<br>
+									<br>.gradient-7{
+										<br>&nbsp;&nbsp;background: -webkit-radial-gradient(120px 50px, circle contain, #fff 0%, #000 50%); 
+									<br>}
+									<br>
+									<br>.gradient-8{
+										<br>&nbsp;&nbsp;background: -webkit-radial-gradient(bottom right, circle farthest-side, #fff 0%, #000 50%);  
+									<br>}
+									<br>
+									<br>.gradient-9{
+										<br>&nbsp;&nbsp;background: -webkit-radial-gradient(ellipse, blue 20px, yellow 30px, grey 40px, red 50px, white 60px, green 70px);  
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Text shadow</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;margin: 0 auto 10px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+										<br>&nbsp;&nbsp;text-align:center;
+										<br>&nbsp;&nbsp;font-size:30px;
+										<br>&nbsp;&nbsp;line-height:100px;
+										<br>&nbsp;&nbsp;text-shadow: 5px 5px 5px #39f;
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Transform</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-1"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-2"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-3"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-4"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-5"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-6"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-7"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="transform-8"&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									<br>
+									<br>/* function - matrix(a, c, b, d, tx, ty); */
+									<br>/* function - rotate(Ndeg); */
+									<br>/* function - scale(sx[, sy]); */
+									<br>/* function - scaleX(sx); */
+									<br>/* function - scaleY(sy); */
+									<br>/* function - skewX(Ndeg); */
+									<br>/* function - skewY(Ndeg); */
+									<br>/* function - translate(tx[, ty]); */
+									<br>/* function - translateX(tx); */
+									<br>/* function - translateY(ty); */
+									<br>
+									div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;float: left;
+										<br>&nbsp;&nbsp;margin: 0 10px 10px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+										<br>&nbsp;&nbsp;text-align:center;
+										<br>&nbsp;&nbsp;font-size:30px;
+										<br>&nbsp;&nbsp;line-height:100px;
+										<br>&nbsp;&nbsp;text-shadow: 5px 5px 5px #39f;
+										<br>&nbsp;&nbsp;-webkit-transform:matrix(1,0,0,-1,0,0);
+									<br>}
+									<br>
+									<br>.transform-1{
+									<br>&nbsp;&nbsp;-webkit-transform:matrix(2,0,0,2,0,0);
+									<br>}
+									<br>
+									<br>.transform-2{
+									<br>&nbsp;&nbsp;-webkit-transform:matrix(1, 0, -0.5, 1, 0, 0);
+									<br>}
+									<br>
+									<br>.transform-3{
+									<br>&nbsp;&nbsp;-webkit-transform:matrix(1, 0, 0, 1, 20, 30);
+									<br>}
+									<br>
+									<br>.transform-4{
+									<br>&nbsp;&nbsp;-webkit-transform:rotate(45deg);
+									<br>}
+									<br>
+									<br>.transform-5{
+									<br>&nbsp;&nbsp;-webkit-transform:scale(0.5,0.5);
+									<br>}
+									<br>
+									<br>.transform-6{
+									<br>&nbsp;&nbsp;-webkit-transform:skewX(45deg);
+									<br>}
+									<br>
+									<br>.transform-7{
+									<br>&nbsp;&nbsp;-webkit-transform:skewY(-45deg);
+									<br>}
+									<br>
+									<br>.transform-8{
+									<br>&nbsp;&nbsp;-webkit-transform:translate(2px, 30px);
+									<br>}
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+			<article>
+				<p class="title">Transition</p>
+				<div class="body">
+					<div class="frame">
+						<div class="code">
+							<div>
+								<strong>HTML</strong>
+								<code>
+									&lt;div&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-1"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-2"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-3"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-4"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-5"&gt;
+									content
+									&lt;/div&gt;
+									<br>&lt;div class="animation-6"&gt;
+									content
+									&lt;/div&gt;
+								</code>
+							</div>
+							<div>
+								<strong>CSS</strong>
+								<code>
+									<br>/*  none | transition-property | transition-duration | transition-timing-function> | transition-delay */
+									<br>
+									<br>div{
+										<br>&nbsp;&nbsp;width: 200px;
+										<br>&nbsp;&nbsp;height: 100px;
+										<br>&nbsp;&nbsp;float: left;
+										<br>&nbsp;&nbsp;margin: 0 10px 10px;
+										<br>&nbsp;&nbsp;border: 1px solid #ccc;
+										<br>&nbsp;&nbsp;padding: 5px;
+										<br>&nbsp;&nbsp;border-radius: 10px;
+										<br>&nbsp;&nbsp;transition: all 1s;
+									<br>}
+									<br>
+									<br>div:hover{
+										<br>&nbsp;&nbsp;background-color: green;
+									<br>}
+									<br>
+									<br>.animation-1{
+										<br>&nbsp;&nbsp;background-color: white;
+										<br>&nbsp;&nbsp;transition-delay: 2s;
+									<br>}
+									<br>
+									<br>.animation-1:hover{
+										<br>&nbsp;&nbsp;-webkit-transform:rotate(360deg);
+										<br>&nbsp;&nbsp;transition-delay: 0.5s;
+									<br>}
+									<br>
+									<br>.animation-2{
+										<br>&nbsp;&nbsp;background-color: white;
+										<br>&nbsp;&nbsp;transition-timing-function: linear;
+										<br>&nbsp;&nbsp;transition-duration: 5s;
+									<br>}
+									<br>
+									<br>.animation-2:hover{
+										<br>&nbsp;&nbsp;-webkit-transform:rotate(360deg);
+									<br>}
+									<br>
+									<br>.animation-3{
+										<br>&nbsp;&nbsp;transition:width 2s, height 2s, background-color 2s, transform 2s;
+									<br>}
+									<br>
+									<br>.animation-3:hover{
+										<br>&nbsp;&nbsp; background-color: #FFCCCC;
+										<br>&nbsp;&nbsp; width:200px;
+										<br>&nbsp;&nbsp;height:200px;
+										<br>&nbsp;&nbsp;-webkit-transform:rotate(180deg);
+										<br>&nbsp;&nbsp;transform:rotate(180deg);
+									<br>}
+									<br>
+									<br>.animation-4{
+										<br>&nbsp;&nbsp;transition:all 3s;
+									<br>}
+									<br>
+									<br>.animation-4:hover{
+										<br>&nbsp;&nbsp; background-color: #fff;
+										<br>&nbsp;&nbsp;font-size:30px;
+										<br>&nbsp;&nbsp;line-height:80px;
+										<br>&nbsp;&nbsp;text-shadow: 5px 5px 5px #39f;
+										<br>&nbsp;&nbsp;box-shadow: inset 0 0 100px 1px rgba(0,0,0,0.5); 
+									<br>}
+									<br>.animation-5{
+										<br>&nbsp;&nbsp;-webkit-animation-name: simple;
+										<br>&nbsp;&nbsp;-webkit-animation-delay: 1s;
+										<br>&nbsp;&nbsp;-webkit-animation-duration: 5s;
+										<br>&nbsp;&nbsp;-webkit-animation-iteration-count: infinite;
+										<br>&nbsp;&nbsp;-webkit-animation-timing-function: linear;
+									<br>}
+									<br>
+								</code>
+							</div>
+						</div>
+						<div class="preview"></div>
+					</div>
+				</div>
+			</article>
+		</div>
+		<script type="text/javascript">
+
+			function Article (node) {
+				this.node = node;
+			}
+			Article.prototype = {
+				mapEntities: {
+					'&emsp;': '',
+					'<br>;': '',
+					'&lt;': '<',
+					'&gt;': '>'
+				},
+				init: function () {
+					this.htmlCodeEditor = this.node.getElementsByTagName('code')[0];
+					this.cssCodeEditor = this.node.getElementsByTagName('code')[1];
+
+					this.html = this.getHTML();
+					this.css = this.getCSS();
+					this.preview = this.getPreview();
+					this.randomClassName = this.generateClassName();
+					this.preview.className += ' ' + this.randomClassName;
+					if(this.html) this.generateHTML();
+					this.updateCode();
+					
+				},
+				getHTML: function () {
+					return this.htmlCodeEditor.innerText;
+				},
+				getCSS: function () {
+					return this.cssCodeEditor.innerText.replace(/[^A-Za-z0-9\{\}:;#@$%*-\+\[\],\/\*]\s+?/g,'');
+				},
+				getPreview: function(){
+					return this.node.getElementsByClassName('preview')[0];
+				},
+				parseCode: function(str){
+					var self = this;
+					return str.replace(/(&emsp;)*(<br>)*(&lt;)*(&gt;)*/g, function(c){
+						return self.mapEntities.hasOwnProperty(c) ? self.mapEntities[c] : '';
+				    });
+				},
+				randomCache: [],
+				classNameCache: [],
+				randomNumGen: function(){
+					var n = Math.ceil(Math.random(1)*9999).toString();
+					if(~this.randomCache.indexOf(n)){
+						this.randomNumGen();
+					}
+					else{
+						this.randomCache.push(n);
+						return n;
+					}
+				},
+				generateClassName: function(){
+					return 'example-n' + this.randomNumGen();
+				},
+				generateHTML: function(){
+					var regExp = /(<([\s\S]*)([\s\S]*?)\/\2>)/gim;
+					var htmlArray = this.html.match(regExp);
+
+					this.preview.innerHTML = this.html;
+
+					
+					this.generateCss(this.randomClassName);
+				},
+				generateCss: function(cn){
+					this.styles = document.createElement('style');
+
+					var regExp = /(.*?)\{([\s\S]*?)\}/gim;
+					var cssArray = this.css.match(regExp);
+					var styles = '';
+
+					if(cssArray){
+						for(var i = 0, l = cssArray.length; i < l; i++){
+							styles += ('.' + cn + ' ' + cssArray[i] + '\n');
+						}
+					}
+
+					this.styles.innerHTML = styles;
+					document.getElementsByTagName('head')[0].appendChild(this.styles);
+				},
+				updateCode: function(){
+					var self = this;
+					this.cssCodeEditor.contentEditable = true;
+					this.htmlCodeEditor.contentEditable = true;
+					this.htmlCodeEditor.onkeyup = function(e){
+						if(self.styles) self.styles.parentNode.removeChild(self.styles);
+						self.html = self.getHTML();
+						self.preview.innerHTML = self.html;
+						self.generateCss(self.randomClassName);
+					}
+					this.cssCodeEditor.onkeyup = function(e){
+						document.getElementsByTagName('head')[0].removeChild(self.styles);
+						self.css = self.getCSS();
+						self.generateCss(self.randomClassName);
+
+					}
+				}
+			}
+
+			var articles = document.getElementsByTagName('article');
+
+			for (var i = 0, l = articles.length, article; i < l; i++){
+				(function (n) {
+					article = new Article(articles[n]);
+					article.init();
+				})(i)
+			}
+
+		</script>
+	</body>
+</html>

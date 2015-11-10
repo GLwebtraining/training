@@ -1,0 +1,156 @@
+﻿[
+	{
+		"name": "Типи даних",
+		"templateUrl": "dataTypes/main",
+		"topics": [
+			{
+				"name": "Прості типи",
+				"templateUrl": "dataTypes/basic",
+				"topics": [
+					{
+						"name": "Number",
+						"templateUrl": "dataTypes/number" 
+					},
+					{
+						"name": "String",
+						"templateUrl": "dataTypes/string" 
+					},
+					{
+						"name": "Boolean",
+						"templateUrl": "dataTypes/boolean" 
+					}
+				]	
+			},
+			{
+				"name": "null та undefined",
+				"templateUrl": "dataTypes/nullundef"
+			},
+			{
+				"name": "Cкладний тип",
+				"templateUrl": "dataTypes/special",
+				"topics": [
+					{
+						"name": "Object",
+						"templateUrl": "dataTypes/object"
+					},
+					{
+						"name": "Array",
+						"templateUrl": "dataTypes/array"
+					}
+				]
+			},
+			{
+				"name": "Спеціальні типи об'єктів",
+				"templateUrl": "dataTypes/specialobject",
+				"topics": [
+					{
+						"name": "Function",
+						"templateUrl": "dataTypes/function"
+					},
+					{
+						"name": "Клас Date",
+						"templateUrl": "dataTypes/date"
+					},
+					{
+						"name": "Клас RegExp",
+						"templateUrl": "dataTypes/regexp"
+					},
+					{
+						"name": "Клас Error",
+						"templateUrl": "dataTypes/error"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Змінна - variable",
+		"templateUrl": "var/main",
+		"topics": [
+			{
+				"name": "Оголошення - declaring",
+				"templateUrl": "var/declare"
+			},
+			{
+				"name": "Область видимості - scope",
+				"templateUrl": "var/scope"
+			}
+		]
+	},
+	{
+		"name": "Вирази, оператори та інструкції",
+		"templateUrl": "expression/main",
+		"topics": [
+			{
+				"name": "Вирази - expressions",
+				"templateUrl": "expression/expressions"
+			},
+			{
+				"name": "Оператори - operators",
+				"templateUrl": "expression/operators"
+			},
+			{
+				"name": "Інструкції - instructions",
+				"templateUrl": "expression/instructions"
+			}
+		]
+	},
+	{
+		"name": "Масив - Array",
+		"templateUrl": "array/main",
+		"topics": [
+			{
+				"name": "Функції масивів - Array functions",
+				"templateUrl": "array/function"
+			},
+			{
+				"name": "Функції з ES5",
+				"templateUrl": "array/functiones5"
+			}
+		]
+	},
+	{
+		"name": "Об'єкт - Object",
+		"templateUrl": "object/main",
+		"topics": [
+			{
+				"name": "Створення - creation",
+				"templateUrl": "object/create"
+			},
+			{
+				"name": "Властивості - properties",
+				"templateUrl": "object/properties"
+			},
+			{
+				"name": "Методи об'єктів - methods",
+				"templateUrl": "object/common"
+			}
+		]
+	},
+	{
+		"name": "JSON",
+		"templateUrl": "object/json"
+	},
+	{
+		"name": "DOM та BOM",
+		"templateUrl": "dombom/main"
+	},
+	{
+		"name": "RegExp",
+		"templateUrl": "regexp/main",
+		"topics": [
+			{
+				"name": "Методи String",
+				"templateUrl": "regexp/string"
+			},
+			{
+				"name": "Методи RegExp",
+				"templateUrl": "regexp/regexp"
+			},
+			{
+				"name": "Значення спеціальних символів - Special characters meaning",
+				"templateUrl": "regexp/chars"
+			}
+		]
+	}
+]

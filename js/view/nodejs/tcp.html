@@ -1,0 +1,24 @@
+﻿<h4>TCP</h4>
+<p>Чтобы использовать основные сетевые функции необходимо подключить встроенный модуль <code>net</code>: <br /><code>var net = require('net')</code></p>
+<p><code>net.createServer()</code> - создает новый TCP сервер. Метод возвращает экземпляр созданного сервера и принимает callback функцию - <code>function callback (socket) { /* ... */ }</code></p>
+<p>Чтобы начать работать с созданным сервером нужно вызвать метод <code>listen</code> и передать номер порта: <br />
+<code>var net = require('net')</code><br />
+<code>var server = net.createServer(function (socket) {</code><br />
+<code>&nbsp;&nbsp;/*...*/</code><br />
+<code>});</code><br />
+<code>server.listen(8000);</code>
+</p>
+<p>Объект <code>socket</code> содержит много мета данных, также является Node duplex Stream (может быть использован как для чтения, так и для записи).</p>
+<p><code>socket.write(data)</code> используется для записи данных в сокет <br />
+<code>socket.end()</code> - для закрытия сокета. Метод также может принять данные(как и write) и затем закрыть соединение.</p>
+<p>
+	<code>var net = require('net');</code>
+	<br />
+	<code>net.createServer(function(socket){</code>
+	<br />
+	<code>&nbsp;&nbsp;socket.write(new Date().toString());</code>
+	<br />
+	<code>&nbsp;&nbsp;socket.end('\n');</code>
+	<br />
+	<code>}).listen(8000);</code>
+</p>

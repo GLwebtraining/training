@@ -1,0 +1,14 @@
+﻿[   
+	{
+		"name": "this",
+		"templateUrl": "proto/this"
+	},
+	{
+		"name": "Constructor",
+		"templateUrl": "proto/constructor"
+	},
+	{
+		"name": "Prototype",
+		"templateUrl": "proto/prototype"
+	}
+]

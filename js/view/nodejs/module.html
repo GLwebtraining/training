@@ -1,0 +1,74 @@
+﻿<h3>The concept of modules</h3>
+<p>Модульность дает возможность структурировать проект, вынести независимые части, которые можно будет использовать в других проектах и сделать код нагляднее.</p>
+<p>В NodeJs каждый javascript файл представляет собой модуль, который можно подключить с помощью вызова функции <strong>require</strong>, которой нужно передать путь к файлу.</p>
+<p><code>var myModule = require('./my_module');</code></p>
+<p>Вместе с NodeJs поставляется несколько встроенных модулей, для подключения которых нужно просто указать название модуля.
+<br />
+<code>var http = require('http');</code><br />
+<code>var fs = require('fs');</code>
+</p>
+<p>Встроенные модули имеют приоритет над всеми остальными, если в функцию <strong>require</strong> передано их название. Так к примеру, <code>require('http')</code> всегда вернет встроенный модуль, даже если будет сторонний модуль с таким названием или файл с таким именем.</p>
+<p>Если передано название модуля и он не является встроенным, тогда идет подключение модуля из папки <strong>node_modules</strong>. В данной папке находятся все модули, которые добавлены с помощью <strong>NPM</strong>(NPM — это менеджер пакетов для NodeJs).</p>
+<p>Чтобы подключить модуль который находится в node_modules достаточно указать его название - <code>var express = require('express');</code>.</p>
+<p>Еще один вариант подключения, если переданный параметр в функцию <strong>require</strong> начинается с <code>/</code>, <code>../</code>, или <code>./</code>, тогда файл для подключения будет происходить по абсолютному пути или относительно текущей папки.
+Сначала будет проверено или существует файл с именем точно соответствующим указанному, если такой файл не будет найден, тогда NodeJs попытается подключить файл добавляя к имени разные расширения: .js, .json, а также .node.</p>
+
+<p>Независимо от того как вы подключаете модуль, он кэшируется сразу после подключения. Это означает, что сколько бы раз не подключался модуль, его код исполнится только один раз. Это поведение можно изменить, если после каждого вызова модуля удалять его из кэша.</p>
+<p><code>delete require.cache[ module ];</code>, где <strong>module</strong> - это параметр, который вы передавали функции require для подключения модуля.</p>
+<p>Кроме функции <strong>require</strong>, в каждом модуле доступен объект <code>module</code>. Основная задача этого объекта дать возможность модулю вернуть результат своего исполнения. Это может быть и объект, и функция, и строка — любой тип данных.</p>
+<p>У объекта <code>module</code> есть свойство <code>exports</code> и ему нужно присваивать все что вы хотите вернуть из модуля. <code>module.exports</code> вернется как результат подключения модуля.</p>
+<p>
+	<strong>Пример:</strong><br />
+	<p>Запуск <code>node fs d:\path\to\your\dir txt</code></p>
+	<strong>fs.js</strong><br />
+	<code>var filter = require('./module');</code>
+	<br />
+	<code>var dir = process.argv[2];</code>
+	<br />
+	<code>var ext = process.argv[3];</code>
+	<br />
+	<br />
+	<code>filter(dir, ext, function(err, data){</code>
+	<br />
+	<code>&nbsp;&nbsp;for(var i = 0, l = data.length; i < l; i ++){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(data[i]);</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>});</code><br />
+	<br />
+	<br />
+	<strong>module.js</strong><br />
+	<code>var fs = require('fs'); </code>
+	<br />
+	<code>var path = require('path');</code>
+	<br />
+	<code>var arr = [];</code>
+	<br />
+	<br />
+	<code>module.exports = filter;</code>
+	<br />
+	<br />
+	<code>function filter(dir, ext, callback){</code>
+	<br />
+	<code>&nbsp;&nbsp;fs.readdir(dir, function(err, list){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;if(err) return callback(err);</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;for(var i = 0, l = list.length; i < l; i++){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(path.extname(list[i]).slice(1) === ext){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr.push(list[i])</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;callback(null, arr);</code>
+	<br />
+	<code>&nbsp;&nbsp;});</code>
+	<br />
+	<code>}</code>
+</p>

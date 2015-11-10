@@ -4,9 +4,21 @@
 	
 	angular
 		.module('js-lessons', ['ngRoute', 'controller.main'])
-		.config(routeCfg);
+		.config(routeCfg)
+		.config(httpCfg);
 		
+
+	httpCfg.$inject = ['$httpProvider'];
 	routeCfg.$inject = ['$routeProvider'];
+	
+	function httpCfg($httpProvider){
+		//initialize get if not there
+		if (!$httpProvider.defaults.headers.get) {
+			$httpProvider.defaults.headers.get = {};    
+		}
+		//disable IE ajax request caching
+		$httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+	}
 	
 	function routeCfg($routeProvider){
 		$routeProvider
