@@ -1,0 +1,38 @@
+﻿[
+	{
+		"name": "Definition and call",
+		"templateUrl": "func/define"
+	},
+	{
+		"name": "Arguments",
+		"templateUrl": "func/args"
+	},
+	{
+		"name": "Callback",
+		"templateUrl": "func/callback"
+	},
+	{
+		"name": "Scope",
+		"templateUrl": "func/scope"
+	},
+	{
+		"name": "Closure",
+		"templateUrl": "func/closure"
+	},
+	{
+		"name": "Self-Defining Function",
+		"templateUrl": "func/self-define"
+	},
+	{
+		"name": "Immediate Function",
+		"templateUrl": "func/immed"
+	},
+	{
+		"name": "Returning Function",
+		"templateUrl": "func/return"
+	},
+	{
+		"name": "Memoization, currying - overview",
+		"templateUrl": "func/mem-curr"
+	}
+]

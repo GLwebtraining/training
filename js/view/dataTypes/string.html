@@ -1,0 +1,87 @@
+﻿<h2>Тип даних 'рядок' — String</h2>
+
+<p>Рядок є послідовністю з символів Unicode, обмежених одинарними або подвійними лапками:</p>
+
+<pre>var helloWorld = 'Hello, World!';</pre>
+
+<p>Символ зворотнього слешу (\) використовується для того, щоб разом з наступним символом позначати символ, який неможливо позначити у рядку іншими способами. Наприклад, сам символ лапок (<code>\'</code>) або символ переносу рядка <code>\n</code>, що є керуючою послідовністю символів (escape sequence). Також їх називають мета-символами: </p>
+
+<pre>var escapedString = 'I can have \nmulti-line strings, even with \t tabulation!'; // \t - мета-символ табуляції</pre>
+
+<h3>Функції для роботи з рядками</h3>
+
+<p>Однією з них є можливість поєднання, тобто <strong>конкатенації рядків</strong> за допомогою оператора <code>+</code>, що зазвичай застосовується до чисел — а тут він поєднує рядки:</p>
+
+<pre>var helloWorld = 'Hello, ' + 'world';</pre>
+
+<p>Щоб взнати довжину рядка (тобто кількість її символів), використовується властивість <code>String.length</code></p>
+
+<pre>var len = helloWorld.length; // результат: 12</pre>
+
+<p>Функція <code>str.charAt([index])</code> повертає символ, що має у рядкові індекс <strong>index</strong></p>
+
+<pre>var hChar = helloWorld.charAt(0); // результат: "H"</pre>
+
+<p>Функція <code>str.substring([m], [n])</code> - поверне під-рядок, починаючи з позиції <strong>m</strong> до позиції <strong>n</strong>, не включаючи n, — або до кінця рядка, якщо n не вказано.</p>
+
+<pre>var hello = helloWorld.substr(0, 4); // результат: "Hello"
+var world = helloWorld.substr(7); // результат: "world"</pre>
+
+<p>Функція <code>str.substr([m], [quantity])</code> - поверне під-рядок, починаючи з позиції <strong>m</strong> і у кількості quantity (або до кінця рядка, якщо quantity не вказано).</p>
+
+<pre>var comma = helloWorld.substr(5, 1); // результат: ","
+var commaAndSpace = helloWorld.substr(5, 2); // результат: ", " (з пробілом (!))</pre>
+
+<p>Функція <code>str.indexOf([symbol])</code> повідомляє нам індекс символа <code>symbol</code> у рядку <code>str</code></p>
+
+<pre>var indexOfWorld = helloWorld.indexOf( world ); // результат: 7</pre>
+
+<h3>Перетворення чисел у рядки і навпаки</h3>
+<p>Перетворення чисел в рядки проводиться автоматично, по мірі необхідності. Наприклад, якщо число використовується в операції конкатенації рядків, воно буде перетворено в рядок:</p>
+
+<pre>var num = 100;
+var str = n + ' items.';</pre>
+
+<p>На практиці часто щоб перетворити число в рядок, потрібно просто скласти його з порожнім рядком:
+<code>var n_as_string = n + '';</code></p>
+
+<p>Для явного перетворення числа в рядок використовується функція <strong>String()</strong>:
+<code>var string_value = String(number);</code></p>
+
+<h3>Number.toString([radix]): перетворення з числа у рядок з вказанням системи числення</h3>
+
+<p>Ще один спосіб перетворення числа в рядок полягає у виклику методу <strong>toString()</strong>:
+
+<code>string_value = number.toString( );</code></p>
+
+<p>Метод toString() об'екту Number може приймати один необов'язковий аргумент, який визначає базу системи числення для перетворення. Якщо основа системи числення не вказується, за замовчуванням вона передбачається рівною 10. А якщо її вказати, то можна перетворювати числа з будь-яких систем, наприклад, з двійкової: </p>
+
+<pre>
+var ten = 10;
+var tenInDecimalSysten = ten.toString( 10 ); 		// результат: '10'
+var tenInBinarySystem = ten.toString( 2 );	 		// результат: '1010'
+var tenInHexadecimalSystem = ten.toString( 16 );	// результат: 'a'
+</pre>
+
+<h3>Зворотнє перетворення: з рядка у число: parseInt( value, radix )</h3>
+
+<p>Перетворити рядок у число, вказавши при цьому систему числення, можна за допомогою parseInt:</p>
+
+<pre>
+parseInt(tenInBinarySystem, 2); 		//результат: 10
+parseInt(tenInHexadecimalSystem, 16);  	//результат: 10
+parseInt(tenInDecimalSysten, 10);  		//результат: 10
+</pre>
+
+<p>Коли рядок використовується в числовому контексті, він автоматично перетворюється на число: <code>var a = '10' * '10'; // 100</code></p>
+
+<p>На практиці, часто щоб перетворити рядок в число, потрібно просто відняти з рядка значення 0: <code>var n = str - 0;</code></p>
+
+<p>Посилання:
+    <ul>
+        <li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt</li>
+        <li>https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/parseFloat</li>
+    </ul>
+</p>
+

@@ -1,0 +1,45 @@
+﻿<h3>File system I/O</h3>
+<h4>Чтение файла</h4>
+<p>Для выполнения операций с файловой системой вам необходимо подключить встроенный в ядро NodeJs модуль <code>fs</code>. Для подключния модулей такого типа или любых "глобальных" модулей используйте команду <code>require.</code></p>
+<p><code>var fs = require('fs');</code></p>
+<p>Все синхронные методы файловой системы в модуле <strong>fs</strong> заканчиваются на <strong>Sync</strong>. Для чтения файла вам нужно использовать <code>fs.readFileSync('/path/to/file')</code>, этот метод возвращает объект <code>Buffer</code> содержащий весь контент файла.</p>
+<p>Объект Buffer предоставляет массивы данных в формате <strong>ascii, двоичном или любом другом</strong>. Объекты Buffer могут быть легко представлены в виде строки вызовом метода <code>.toString()</code></p>
+<p>Например, <code>var str = buf.toString();</code></p>
+<p>Полный пример: <br />
+	<code>var fs = require('fs');</code>
+	<br />
+	<code>var buf = fs.readFileSync('simple.txt');</code>
+	<br />
+	<code>console.log(buf.toString());</code>
+</p>
+<p>Для использования асинхронного метода чтения файла необходимо использовать <code>fs.readFile()</code>.</p>
+<p>Вместо использования возвращаемого значения нужно использовать callback функцию, которую необходимо передать как второй параметр.</p>
+<p>Общепринятый вид callback функций в NodeJs такой: <code>function callback(err, data){/*...*/}</code>, где <strong>err</strong> вернет <strong>true</strong>, если произошла ошибка 
+и объект <strong>Buffer</strong> как второй парамерт. Вы можете поставить <strong>'utf8'</strong> в качестве второго аргумента, а callback функцию поставить в качестве третьего аргумента, и вы получите строку вместо объекта <strong>Buffer</strong>.</p>
+<p>
+	<code>var fs = require('fs');</code>
+	<br />
+	<code>fs.readFile('\\path\\to\\file.txt', 'utf8', function(err, data){</code>
+	<br />
+	<code>&nbsp;&nbsp;console.log(data);</code>
+	<br />
+	<code>}</code>
+</p>
+<h4>Чтение директории</h4>
+<p>Метод <code>fs.readdir()</code> принимает путь к каталогу как первый аргумент и callback функцию такого вида <code>function callback (err, list) { /* ... */ }</code>, как второй. 
+Где <strong>list</strong> массив с именами файлов.</p>
+<h4>Передача контента файла</h4>
+<p>Метод <code>fs.createReadStream()</code> передает контент файла в ответ за запрос(пример файл сервер, шаблонизация). <br />
+	<code>var http = require('http');</code>
+	<br />
+	<code>var fs = require('fs');</code>
+	<br />
+	<code>var src = fs.createReadStream('d:\path\to\file.txt');</code>
+	<br />
+	<br />
+	<code>http.createServer(function(req, res){</code>
+	<br />
+	<code>&nbsp;&nbsp;src.pipe(res);</code>
+	<br />
+	<code>}).listen(port);</code>
+</p>

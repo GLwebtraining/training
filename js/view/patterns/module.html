@@ -1,0 +1,47 @@
+﻿<h3>Шаблон
+«модуль»</h3>
+<p>Шаблон
+«модуль» получил широкое распространение благодаря предо
+ставляемой им возможности структурировать и организовать программ
+ный код по мере увеличения его объема.</p>
+<p>
+	<code>var myNamespace = (function () {</code>
+	<br />
+	<code>var myPrivateVar, myPrivateMethod;</code>
+	<br />
+	<code>// A private counter variable</code>
+	<br />
+	<code>myPrivateVar = 0;</code>
+	<br />
+	<code>// A private function which logs any arguments</code>
+	<br />
+	<code>myPrivateMethod = function( foo ) {</code>
+	<br />
+	<code>console.log( foo );</code>
+	<br />
+	<code>};</code>
+	<br />
+	<code>return {</code>
+	<br />
+	<code>// A public variable</code>
+	<br />
+	<code>myPublicVar: "foo",</code>
+	<br />
+	<code>// A public function utilizing privates</code>
+	<br />
+	<code> myPublicFunction: function( bar ) {</code>
+	<br />
+	<code>// Increment our private counter</code>
+	<br />
+	<code>myPrivateVar++;</code>
+	<br />
+	<code>// Call our private method using bar</code>
+	<br />
+	<code>myPrivateMethod( bar );</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>};</code>
+	<br />
+	<code>})();</code>
+</p>

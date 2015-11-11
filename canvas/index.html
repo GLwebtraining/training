@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Test canvas</title>
+		<script>
+			var App = {};
+			
+			App.initialize = init;
+			App.createContext = createContext;
+
+			function init(){
+				App.canvas = document.createElement('canvas');
+			
+				App.canvas.id = 'canvas';
+				App.canvas.width = 500;
+				App.canvas.height = 500;
+			
+				document.body.appendChild(App.canvas);
+
+				App.createContext();
+			}
+
+			function createContext(){
+				App.view = App.canvas.getContext('2d');
+				draw();
+			}
+
+			function draw(){
+				drawSpace();
+				drawEarth();
+				drawRocket();
+			}
+
+			function drawSpace(){
+				var gradient = App.view.createLinearGradient(0,0,0,250);
+				gradient.addColorStop(0, '#232256');
+				gradient.addColorStop(1, '#143778');
+
+				App.view.fillStyle = gradient;
+				App.view.fillRect(0,0,500,500);
+
+				drawStars();
+			}
+
+			function drawStars(){
+				
+				for(var i = 1; i < 50; i++){
+					
+					App.view.save();
+					App.view.fillStyle = '#fff';
+					App.view.translate(Math.floor(Math.random()*500), Math.floor(Math.random()*500));
+					drawStar(Math.floor(Math.random()*4)+2);
+					App.view.restore();
+
+				}
+			}
+
+			function drawStar(r){
+				App.view.save();
+				App.view.beginPath()
+				App.view.moveTo(r,0);
+				for (var i=0;i<9;i++){
+					App.view.rotate(Math.PI/5);
+					if(i%2 == 0) {
+						App.view.lineTo((r/0.525731)*0.200811,0);
+					} else {
+						App.view.lineTo(r,0);
+					}
+				}
+				App.view.closePath();
+				App.view.fill();
+				App.view.restore();
+			}
+
+			function drawEarth(){
+				App.view.beginPath();
+				App.view.rect(0, 450, 500, 50);
+				App.view.fillStyle = 'green';
+				App.view.fill();
+
+			}
+
+			function drawRocket(){
+				App.view.beginPath();
+				App.view.moveTo(240, 470);
+				App.view.lineTo(250, 430);
+				App.view.lineTo(260, 470);
+				App.view.lineTo(270, 480);
+				App.view.lineTo(260, 490);
+				App.view.lineTo(255, 480);
+				App.view.lineTo(250, 490);
+				App.view.lineTo(245, 480);
+				App.view.lineTo(240, 490);
+				App.view.lineTo(230, 480);
+				App.view.closePath();
+				App.view.fillStyle = '#fff'
+				App.view.fill();
+
+				App.view.beginPath();
+				App.view.arc(250, 460, 5, 0, 2 * Math.PI, false);
+				App.view.fillStyle = '#000';
+				App.view.fill();
+			}
+
+
+			window.onload = App.initialize;
+
+		</script>
+	</head>
+	<body></body>
+</html>

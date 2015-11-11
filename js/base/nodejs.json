@@ -1,0 +1,26 @@
+﻿[   
+	{
+		"name": "Hello world!",
+		"templateUrl": "nodejs/hello"
+	},
+	{
+		"name": "Command line",
+		"templateUrl": "nodejs/command_line"
+	},
+	{
+		"name": "File system",
+		"templateUrl": "nodejs/fs"
+	},
+	{
+		"name": "The concept of modules",
+		"templateUrl": "nodejs/module"
+	},
+	{
+		"name": "HTTP",
+		"templateUrl": "nodejs/http_client"
+	},
+	{
+		"name": "TCP",
+		"templateUrl": "nodejs/tcp"
+	}
+]

@@ -1,0 +1,100 @@
+@-webkit-keyframes simple {
+	0% { color: #39f; }
+	50% { color: #f93; }
+	100% { color: #39f; }
+}
+
+html, body{
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: linear-gradient(to top, black, white); 
+}
+
+header {
+	border-bottom: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px 20px;
+	margin: 0 10px;
+	box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.5); 
+}
+
+header h1{
+	margin: 0;
+	color: #39f;
+	text-shadow: 1px 1px 2px #000;
+	-webkit-animation-name: simple; 
+	-webkit-animation-delay: 1s; 
+	-webkit-animation-duration: 5s; 
+	-webkit-animation-iteration-count: infinite; 
+	-webkit-animation-timing-function: linear; 
+}
+
+article{
+	padding: 20px;
+	margin: 0 0 30px;
+}
+
+article p{
+	margin: 0;
+	text-indent: 30px;
+}
+
+section{
+	padding: 0 0 20px;
+}
+
+/* player */
+.player{
+	width: 100%;
+	overflow: hidden;
+}
+
+.player video{
+	display: block;
+	width: 700px;
+	height: auto;
+	margin: 0 auto;
+	border: 5px solid #39f;
+	border-radius: 25px;
+}
+
+.player .controls{
+	width: 100%;
+	overflow: hidden;	
+}
+
+.player .controls ul{
+	margin: 0;
+	padding: 20px 0 0 20px;
+	list-style: none;
+	clear: both;
+}
+
+.player .controls ul li{
+	float: left;
+	margin: 0 20px 0 0;
+	font-size: 20px;
+	line-height: 30px;
+	color: #fff;
+}
+
+.player .controls ul li a{
+	text-decoration: none;
+	display: block;
+	font-size: 20px;
+	line-height: 30px;
+	border: 1px solid #ddd;
+	padding: 0 10px;
+	background: #fff;
+	border-radius: 7px;
+}
+
+.player .controls ul li.active a,
+.player .controls ul li a:hover{
+	background: #39f;
+	border-color: #000;
+	color: #000;
+}

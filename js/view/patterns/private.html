@@ -1,0 +1,29 @@
+﻿<h3>Частные свойства и методы</h3>
+<p>В JavaScript
+нет специальных средств объявления частных
+(private), защищенных (protected) или общедоступных (public) свойств
+и методов. Все члены объектов
+в являются общедоступными.</p>
+<p>Чтобы обеспечить сокрытие данных, их необходи-
+мо обернуть функцией. Так, в случае литералов объектов замыкание
+можно создать с помощью дополнительной анонимной функции, вызы
+ваемой немедленно.</p>
+<p>
+	<code>var myobj = (function () {</code>
+	<br />
+	<code>&nbsp;&nbsp;var private = “some text”;</code>
+	<br />
+	<code>&nbsp;&nbsp;return { // public</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;getPrivate: function () {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return private;</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;};</code>
+	<br />
+	<code>}());</code>
+	<br />
+	<code>myobj.getPrivate(); // some text</code>
+</p>

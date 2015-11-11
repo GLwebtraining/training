@@ -1,0 +1,14 @@
+﻿[   
+	{
+		"name": "HTML",
+		"templateUrl": "jquery/html"
+	},
+	{
+		"name": "CSS",
+		"templateUrl": "jquery/css"
+	},
+	{
+		"name": "AJAX",
+		"templateUrl": "jquery/ajax"
+	}
+]

@@ -1,0 +1,147 @@
+﻿<p>Основным инструментом работы и динамических изменений на странице является DOM (Document Object Model). Согласно DOM-модели, документ является иерархией. Проще говоря, DOM - это представление документа в виде дерева тегов.</p>
+<h4>Подключение &lt;script&gt;</h4>
+<p><code>&lt;script type="text/javascript"&gt;...your code...&lt;/script&gt;</code><br /><code>&lt;script type="text/javascript" src="path/to/your.js"&gt;&lt;/script&gt;</code></p>
+<ul>
+	<li>Подключение в секции HEAD</li>
+	<li>Подключение в секции BODY</li>
+</ul>
+<h3>Доступ к элементам</h3>
+<h4>&lt;html&gt; и &lt;body&gt;</h4>
+<p>
+	<code>document.documentElement</code> - Свойство ссылается на DOM-объект для тега HTML. <br />
+	<code>document.body</code> - Свойство ссылается на DOM-объект для тега BODY. <strong>При доступе к document.body в момент обработки тега HEAD, то document.body = null, потому что BODY еще не существует.</strong>
+</p>
+<h4>Дочерние элементы</h4>
+<ul>
+	<li>
+		<code>childNodes</code>
+		<p>Псевдо-массив childNodes хранит все дочерние элементы, включая текстовые.</p>
+		<p>
+			<code>var nodes = document.body.childNodes;</code>
+			<br />
+			<code>for(var i = 0, l = nodes.length; i < l; i++){</code>
+			<br />
+			<code>&nbsp;&nbsp;console.log(nodes[i]);</code>
+			<br />
+			<code>}</code>
+		</p>
+	</li>
+	<li>
+		<code>children</code>
+		<p>Свойство children, перечисляет только дочерние узлы, соответствующие тегам</p>
+	</li>
+	<li>
+		<code>firstChild и lastChild</code>
+		<p>Свойства обеспечивают быстрый доступ к первому и последнему потомку.</p>
+	</li>
+</ul>
+<h4>Parent and Sibling</h4>
+<ul>
+	<li>
+		<code>parentNode</code>
+		<p>Свойство ссылается на родительский узел.</p>
+	</li>
+	<li>
+		<code>previousSibling, nextSibling</code>
+		<p>Свойства дают доступ к левому и правому соседу</p>
+	</li>
+</ul>
+<h4>Методы для создания элементов</h4>
+<ul>
+	<li>
+		<code>document.createElement(tag)</code>
+		<p>Создает новый элемент с указанным тегом</p>
+		<p><code>var div = document.createElement('div');</code></p>
+	</li>
+	<li>
+		<code>elem.cloneNode(boolean)</code>
+		<p>Клонирует элемент elem, вместе с атрибутами, true - включая вложенные в него, false - без подэлементов</p>
+		<p><code>var newElem = elem.cloneNode(true);</code></p>
+	</li>
+</ul>
+<h4>Вставка и удаление элементов</h4>
+<ul>
+	<li>
+		<code>parent.appendChild(elem)</code>
+		<p>Добавляет elem в список дочерних элементов parent. Новый элемент добавляется в конец списка</p>
+		<p><code>document.body.appendChild(newElem);</code></p>
+	</li>
+	<li>
+		<code>parent.insertBefore(elem, nextSibling)</code>
+		<p>Вставляет elem в список дочерних parent, перед элементом nextSibling.</p>
+	</li>
+	<li>
+		<code>parent.removeChild(elem)</code>
+		<p>Удаляет elem из списка дочерних элементов parent.</p>
+	</li>
+	<li>
+		<code>parent.replaceChild(elem, currentElem)</code>
+		<p>Заменяет currentElem на elem.</p>
+	</li>
+</ul>
+<h4>Содержимое элемента</h4>
+<ul>
+	<li>
+		<code>innerHTML</code>
+		<p>Позволяет получить HTML-содержимое элемента в виде строки. В innerHTML можно и читать и писать.</p>
+	</li>
+	<li>
+		<code>outerHTML</code>
+		<p>Свойство outerHTML содержит HTML элемента целиком. Можно и записать outerHTML, при этом новый текст будет вставлен вместо элемента.</p>
+	</li>
+</ul>
+<h4>Свойства и атрибуты</h4>
+<p><strong>Свойства</strong></p>
+<p>Узел DOM - это объект, поэтому, как и любой объект в JavaScript, он может содержать пользовательские свойства и методы.</p>
+<p><code>document.body.someData = '123';</code><br /><code>document.body.someMethod = function(){};</code></p>
+<p><strong>Атрибуты</strong></p>
+<ul>
+	<li><code>elem.hasAttribute(name)</code> - проверяет наличие атрибута</li>
+	<li><code>elem.getAttribute(name)</code> - получает значение атрибута</li>
+	<li><code>elem.setAttribute(name, value)</code> - устанавливает атрибут</li>
+	<li><code>elem.removeAttribute(name)</code> - удаляет атрибут</li>
+</ul>
+<p>Стандартные свойства DOM синхронизируются с атрибутами.</p>
+<p>Браузер синхронизирует стандартные атрибуты со свойствами.</p>
+<p>
+	<code>elemtent.id = 'someId'; // div id="someId"</code>
+	<br />
+	<code>a.href = 'www.somesite.com' // a href="www.somesite.com"</code>
+	<br />
+	<code>input.value = 'new value'; // input type="..." value="new value"</code>
+	<br />
+</p>
+<p>Атрибут "class" соответствует свойству className</p>
+<h3>Поиск элементов</h3>
+<ul>
+	<li>
+		<code>getElementById</code>
+		<p>Поиск по атрибуту Id</p>
+		<p><code>document.getElementById(id);</code></p>
+	</li>
+	<li>
+		<code>getElementsByName</code>
+		<p>Все элементы с заданным тегом tag внутри элемента elem и возвращает их в виде списка</p>
+		<p><code>document.getElementsByTagName('div');</code></p>
+		<p><code>document.getElementsByTagName('*');</code> - найдет все элементы в документе</p>
+	</li>
+	<li>
+		<code>getElementsByTagName</code>
+		<p>Все элементы с данным атрибутом name.</p>
+	</li>
+	<li>
+		<code>getElementsByClassName</code>
+		<p>Возвращает коллекцию элементов с классом className. Находит элемент и в том случае, если у него несколько классов, а искомый - один из них. <strong>IE9+</strong></p>
+	</li>
+</ul>
+<ul>
+	<li>
+		<code>querySelectorAll</code>
+		<p>Возвращает все элементы внутри elem, удовлетворяющие CSS-селектору cssQuery. <strong>IE9+</strong></p>
+		<p><code>var elements = document.querySelectorAll('ul > li:last-child');</code></p>
+	</li>
+	<li>
+		<code>querySelector</code>
+		<p>Возвращает 1-й элемент внутри elem, удовлетворяющие CSS-селектору cssQuery.</p>
+	</li>
+</ul>
