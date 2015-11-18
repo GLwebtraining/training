@@ -1,4 +1,4 @@
-﻿window.onload = test;
+﻿window.onload = initTest;
 
 function test(){
 

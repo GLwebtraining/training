@@ -4,16 +4,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="app.js" charset="utf-8"></script>
-	<title>SVG</title>                              
+	<title>SVG</title>
 </head>
 <body>        
 	<div id="sandbox">
 		<ul>
-			<li><a href="#" class="auto">Start</a></li>
+			<li>Engine is <a href="#" class="auto">Off</a></li>
 			<li>Speed: <a href="#" class="up">Up</a> or <a href="#" class="down">Down</a>, current speed is <span class="current-speed">0</span></li>
+			<li>Track: 
+				<select id="trackConfig">
+					<option value="endlessSign" selected="selected">Endless sign</option>
+					<option value="ellipse">Ellipse</option>
+				</select>
+			</li>
 		</ul>
-		<div id="track-holder">
-		</div>
+		<div id="track-holder"></div>
 	</div>	
 </body>
 </html>
