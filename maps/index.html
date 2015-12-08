@@ -9,12 +9,18 @@
 		<script type="text/javascript" src="main.js"></script>
 	</head>
 	<body>
+		<p><strong>Use "http(s) google":</strong></p>
 		<a href="https://www.google.com/maps/preview/@42.585444,13.007813,6z">Try this</a><br />
-		<a href="comgooglemapsurl://www.google.com/maps/preview/@42.585444,13.007813,6z">Try this</a><br />
 		<a href="https://maps.google.com/?q=@37.3161,-122.1836">Try this</a><br />
-		<a href="comgooglemapsurl://maps.google.com/?q=@37.3161,-122.1836">Try this</a><br />
 		<a href="http://maps.google.com/maps?f=d&daddr=Tokyo+Tower,+Tokyo,+Japan&sll=35.6586,139.7454&sspn=0.2,0.1&nav=1">Try this</a><br />
+		<p><strong>Use "com google maps url":</strong></p>
+		<a href="comgooglemapsurl://www.google.com/maps/preview/@42.585444,13.007813,6z">Try this</a><br />
+		<a href="comgooglemapsurl://maps.google.com/?q=@37.3161,-122.1836">Try this</a><br />
 		<a href="comgooglemapsurl://maps.google.com/maps?f=d&daddr=Tokyo+Tower,+Tokyo,+Japan&sll=35.6586,139.7454&sspn=0.2,0.1&nav=1&x-source=SourceApp&x-success=sourceapp://?resume=true">Try this</a><br />
+		<p><strong>Use "http(s) apple":</strong></p>
+		<a href="http://maps.apple.com/?saddr=Cupertino&daddr=San+Francisco">Try this</a><br />
+		<a href="http://maps.apple.com/?saddr=San+Jose&daddr=San+Francisco&dirflg=r">Try this</a><br />
+		<a href="http://maps.apple.com/?daddr=San+Francisco&dirflg=d&t=h">Try this</a><br />		
 		<div id="distanse">Distanse from New-York to Washington is <span id="mileage"></span>. (If you wanna watch it on your phone <a href="comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic" id="open-link">click here</a>.)</div>
 		<div id="map"></div>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQmTHStFpT9uXEXxRopZxjtEZjNW9EA2E&v=3.21&libraries=places"></script>
