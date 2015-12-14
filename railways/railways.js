@@ -135,7 +135,12 @@
 		r.redLight = r.lights.append('circle');
 		r.greenLight = r.lights.append('circle');
 		
-		r.lights.attr('transform', 'translate(400, 10) scale(1, 1)');
+		r.lights.attr('transform', 'translate(100, 0) scale(0.7, 0.7)');
+		
+		r.lights.style({
+			width: 21,
+			height: 40
+		});
 		
 		r.strokeLights.style({
 			fill: 'darkslategray',
@@ -232,6 +237,11 @@
 		r.switcherFill = r.switcherButton.append('circle');
 		
 		r.switcherButton.attr('transform', 'translate(115, 185)');
+		
+		r.switcherButton.style({
+			width: 40,
+			height: 40
+		});
 		
 		r.switcherStroke.style({
 			r: 20,
