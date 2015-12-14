@@ -94,32 +94,33 @@
 		r.currentBranch = 'main';
 		
 		r.svg = r.ailways.append('svg');
-		r.track = r.svg.append('path');
-		r.branch = r.svg.append('path');
-		r.switcher = r.svg.append('path');
+		r.map = r.svg.append('g');
+		r.track = r.map.append('path');
+		r.branch = r.map.append('path');
+		r.switcher = r.map.append('path');
 		
-		r.svg.style({
+		r.map.attr('id', 'map');
+		
+		styles(r.svg, {
 			width: 450,
 			height: 300
 		});
 		
-		r.track.style({
+		styles(r.track, {
 			fill: 'none',
 			stroke: '#000'
 		});
 		
-		r.branch.style({
+		styles(r.branch, {
 			fill: 'none',
 			stroke: '#000'
 		});
 		
-		r.switcher.style({
+		styles(r.switcher, {
 			fill: 'none',
 			stroke: 'blue',
 			'stroke-width': 2
 		});
-		
-		
 		
 		r.track.attr('d', d3.svg.line().tension(0).interpolate('basis')(pathMainConfig));
 		r.branch.attr('d', d3.svg.line().tension(0).interpolate('basis')(pathBranchConfig));
@@ -136,13 +137,14 @@
 		r.greenLight = r.lights.append('circle');
 		
 		r.lights.attr('transform', 'translate(100, 0) scale(0.7, 0.7)');
+		r.lights.attr('id', 'lights');
 		
-		r.lights.style({
+		styles(r.lights, {
 			width: 21,
 			height: 40
 		});
 		
-		r.strokeLights.style({
+		styles(r.strokeLights, {
 			fill: 'darkslategray',
 			width: 30,
 			height: 55,
@@ -150,7 +152,7 @@
 			ry: 10
 		});
 		
-		r.redLight.style({
+		styles(r.redLight, {
 			fill: 'red',
 			r: 10,
 			cx: 15,
@@ -159,7 +161,7 @@
 			stroke: '#000'
 		});
 		
-		r.greenLight.style({
+		styles(r.greenLight, {
 			fill: 'chartreuse',
 			r: 10,
 			cx: 15,
@@ -237,20 +239,21 @@
 		r.switcherFill = r.switcherButton.append('circle');
 		
 		r.switcherButton.attr('transform', 'translate(115, 185)');
+		r.switcherButton.attr('id', 'switcher');
 		
-		r.switcherButton.style({
+		styles(r.switcherButton, {
 			width: 40,
 			height: 40
 		});
 		
-		r.switcherStroke.style({
+		styles(r.switcherStroke, {
 			r: 20,
 			fill: 'none',
 			stroke: 'cornflowerblue',
 			opacity: 0.4
 		});
 		
-		r.switcherFill.style({
+		styles(r.switcherFill, {
 			r: 20,
 			fill: 'cornflowerblue',
 			stroke: 'none',
@@ -335,6 +338,14 @@
 			  return t < 1 ? "M" + points.map(function(p) { return p(t); }).join("L") : d1;
 			};
 		  };
+		}
+	}
+	
+	function styles(node, obj){
+		if(!!node && typeof obj === 'object'){
+			for(var key in obj){
+				node.attr(key, obj[key]);
+			}
 		}
 	}
 
