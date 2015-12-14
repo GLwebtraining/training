@@ -3,11 +3,22 @@
 	
 	var r = new Object;
 	var exports = new Object;
+	var vertical = false;
 	var api = {
 		mainRoute: function(){},
 		secondRoute: function(){},
 		redLight: function(){},
-		greenLight: function(){}
+		greenLight: function(){},
+		toggleVertical: function(){
+			if(vertical) {
+				r.svg.classed({ 'vertical':  false });
+				vertical = false;
+			}
+			else {
+				r.svg.classed({ 'vertical':  true });
+				vertical = true;
+			}
+		}
 	}
 	Object.seal(api);
 	
@@ -277,23 +288,34 @@
 			var d0 = d3.svg.line().tension(0).interpolate('basis')(pathBranchSwitcherConfig[prev]);
 			var d1 = d3.svg.line().tension(0).interpolate('basis')(pathBranchSwitcherConfig[r.currentBranch]);
 			
-			changeTrackAnimation({
-				path: r.switcher,
-				from: d0,
-				to: d1,
-				duration: 1000,
-				afterAnimateionCallback: function(){
-					if(r.currentBranch === 'main'){
-						if(typeof api.mainRoute === 'function'){
-							api.mainRoute();
-						}
-					} else {
-						if(typeof api.secondRoute === 'function'){
-							api.secondRoute();
-						}
-					}
+			r.switcher.attr('d', d1);
+			if(r.currentBranch === 'main'){
+				if(typeof api.mainRoute === 'function'){
+					api.mainRoute();
 				}
-			});
+			} else {
+				if(typeof api.secondRoute === 'function'){
+					api.secondRoute();
+				}
+			}
+			
+			// changeTrackAnimation({
+				// path: r.switcher,
+				// from: d0,
+				// to: d1,
+				// duration: 1000,
+				// afterAnimateionCallback: function(){
+					// if(r.currentBranch === 'main'){
+						// if(typeof api.mainRoute === 'function'){
+							// api.mainRoute();
+						// }
+					// } else {
+						// if(typeof api.secondRoute === 'function'){
+							// api.secondRoute();
+						// }
+					// }
+				// }
+			// });
 		});
 	}
 	
