@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="railways.js" charset="utf-8"></script>
+	<script>
+		RailwaysInterface.mainRoute = function(){
+			console.log('Main route is Activated.');
+		}
+		RailwaysInterface.secondRoute = function(){
+			console.log('Second route is Activated.');
+		}
+		RailwaysInterface.redLight = function(){
+			console.log('Red light is turn on.');
+		}
+		RailwaysInterface.greenLight = function(){
+			console.log('Green light is turn on.');
+		}
+	</script>
+	<style>
+		.vertical{
+			transform: rotate(-90deg) translate(-40px, -50px)
+		}
+	</style>
+	<title>Railways</title>
+</head>
+<body>  
+	<button onclick="RailwaysInterface.toggleVertical()">Toggle vertical</button>
+	<div id="railways"></div>
+</body>
+</html>

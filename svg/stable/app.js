@@ -13,6 +13,7 @@ function initialize(){
 		down: 		sandbox.select('a.down'),
 		auto: 		sandbox.select('a.auto'),
 		current: 	sandbox.select('.current-speed'),
+		direction:	sandbox.select('a.direction'),
 		config: 	sandbox.select('#trackConfig'),
 		speed: {
 			current: 	0,
@@ -26,7 +27,8 @@ function initialize(){
 			point1: null,
 			point2: null,
 			currentTrack: 'endlessSign',
-			mainPath: true
+			mainPath: true,
+			direction: 'forward'
 		}
 	};
 
@@ -51,6 +53,11 @@ function initialize(){
 		control.speed.isAuto = !control.speed.isAuto;
 		control.auto.text(control.speed.isAuto ? 'On' : 'Off');
 		animation(!!control.speed.isAuto ? 'start': 'stop');
+	});
+	
+	utils.applyEvent('click', control.direction, function(){
+		control.$.direction = control.$.direction === 'forward' ? 'backward' : 'forward';
+		control.direction.text(control.$.direction);
 	});
 	
 	utils.applyEvent('click', control.up, function(){
