@@ -82,14 +82,13 @@
 	R.isExists = function(item){
 		return !!item;
 	};
-	
-	// R.has = function(key){
-		// return this.element.hasOwnProperty(key);
-	// }.bind(R);
-	
-	// R.get = function(){
-		// return this.element;
-	// }.bind(R);
+
+	R.guid = function(){
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+			var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+			return v.toString(16);
+		});
+	};
 	
 	w.R = R;
 	
