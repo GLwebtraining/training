@@ -8,6 +8,8 @@
 		return new R.init(element);
 	}
 	
+	R.debugger = false;
+	
 	R.init = function(element){
 		this.element = element;
 	};
@@ -22,6 +24,18 @@
 				for(var key in obj){
 					if(R(obj).has(key)){
 						element[method](key, obj[key]);
+					}
+				}
+			}
+			return this;
+		},
+		css: function(obj){
+			var element = this.element;
+			
+			if(R.isExists(element) && R.isObject(obj)){
+				for(var key in obj){
+					if(R(obj).has(key)){
+						element.style[key] = obj[key];
 					}
 				}
 			}
@@ -89,6 +103,62 @@
 			return v.toString(16);
 		});
 	};
+	
+	R.debugger = function(enable){
+		if(!!enable){
+			logger();
+		} else {
+			destroyLogger();
+		}
+	};
+	
+	R.log = function(){
+		var logger = document.getElementById('R-content');
+		if(!!logger){
+			var args = Array.prototype.slice.call(arguments);
+			var result = args.map(function(arg){
+				if(R.isObject(arg)){
+					return JSON.stringify(arg);
+				}
+				if(R.isArray(arg)){
+					return arg.join(' ');
+				}
+				return arg;
+			});
+
+			logger.innerHTML += result.join(' ') + '<br />';
+		}
+	};
+	
+	function logger(){
+		var body = document.body;
+		var loggerHolder = document.createElement('div');
+		var loggerContent = document.createElement('div');
+		loggerHolder.id = 'R-logger';
+		loggerContent.id = 'R-content';
+		R(loggerHolder).css({
+			position: 'fixed',
+			bottom: 0,
+			right: 0,
+			width: '300px',
+			height: '300px',
+			border: '1px solid #000',
+			overflow: 'auto'
+		});
+		R(loggerContent).css({
+			width: '100%',
+			overflow: 'hidden'
+		});
+		loggerHolder.appendChild(loggerContent);
+		document.body.appendChild(loggerHolder);
+	}
+	
+	function destroyLogger(){
+		var loggerHolder = document.getElementById('R-logger');
+		if(!!loggerHolder){
+			document.body.removeChild(loggerHolder);
+		}
+	}
 	
 	w.R = R;
 	

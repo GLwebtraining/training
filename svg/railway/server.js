@@ -1,6 +1,5 @@
 var http = require('http');
 var fs = require('fs');
-var open = require('open');
 
 var indexPage = fs.readFile('index.html');
 
@@ -31,8 +30,6 @@ else{
 }).listen(3000);
 
 server.on('listening', function(){
-
-	open('http://localhost:3000/index');
 
 	console.log('Server started in ' + server.address().address + ' on port ' + server.address().port);
 
