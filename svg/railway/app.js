@@ -15,8 +15,14 @@ function initialize(){
 function start(){
 
 	var Railway = new Platform('Railway');
-	
 	var Train = new Platform('Train');
+	var TrafficLight = new Item('TrafficLight');
+	var Track = new Platform('Track');
+
+
+	Track.addItem(Train);
+	Railway.addItem(TrafficLight);
+	Railway.addItem(Track);
 	
 	Train.addItem(buildRailwayCar());
 	Train.addItem(buildRailwayCar());
@@ -25,29 +31,64 @@ function start(){
 	addTrainActions({
 		start: function(){
 			R.log('Train is running!');
-			console.log(Railway);
 		},
 		stop: function(){
 			R.log('Train is stopped!');
 		}
 	});
 	
-	Railway.addItem(Train);
-	
-	console.log(Train);
-	
+
 	Railway.on('train:start', function(){
-		console.log('The train is departed!');
-	});
-	
-	R.log(Railway.name, 'includes', Railway.items.length, 'item(s):');
-	for(var i = 0, l = Railway.items.length; i < l; i++){
-		R.log('-', Railway.items[i].name, 'includes', ( Railway.items[i].items.length || 0 ), 'item(s):');
-		for(var n = 0, m = Railway.items[i].items.length; n < m; n++){
-			R.log('--', Railway.items[i].items[n].name, 'includes', ( Railway.items[i].items[n].length || 0), 'item(s):');
+		if(count === 0){
+			console.log('The train is departed!');
+		} else {
+			console.log('The train in on the way!');
 		}
-	}
+	});
+
+	Railway.on('train:stop', function(){
+		if(count === 500){
+			console.log('The train is arrived!');	
+		} else {
+			console.log('Emergency train stop!!! Be patient.');
+		}
 	
+	});
+
+
+	Train.start();
+
+	TrafficLight.addAction('turnRedLightOn', function(){
+		console.log('Red light is ON!!!');
+	});
+
+	TrafficLight.addAction('turnGreenLightOn', function(){
+		console.log('Green light is ON! Go ahead!');
+	});
+
+	Train.on('trafficlight:turnredlighton', function(){
+		Train.stop();
+	});
+
+	Train.on('trafficlight:turngreenlighton', function(){
+		Train.start();
+	});
+
+	var count = 0;
+	var journey = setInterval(function(){
+		count++;
+		if(count === 100){
+			TrafficLight.turnRedLightOn();
+		}
+		if(count === 250){
+			TrafficLight.turnGreenLightOn();
+		}
+		if(count === 500){
+			clearInterval(journey);
+			Train.stop();
+		}
+	}, 100);
+
 	function buildRailwayCar(){
 		return new Item('RailwayCar');
 	}
@@ -63,7 +104,7 @@ function start(){
 function Platform(name){
 	this.name = name;
 	this.id = R.guid();
-	this.actions = new Event;
+	this.actions = Event;
 	this.items = [];
 }
 
@@ -91,65 +132,73 @@ Platform.prototype = {
 function Item(name){
 	this.name = name;
 	this.id = R.guid();
+	this.actions = Event;
 }
 
-function Action(eventName, eventAction){
-	this.name = eventName;
-	
+function Action(name, settings){
+	this.name = name;
+	this.steps = settings.steps;
 }
 
-function Event(){
-    this.observers = [];
-}
-
-Event.prototype = {
-	broadcast: function (eventName){
-		
-		this.observers.push({ observer: observer, context: ctx });
-		
-	/*
-		for (var i in this.observers){
-			var item = this.observers[i];
-			item.observer.call(item.context, data);
-		}
-	*/
+Action.prototype = {
+	isProgress: false,
+	isEnd: false,
+	start: function(){
+		this.inProgress = true;
+		this.inEnd = false;
 	},
-	on: function (observer, callback){
-		var ctx = context || null;
-		this.observers.push({ observer: observer, context: ctx });
+	end: function(){
+		this.inProgress = false;
+		this.inEnd = true;
+	},
+	progress: function(){
+		this.inProggress = true;
+		this.inEnd = false;
+	},
+	isInProgress: function(){
+		return this.isProgress;
+	},
+	isInEnd: function(){
+		return this.isEnd;
 	}
-	/*
-	,
-	off: function (observer){
-		for (var i in this.observers){
-			if ( this.observers[i].observer == observer){
-				delete this.observers[i];
+};
+
+Item.prototype = {
+	addAction: function(name, action){
+		this[name] = function(){
+			action();
+			this.actions.broadcast(this.name.toLowerCase() + ':' + name.toLowerCase());
+		};
+	},
+	on: function(eventName, callback){
+		this.actions.on(eventName, callback);
+	}
+};
+
+Event = {
+	observers: {},
+	broadcast: function (eventName){
+		for(var key in this.observers){
+			if(key === eventName){
+				var callbacks = this.observers[key];
+				if(callbacks.length > 0){
+					for(var i = 0, l = callbacks.length; i < l; i++){
+						if(typeof callbacks[i] === 'function'){
+							callbacks[i]();
+						}
+					}
+				}
 			}
 		}
+		
+	},
+	on: function (observer, callback){
+		var isEventExist = observer in this.observers;
+		if(!isEventExist){
+			this.observers[observer] = [];
+		}
+
+		this.observers[observer].push(callback);
 	}
-	*/
 }
 
-// function Area(){
-	
-// }
-
-// function Train(){
-	
-// }
-
-// function RailwayCar(){
-	
-// }
-
-// function RailwayRoad(){
-	
-// }
-
-// function trafficLight(){
-	
-// }
-
-// function switchingTrack(){
-	
-// }
