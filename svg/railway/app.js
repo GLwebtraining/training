@@ -14,11 +14,23 @@ function initialize(){
 
 function start(){
 
-	var Railway = new Platform('Railway');
+	var sandbox = R('#sandbox').element;
+
+	var Railway = new Platform('Railway', {
+		element: R('<div>'),
+		render: function(railway){
+			var el = R(railway.element).attrs({ class: 'railway' }).get();
+			sandbox.appendChild(el);
+			R(el).css({
+				width: '100px',
+				height: '100px'
+			});
+
+		}
+	});
 	var Train = new Platform('Train');
 	var TrafficLight = new Item('TrafficLight');
 	var Track = new Platform('Track');
-
 
 	Track.addItem(Train);
 	Railway.addItem(TrafficLight);
@@ -31,9 +43,11 @@ function start(){
 	addTrainActions({
 		start: function(){
 			R.log('Train is running!');
+			console.log('Train is running!');
 		},
 		stop: function(){
 			R.log('Train is stopped!');
+			console.log('Train is stopped!');
 		}
 	});
 	
@@ -42,21 +56,18 @@ function start(){
 		if(count === 0){
 			console.log('The train is departed!');
 		} else {
-			console.log('The train in on the way!');
+			console.log('The train is on the way!');
 		}
 	});
 
 	Railway.on('train:stop', function(){
 		if(count === 500){
-			console.log('The train is arrived!');	
+			console.log('The train is arrived!');
 		} else {
-			console.log('Emergency train stop!!! Be patient.');
+			console.log('Emergency stop!!! Be patient.');
 		}
 	
 	});
-
-
-	Train.start();
 
 	TrafficLight.addAction('turnRedLightOn', function(){
 		console.log('Red light is ON!!!');
@@ -98,17 +109,26 @@ function start(){
 			Train.addAction(key, events[key]);
 		}
 	}
-	
+	test();
+	Train.start();
 }
 
-function Platform(name){
+function Platform(name, settings){
 	this.name = name;
 	this.id = R.guid();
 	this.actions = Event;
 	this.items = [];
+	if(!!settings){
+		this.settings = settings;
+		this.initialize();
+		this.render();
+	}
 }
 
 Platform.prototype = {
+	initialize: function(){
+		this.element = this.settings.element.element;
+	},
 	addItem: function(item){
 		var isItemsExist = this.items.some(function(obj){
 			return obj.id === item.id;
@@ -117,12 +137,23 @@ Platform.prototype = {
 		if(!isItemsExist){
 			this.items.push(item);
 		}
+		
+		this.render(item);
 	},
 	addAction: function(name, action){
 		this[name] = function(){
 			action();
 			this.actions.broadcast(this.name.toLowerCase() + ':' + name.toLowerCase());
 		};
+	},
+	render: function(item){
+		if(!!item){
+			console.log('Rendering', item.name);
+		} else {
+			if(!!this.settings){
+				this.settings.render(this);
+			}
+		}
 	},
 	on: function(eventName, callback){
 		this.actions.on(eventName, callback);
@@ -172,6 +203,9 @@ Item.prototype = {
 	},
 	on: function(eventName, callback){
 		this.actions.on(eventName, callback);
+	},
+	render: function(){
+		
 	}
 };
 
@@ -197,8 +231,10 @@ Event = {
 		if(!isEventExist){
 			this.observers[observer] = [];
 		}
-
 		this.observers[observer].push(callback);
 	}
 }
 
+function test(){
+
+}

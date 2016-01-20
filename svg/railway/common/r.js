@@ -11,7 +11,7 @@
 	R.debugger = false;
 	
 	R.init = function(element){
-		this.element = element;
+		this.element = R.Element(element);
 	};
 	
 	R.init.prototype = {
@@ -31,7 +31,6 @@
 		},
 		css: function(obj){
 			var element = this.element;
-			
 			if(R.isExists(element) && R.isObject(obj)){
 				for(var key in obj){
 					if(R(obj).has(key)){
@@ -60,7 +59,7 @@
 		has: function(key){
 			return this.element.hasOwnProperty(key);
 		},
-		returnValue: function(){
+		get: function(){
 			return this.element;
 		}
 	};
@@ -103,6 +102,55 @@
 			return v.toString(16);
 		});
 	};
+	
+	R.Element = function(selector){
+		if(!R.isQuerySelector(selector)){
+			return selector;
+		}
+		var delay, count = 0;
+		var regEx = {
+			byClassName: /\.[A-Za-z0-9]+/,
+			byId: /\#[A-Za-z0-9]+/,
+			byCreation: /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
+		};
+		var api = {
+			byClassName: getByClassName,
+			byId: getById,
+			byCreation: getByCreation
+		}
+		
+		function checkSelector(selector){
+			for(var key in regEx){
+				if(regEx[key].test(selector)){
+					return api[key](selector);
+				}
+			}
+		}
+		
+		function getById(selector){
+			return document.getElementById(selector.substr(1)) || null;
+		}
+		
+		function getByClassName(selector){
+			var matched = document.querySelectorAll(selector);
+			return matched.length > 0 ? matched : null;
+		}
+		
+		function getByCreation(selector){
+			var tag = selector.match(/([\w:-]+)/g, '')[0];
+			return document.createElement(tag);
+		}
+		
+		return checkSelector(selector);
+	}
+	
+	R.isNodeElement = function(element){
+		return !!~[1, 2, 3, 8].indexOf(element.nodeType);
+	}
+	
+	R.isQuerySelector = function(element){
+		return !R.isNodeElement(element) && !~['number', 'boolean'].indexOf(typeof element) && !(R.isArray(element) || R.isObject(element) || R.isFunction(element));
+	}
 	
 	R.debugger = function(enable){
 		if(!!enable){
