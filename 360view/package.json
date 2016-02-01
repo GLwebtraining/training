@@ -1,0 +1,31 @@
+{
+  "name": "360view",
+  "version": "1.0.0",
+  "description": "Welike: 360 view",
+  "main": "app/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"postinstall": "start bower install",
+	"install": "start npm start",
+	"prestart": "start grunt",
+	"start": "node app/server/index.js"
+  },
+  "keywords": [
+    "360",
+    "view"
+  ],
+  "author": "WeLike",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-sass": "latest"
+  }
+}
