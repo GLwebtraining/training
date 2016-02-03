@@ -1,18 +1,70 @@
 <!doctype html>
 <html ng-app="360view">
 <head>
-	<title>HTML example</title>
-	<link rel="stylesheet" type="text/css" href="styles/style.min.css" />
-	<script type="text/javascript" src="vendors.min.js"></script>
-	<script type="text/javascript" src="scripts.min.js"></script>
+	<title>360 viewe</title>
+	<link rel="stylesheet" type="text/css" href="styles.min.css" />
+	<script type="text/javascript" src="..\components\jquery\dist\jquery.min.js"></script>
+	<script type="text/javascript" src="..\components\angular\angular.min.js"></script>
+	<script type="text/javascript" src="..\components\angular-file-upload\dist\angular-file-upload.min.js"></script>
+	<script type="text/javascript" src="..\scripts\app.js"></script>
+	<script type="text/javascript" src="..\scripts\uploadService.js"></script>
+	<script type="text/javascript" src="..\scripts\uploadController.js"></script>
+	<script type="text/javascript" src="..\scripts\orderController.js"></script>
+	<script type="text/javascript" src="..\scripts\embedController.js"></script>
+	<script type="text/javascript" src="..\scripts\previewController.js"></script>
+	<script type="text/javascript" src="..\scripts\uploadWatermarkController.js"></script>
 </head>
 <body>
-	<div id="wrapper">
-		<div class="upload">
-			<input type="file" multiple name="upload" accept="image/*">
+	<div id="wrapper" class="container">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadController as uploadCtrl">
+					<form id="uploadForm" enctype="multipart/form-data" method="post">
+						<label for="upload-control">Upload your images</label>
+						<input type="file" multiple name="upload" nv-file-select="fileSelected($files)" id="upload-control" accept="image/*">
+					</form>
+					<p class="help-block">Allow only images.</p>
+				</div>
+			</div>
 		</div>
-		<div class="upload-view">
-			
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="list" ng-controller="orderController as order">
+					<li class="row" ng-repeat="img in order.images">
+						<div class="col-xs-6 col-md-3">
+							<a href="#" class="thumbnail">
+								<img ng-src="img.src">
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadWatermarkController as uploadWatermark">
+					<label for="upload-control">Upload your watermark</label>
+					<input type="file" name="watermark"  ng-model="uploadWatermark.file" id="upload-watermark-control" accept="image/*">
+					<p class="help-block">Allow only image files.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="list gallery-list" ng-controller="previewController as preview">
+					<li ng-repeat="img in preview.images">
+						<img ng-src="img.src">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="embedController as embed">
+					<label for="embed-control">Get a link!</label>
+					<input class="form-control" id="embed-control" ng-mode="embed.link" type="text" placeholder="Readonly input here" readonly>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

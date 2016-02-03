@@ -4,8 +4,8 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {      
-        mangle: true,
-        compress: true
+        mangle: false,
+        compress: false
       },
       build: {
         files: {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'cssmin'] // и запускать такую задачу при их изменении
       },
       uglify:{
-        files: 'public/js/<%= pkg.name %>.min.js',
+        files: 'app/release/scripts.min.js',
 	      task: ['build']
       }
     }
@@ -58,5 +58,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
  
   //забиваем в задачу по умолчению все наши задачи
-  grunt.registerTask('default', ['uglify', 'cssmin', 'sass','watch']);
+  grunt.registerTask('default', ['uglify', 'cssmin', 'sass', 'cssmin', 'watch']);
 };
