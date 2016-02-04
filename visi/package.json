@@ -1,0 +1,26 @@
+{
+  "name": "360view",
+  "version": "1.0.0",
+  "description": "Welike: 360 view",
+  "main": "app/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "start grunt",
+    "start": "start node app/server.js"
+  },
+  "keywords": [
+    "360",
+    "view"
+  ],
+  "author": "WeLike",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-sass": "latest"
+  }
+}
