@@ -2,26 +2,26 @@
 <html ng-app="360view">
 <head>
 	<title>360 viewe</title>
-	<link rel="stylesheet" type="text/css" href="styles.min.css" />
-	<script type="text/javascript" src="..\components\jquery\dist\jquery.min.js"></script>
-	<script type="text/javascript" src="..\components\angular\angular.min.js"></script>
-	<script type="text/javascript" src="..\components\angular-file-upload\dist\angular-file-upload.min.js"></script>
-	<script type="text/javascript" src="..\scripts\app.js"></script>
-	<script type="text/javascript" src="..\scripts\uploadService.js"></script>
-	<script type="text/javascript" src="..\scripts\uploadController.js"></script>
-	<script type="text/javascript" src="..\scripts\orderController.js"></script>
-	<script type="text/javascript" src="..\scripts\embedController.js"></script>
-	<script type="text/javascript" src="..\scripts\previewController.js"></script>
-	<script type="text/javascript" src="..\scripts\uploadWatermarkController.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles\styles.css" />
+	<script type="text/javascript" src="components\jquery\dist\jquery.min.js"></script>
+	<script type="text/javascript" src="components\angular\angular.js"></script>
+	<script type="text/javascript" src="components\ng-file-upload\ng-file-upload.min.js"></script>
+	<script type="text/javascript" src="scripts\app.js"></script>
+	<script type="text/javascript" src="scripts\uploadController.js"></script>
+	<script type="text/javascript" src="scripts\orderController.js"></script>
+	<script type="text/javascript" src="scripts\embedController.js"></script>
+	<script type="text/javascript" src="scripts\previewController.js"></script>
+	<script type="text/javascript" src="scripts\uploadWatermarkController.js"></script>
 </head>
 <body>
 	<div id="wrapper" class="container">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="form-group" ng-controller="uploadController as uploadCtrl">
-					<form id="uploadForm" enctype="multipart/form-data" method="post">
+					<form name="uploadForm" ng-submit="uploadCtrl.uploadFiles($event)" action="/upload" enctype="multipart/form-data" method="post">
 						<label for="upload-control">Upload your images</label>
-						<input type="file" multiple name="upload" nv-file-select="fileSelected($files)" id="upload-control" accept="image/*">
+						<input type="file" multiple name="uploadControl" ngf-select ng-model="files" ngf-multiple="true" id="upload-control" accept="image/*">
+						<input type="submit" value="Upload">
 					</form>
 					<p class="help-block">Allow only images.</p>
 				</div>

@@ -3,6 +3,6 @@
 	'use strict';
 
 	angular
-		.module('360view', ['angularFileUpload']);
+		.module('360view', []);
 
 })();
