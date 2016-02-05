@@ -1,3 +1,7 @@
 https://www.terlici.com/2015/05/16/uploading-files-locally.html
 http://stackoverflow.com/questions/29490833/nodejs-multer-is-not-working
 https://github.com/nervgh/angular-file-upload
+
+http://stackoverflow.com/questions/28797965/expressjs-multer-upload-image-to-server
+http://aheckmann.github.io/gm/
+http://tonyspiro.com/uploading-and-resizing-an-image-using-node-js/

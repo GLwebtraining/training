@@ -6,10 +6,12 @@
 	<script type="text/javascript" src="libs\jquery.js"></script>
 	<script type="text/javascript" src="libs\jquery.form.js"></script>
 	<script type="text/javascript" src="libs\angular.js"></script>
+	<script type="text/javascript" src="libs\angular-resource.js"></script>
 	<script type="text/javascript" src="modules\app.js"></script>
 	<script type="text/javascript" src="modules\uploadController.js"></script>
 	<script type="text/javascript" src="modules\uploadDirective.js"></script>
 	<script type="text/javascript" src="modules\orderController.js"></script>
+	<script type="text/javascript" src="modules\orderService.js"></script>
 	<script type="text/javascript" src="modules\embedController.js"></script>
 	<script type="text/javascript" src="modules\previewController.js"></script>
 	<script type="text/javascript" src="modules\uploadWatermarkController.js"></script>
@@ -23,7 +25,7 @@
 							action="/upload" 
 							enctype="multipart/form-data" 
 							method="post"
-							ajax-submit submit-success="" submit-error="">
+							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
 						<label for="upload-control">Upload your images</label>
 						<input type="file" multiple name="uploadControl" id="upload-control" accept="image/*">
 						<input type="submit" value="Upload">

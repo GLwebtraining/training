@@ -3,6 +3,6 @@
 	'use strict';
 
 	angular
-		.module('360view', []);
+		.module('360view', ['ngResource']);
 
 })();

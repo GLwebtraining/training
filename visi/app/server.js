@@ -1,5 +1,6 @@
 var express = require('express');
 var multer = require('multer');
+var fs = require('fs');
 
 var app = express();
 
@@ -16,6 +17,24 @@ var uploader = multer({ storage : storage }).array('uploadControl');
 
 app.use(express.static(__dirname + '/public'));
 
+app.get('/images', function(req,res){
+	fs.readdir('./uploads', function(err, files){
+		console.log(files);
+		for(var i = 0; i < files.length; i++){
+		var options = {
+			root: './uploads'
+		};
+			res.sendFile(files[i], options);
+			// fs.readfile(files[i], function(){
+				
+			// })
+		}
+		
+	});
+	
+	res.end('Fetch images')
+})
+
 app.post('/upload',function(req,res){
 	uploader(req,res,function(err) {
 		console.log(req.body);
@@ -24,7 +43,7 @@ app.post('/upload',function(req,res){
 		if(err) {
 			return res.end("Error uploading file.");
 		}
-		res.end("File is uploaded");
+		res.end('{"Message": "File is uploaded!"}');
 	});
 });
 

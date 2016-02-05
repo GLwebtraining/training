@@ -6,9 +6,10 @@
 		.module('360view')
 		.controller('uploadController', uploadController);
 		
-	uploadController.$inject = ['$scope'];
+	uploadController.$inject = ['$rootScope', '$scope'];
 	
-	function uploadController($scope){
+	function uploadController($rootScope, $scope){
+		var global = $rootScope;
 		var local = $scope;
 		var vm = this;
 		
@@ -16,10 +17,10 @@
 		vm.uploadError = uploadError;
 		
 		function uploadSuccess(response){
-			console.log(response);
+			global.$broadcast('upload:complete');
 		}
 		function uploadError(error){
-			console.log(error);
+			console.error('Something bad happend');
 		}
 	}
 })();

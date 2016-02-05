@@ -22,13 +22,13 @@
 			element.on('submit', function(){
 				element.ajaxSubmit({
 					success: function(response){
-						if(angular.isFunction(scope.submitSucess)){
-							scope.submitSucess(response);
+						if(angular.isFunction(scope.submitSuccess)){
+							scope.submitSuccess();
 						}
 					},
 					error: function(error){
 						if(angular.isFunction(scope.submitError)){
-							scope.submitError(error);
+							scope.submitError();
 						}
 					}
 				});
