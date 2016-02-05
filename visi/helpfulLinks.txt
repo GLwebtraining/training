@@ -5,3 +5,4 @@ https://github.com/nervgh/angular-file-upload
 http://stackoverflow.com/questions/28797965/expressjs-multer-upload-image-to-server
 http://aheckmann.github.io/gm/
 http://tonyspiro.com/uploading-and-resizing-an-image-using-node-js/
+http://stackoverflow.com/questions/5823722/how-to-serve-an-image-using-nodejs

@@ -18,13 +18,18 @@ var uploader = multer({ storage : storage }).array('uploadControl');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/images', function(req,res){
+	
+	
 	fs.readdir('./uploads', function(err, files){
 		console.log(files);
+		res.type('png');
+		res.sendFile('/uploads/' + files[0]);
+		res.end();
 		for(var i = 0; i < files.length; i++){
-		var options = {
-			root: './uploads'
-		};
-			res.sendFile(files[i], options);
+			var options = {
+				root: './uploads'
+			};
+			
 			// fs.readfile(files[i], function(){
 				
 			// })
@@ -32,7 +37,7 @@ app.get('/images', function(req,res){
 		
 	});
 	
-	res.end('Fetch images')
+	
 })
 
 app.post('/upload',function(req,res){
