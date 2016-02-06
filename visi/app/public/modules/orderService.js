@@ -10,7 +10,7 @@
 	
 	function imageService($resource){
 		
-		return $resource('/images', {}, {get: {method: 'get'}});
+		return $resource('/images', {}, {get: {method: 'get', isArray: true}});
 		
 	}
 

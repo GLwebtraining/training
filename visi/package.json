@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "gm": "^1.21.1",
+    "jimp": "^0.2.21",
     "multer": "^1.1.0"
   },
   "devDependencies": {
