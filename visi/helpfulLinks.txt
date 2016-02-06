@@ -6,3 +6,11 @@ http://stackoverflow.com/questions/28797965/expressjs-multer-upload-image-to-ser
 http://aheckmann.github.io/gm/
 http://tonyspiro.com/uploading-and-resizing-an-image-using-node-js/
 http://stackoverflow.com/questions/5823722/how-to-serve-an-image-using-nodejs
+
+https://habrahabr.ru/post/169909/
+http://alexmarandon.com/articles/web_widget_jquery/
+http://blog.swirrl.com/articles/creating-asynchronous-embeddable-javascript-widgets/
+http://www.ramandv.com/blog/developing-embeddable-javascript-widget/
+http://blog.bguiz.com/articles/embeddable-widgets-html-javascript/
+
+https://msdn.microsoft.com/ru-ru/magazine/dn754378.aspx
