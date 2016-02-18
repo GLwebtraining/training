@@ -1,0 +1,108 @@
+<!doctype html>
+<html ng-app="360view">
+<head>
+	<title>360 viewe</title>
+	<link rel="stylesheet" type="text/css" href="styles\styles.css" />
+	<script type="text/javascript" src="libs\jquery.js"></script>
+	<script type="text/javascript" src="libs\jquery.form.js"></script>
+	<script type="text/javascript" src="libs\angular.js"></script>
+	<script type="text/javascript" src="libs\angular-resource.js"></script>
+	<script type="text/javascript" src="modules\app.js"></script>
+	<script type="text/javascript" src="modules\appStateService.js"></script>
+	<script type="text/javascript" src="modules\uploadController.js"></script>
+	<script type="text/javascript" src="modules\uploadDirective.js"></script>
+	<script type="text/javascript" src="modules\orderController.js"></script>
+	<script type="text/javascript" src="modules\orderService.js"></script>
+	<script type="text/javascript" src="modules\embedController.js"></script>
+	<script type="text/javascript" src="modules\previewController.js"></script>
+	<script type="text/javascript" src="modules\uploadWatermarkController.js"></script>
+	<script type="text/javascript" src="modules\authController.js"></script>
+	<script type="text/javascript" src="modules\authService.js"></script>
+	<script type="text/javascript" src="modules\userService.js"></script>
+</head>
+<body>
+	<div class="container" ng-controller="authController as auth" ng-if="!isAuthorized">
+		<form class="form-inline" ng-submit="auth.process()">
+			<div class="form-group">
+				<label class="sr-only" for="exampleInputEmail3">Email address</label>
+				<input type="text" class="form-control" id="exampleInputEmail3" placeholder="Email" ng-model="auth.credentials.username">
+			</div>
+			<div class="form-group">
+				<label class="sr-only" for="exampleInputPassword3">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" ng-model="auth.credentials.password">
+			</div>
+			<button type="submit" class="btn btn-default">Sign in</button>
+		</form>
+	</div>
+	<div id="wrapper" class="container" ng-if="isAuthorized">
+		<div class="jumbotron">
+			<h1>Hello, world!</h1>
+			<p>...</p>
+			<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadController as uploadCtrl">
+					<form 	id="uploadForm" 
+							action="/upload" 
+							enctype="multipart/form-data" 
+							method="post"
+							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
+						
+						<p class="lead">Please setup your photo project</p>
+						<div class="form-group">
+							<label for="project">Name of project</label>
+							<input type="text" class="form-control" id="project" placeholder="Project name">
+						</div>
+						<div class="form-group">
+							<label for="upload-control">Upload your images</label>
+							<input type="file" multiple name="uploadControl" id="upload-control" accept="image/*">
+						</div>
+						<button type="submit" class="btn btn-default">Setup</button>
+					</form>
+					<p class="help-block">Allow only images.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="list" ng-controller="orderController as order">
+					<li class="row" ng-repeat="img in order.images">
+						<div class="col-xs-6 col-md-3">
+							<a href="#" class="thumbnail">
+								<img ng-src="{{img.src}}">
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadWatermarkController as uploadWatermark">
+					<label for="upload-control">Upload your watermark</label>
+					<input type="file" name="watermark"  ng-model="uploadWatermark.file" id="upload-watermark-control" accept="image/*">
+					<p class="help-block">Allow only image files.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<ul class="list gallery-list" ng-controller="previewController as preview">
+					<li ng-repeat="img in preview.images">
+						<img ng-src="img.src">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="embedController as embed">
+					<label for="embed-control">Get a link!</label>
+					<input class="form-control" id="embed-control" ng-mode="embed.link" type="text" placeholder="Readonly input here" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
