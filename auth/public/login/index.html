@@ -2,13 +2,33 @@
 <html>
 <head>
 	<title>Auth app</title>
+	<link rel="stylesheet" type="text/css" href="styles\styles.css" />
 </head>
 <body>
-	<h1>Hello, it is auth app</h1>
-	<form action="/authenticate" method="post">
-		<input type="text" name="name">
-		<input type="password" name="password">
-		<input type="submit" value="login">
-	</form>
+	<div class="container full-height">
+		<div class="table row">
+			<div class="table-cell col-md-8">
+				<form class="form-horizontal" action="/authenticate" method="post">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputEmail3" placeholder="Email" name="name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Sign in</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

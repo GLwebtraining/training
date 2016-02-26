@@ -1,30 +1,42 @@
 <!doctype html>
-<html>
+<html ng-app="visi">
 <head>
 	<title>Main app</title>
+	<link rel="stylesheet" type="text/css" href="styles\styles.css" />
+	<script type="text/javascript" src="scripts\libs\jquery.js"></script>
+	<script type="text/javascript" src="scripts\libs\jquery.form.js"></script>
+	<script type="text/javascript" src="scripts\libs\angular.js"></script>
+	<script type="text/javascript" src="scripts\libs\angular-resource.js"></script>
+	<script type="text/javascript" src="scripts\modules\apiService.js"></script>
+	<script type="text/javascript" src="scripts\app.js"></script>
 </head>
 <body>
 	<div class="container">
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create photoproject</h3>
+			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<label for="project">Enter a name of photoproject:</label>
-					<input class="form-control" id="project" type="text" placeholder="Enter a name">
-					<button>Create</button>
+					<input class="form-control" id="project" type="text" placeholder="Enter a name" name="project">
 				</div>
+				<button type="button" class="btn btn-default">Create</button>
 			</div>
 		</div>
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Upload photos</h3>
+			</div>
 			<div class="panel-body">
-				<div class="form-group" ng-controller="uploadController as uploadCtrl">
+				<div class="form-group">
 					<form 	id="uploadForm" 
 							action="/upload" 
 							enctype="multipart/form-data" 
 							method="post"
 							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
 						<div class="form-group">
-							<label for="upload-control">Upload your images</label>
-							<input type="file" multiple name="uploadControl" id="upload-control" accept="image/*">
+							<label for="upload-control" class="btn btn-default">Choose files...</label>
+							<input type="file" multiple name="uploadControl" id="upload-control" accept="image/*" class="hidden">
 						</div>
 						<button type="submit" class="btn btn-default">Upload</button>
 					</form>
@@ -33,16 +45,19 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Upload a watermark</h3>
+			</div>
 			<div class="panel-body">
-				<div class="form-group" ng-controller="uploadWatermarkController as uploadWatermark">
+				<div class="form-group">
 					<form 	id="uploadWatermark" 
 							action="/watermark" 
 							enctype="multipart/form-data" 
 							method="post"
 							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
 						<div class="form-group">
-							<label for="upload-control">Upload your watermark</label>
-							<input type="file" name="watermark"  ng-model="uploadWatermark.file" id="upload-watermark-control" accept="image/*">
+							<label for="upload-control" class="btn btn-default">Choose file...</label>
+							<input type="file" name="watermark" class="hidden" ng-model="uploadWatermark.file" id="upload-watermark-control" accept="image/*">
 						</div>
 						<button type="submit" class="btn btn-default">Upload</button>
 					</form>
@@ -51,21 +66,23 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-body">
-				<button>Preview</button>
+			<div class="panel-heading">
+				<h3 class="panel-title">Initial preview</h3>
 			</div>
 			<div class="panel-body">
-				<ul class="list gallery-list" ng-controller="previewController as preview">
-					<li ng-repeat="img in preview.images">
+				<ul class="list gallery-list">
+					<li ng-repeat="img in preview.images" class="thumbnail">
 						<img ng-src="img.src">
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Get a link!</h3>
+			</div>
 			<div class="panel-body">
-				<div class="form-group" ng-controller="embedController as embed">
-					<label for="embed-control">Get a link!</label>
+				<div class="form-group">
 					<input class="form-control" id="embed-control" ng-mode="embed.link" type="text" placeholder="Readonly input here" readonly>
 				</div>
 			</div>

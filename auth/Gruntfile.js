@@ -4,8 +4,8 @@ module.exports = function (grunt) {
 		sass: {
 			build: {
 				files: {
-					'public/app/styles/styles.css': 'styles/styles.scss',
-					'public/login/styles/styles.css': 'styles/styles.scss'
+					'public/app/styles/styles.css': 'styles/app.scss',
+					'public/login/styles/styles.css': 'styles/login.scss'
 				}
 			}
 		},
