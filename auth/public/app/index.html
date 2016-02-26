@@ -4,6 +4,72 @@
 	<title>Main app</title>
 </head>
 <body>
-	<h1>Hello, it is main app</h1>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="project">Enter a name of photoproject:</label>
+					<input class="form-control" id="project" type="text" placeholder="Enter a name">
+					<button>Create</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadController as uploadCtrl">
+					<form 	id="uploadForm" 
+							action="/upload" 
+							enctype="multipart/form-data" 
+							method="post"
+							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
+						<div class="form-group">
+							<label for="upload-control">Upload your images</label>
+							<input type="file" multiple name="uploadControl" id="upload-control" accept="image/*">
+						</div>
+						<button type="submit" class="btn btn-default">Upload</button>
+					</form>
+					<p class="help-block">Allow only images.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="uploadWatermarkController as uploadWatermark">
+					<form 	id="uploadWatermark" 
+							action="/watermark" 
+							enctype="multipart/form-data" 
+							method="post"
+							ajax-submit submit-success="uploadCtrl.uploadSuccess()" submit-error="uploadCtrl.uploadError()">
+						<div class="form-group">
+							<label for="upload-control">Upload your watermark</label>
+							<input type="file" name="watermark"  ng-model="uploadWatermark.file" id="upload-watermark-control" accept="image/*">
+						</div>
+						<button type="submit" class="btn btn-default">Upload</button>
+					</form>
+					<p class="help-block">Allow only images.</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<button>Preview</button>
+			</div>
+			<div class="panel-body">
+				<ul class="list gallery-list" ng-controller="previewController as preview">
+					<li ng-repeat="img in preview.images">
+						<img ng-src="img.src">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-group" ng-controller="embedController as embed">
+					<label for="embed-control">Get a link!</label>
+					<input class="form-control" id="embed-control" ng-mode="embed.link" type="text" placeholder="Readonly input here" readonly>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

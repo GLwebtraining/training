@@ -15,6 +15,7 @@ var apiRoutes = express.Router();
 var publicDir = __dirname + '/public';
 var appFolder = express.static(publicDir + '/app');
 var loginFolder = express.static(publicDir + '/login');
+var isAuthorized = false;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,71 +24,64 @@ mongoose.connect(config.db);
 app.set('superSecret', config.secret);
 app.use(cookieParser(config.secret));
 
-
 app.use(morgan('dev'));
 
 app.use('/api', function(req, res, next){
+	console.log('isAuthorized', isAuthorized);
 	next();
 });
 app.use('/login', loginFolder);
 
 apiRoutes.use(function(req, res, next) {
-	console.log('verify token');
-	// check header or url parameters or post parameters for token
+	console.log('Verify token...');
 	var token = req.cookies.user_token || req.body.token || req.query.token || req.headers['x-access-token'];
-	// decode token
 	if (token) {
-		console.log('Got token');
-		// verifies secret and checks exp
+		console.log('Got token!');
 		jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
 			if (err) {
 				console.log('Failed to authenticate token');
+				isAuthorized = false;
 				return res.json({ success: false, message: 'Failed to authenticate token.' });    
 			} else {
+				isAuthorized = true;
+				console.log('Redirect to main app');
 				app.use('/api', appFolder);
-				// if everything is good, save to request for use in other routes
 				req.decoded = decoded;
 				next();
 			}
 		});
 	} else { 
+		isAuthorized = false;
 		console.log('Empty token');
 		app.use('/api', loginFolder);
-		if(req.url !== '/authenticate'){	
+		if(req.url !== '/authenticate'){
 			res.redirect('/login');
-			// return res.status(200).send({ 
-			// 	success: false, 
-			// 	message: 'No token provided.' 
-			// });
 		} else {
 			next();
 		}
-		// 
 	}
 });
-	
+
+apiRoutes.get('/', function(req, res, next){
+	res.redirect('/api');
+});
 
 apiRoutes.post('/setup', function(req, res) {
-	// // create a sample user
 	var user = new User({ 
 		name: req.body.name, 
 		password: req.body.password,
 		admin: true 
 	});
 
-	// // save the sample user
 	user.save(function(err) {
 		if (err) throw err;
-
 		console.log('User saved successfully');
 		res.json({ success: true });
 		res.end();
 	});
 });
 
-// route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {
-	// find the user
 	User.findOne({
 		name: req.body.name
 	}, function(err, user) {
@@ -96,23 +90,13 @@ apiRoutes.post('/authenticate', function(req, res) {
 			console.log('Authentication failed. User not found');
 			res.json({ success: false, message: 'Authentication failed. User not found.' });
 		} else if (user) {
-			console.log(user);
-			// check if password matches
 			if (user.password != req.body.password) {
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 			} else {
-				// if user is found and password is right
-				// create a token
 				var token = jwt.sign(user, app.get('superSecret'), {
 					expiresIn: 86400000 // expires in 24 hours
 				});
 				res.cookie('user_token', token, {maxAge: 86400000});
-				// return the information including token as JSON
-				// res.json({
-				// 	success: true,
-				// 	message: 'Enjoy your token!',
-				// 	token: token
-				// });
 				res.redirect('/api');
 			}   
 		}
