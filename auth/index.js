@@ -8,7 +8,6 @@ var multer = require('multer');
 var Jimp = require("jimp");
 var fs = require('fs');
 
-
 var jwt 		= require('jsonwebtoken');
 var config 		= require('./config');
 var User 		= require('./user');
@@ -33,10 +32,15 @@ app.use(cookieParser(config.secret));
 app.use(morgan('dev'));
 
 app.use('/api', function(req, res, next){
-	console.log('isAuthorized', isAuthorized);
-	next();
+	console.log('isAuthorized =', isAuthorized);
+	if(isAuthorized){
+		next();
+	} else {
+		app.use('/api', appFolder);
+		next();
+	}
 });
-// app.use('/api', appFolder);
+
 app.use('/login', loginFolder);
 
 var storage = multer.diskStorage({
@@ -63,7 +67,7 @@ apiRoutes.use(function(req, res, next) {
 			} else {
 				isAuthorized = true;
 				console.log('Redirect to main app', decoded);
-				app.use('/api', appFolder);
+				// app.use('/api', appFolder);
 				req.decoded = decoded;
 				next();
 			}
@@ -71,7 +75,7 @@ apiRoutes.use(function(req, res, next) {
 	} else { 
 		isAuthorized = false;
 		console.log('Empty token');
-		app.use('/api', loginFolder);
+		// app.use('/api', loginFolder);
 		if(req.url !== '/authenticate'){
 			res.redirect('/login');
 		} else {
@@ -104,7 +108,7 @@ apiRoutes.get('/images', function(req,res){
 		res.end();		
 		// imageProcessing(files, function(){});
 	});
-})
+});
 
 apiRoutes.post('/setup', function(req, res) {
 	var user = new User({ 
@@ -128,13 +132,15 @@ apiRoutes.post('/authenticate', function(req, res) {
 		if (err) throw err;
 		if (!user) {
 			console.log('Authentication failed. User not found');
-			res.json({ success: false, message: 'Authentication failed. User not found.' });
+			// res.json({ success: false, message: 'Authentication failed. User not found.' });
+			res.redirect('/login');
 		} else if (user) {
 			if (user.password != req.body.password) {
-				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+				// res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+				res.redirect('/login');
 			} else {
 				var token = jwt.sign(user, app.get('superSecret'), {
-					expiresIn: 86400000 // expires in 24 hours
+					expiresIn: 6000 // 86400000 // expires in 24 hours
 				});
 				res.cookie('user_token', token, {maxAge: 86400000});
 				res.redirect('/api');
