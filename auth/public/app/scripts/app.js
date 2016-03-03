@@ -3,6 +3,6 @@
   'use strict';
 
   angular
-    .module('visi', []);
+    .module('visi', ['Root']);
 
 })();

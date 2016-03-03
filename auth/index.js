@@ -66,8 +66,7 @@ apiRoutes.use(function(req, res, next) {
 				return res.json({ success: false, message: 'Failed to authenticate token.' });    
 			} else {
 				isAuthorized = true;
-				console.log('Redirect to main app', decoded);
-				// app.use('/api', appFolder);
+				console.log('Redirect to main app');
 				req.decoded = decoded;
 				next();
 			}
@@ -75,7 +74,7 @@ apiRoutes.use(function(req, res, next) {
 	} else { 
 		isAuthorized = false;
 		console.log('Empty token');
-		// app.use('/api', loginFolder);
+		
 		if(req.url !== '/authenticate'){
 			res.redirect('/login');
 		} else {

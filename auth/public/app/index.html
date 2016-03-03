@@ -8,22 +8,23 @@
 	<script type="text/javascript" src="scripts\libs\angular.js"></script>
 	<script type="text/javascript" src="scripts\libs\angular-resource.js"></script>
 	<script type="text/javascript" src="scripts\modules\apiService.js"></script>
+	<script type="text/javascript" src="scripts\modules\appController.js"></script>
 	<script type="text/javascript" src="scripts\app.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="panel panel-default">
+	<div class="container" ng-controller="appController as app">
+		<div class="panel panel-default" ng-if="!app.project.isCreated" ng-form="app.forms">
 			<div class="panel-heading">
 				<h3 class="panel-title">Create photoproject</h3>
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<input class="form-control" id="project" type="text" placeholder="Enter a name" name="project">
+					<input class="form-control" required id="project" ng-model="app.project.name" type="text" placeholder="Enter a name" name="project">
 				</div>
-				<button type="button" class="btn btn-default">Create</button>
+				<button type="button" class="btn btn-default" ng-click="app.createProject()">Create</button>
 			</div>
 		</div>
-		<div class="panel panel-default">
+		<div class="panel panel-default" ng-if="app.isProjectCreated()">
 			<div class="panel-heading">
 				<h3 class="panel-title">Upload photos</h3>
 			</div>
@@ -44,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel panel-default">
+		<div class="panel panel-default" ng-if="app.isProjectCreated()">
 			<div class="panel-heading">
 				<h3 class="panel-title">Upload a watermark</h3>
 			</div>
@@ -65,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel panel-default">
+		<div class="panel panel-default" ng-if="app.isProjectCreated()">
 			<div class="panel-heading">
 				<h3 class="panel-title">Initial preview</h3>
 			</div>
@@ -77,7 +78,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="panel panel-default">
+		<div class="panel panel-default" ng-if="app.isProjectCreated()">
 			<div class="panel-heading">
 				<h3 class="panel-title">Get a link!</h3>
 			</div>
