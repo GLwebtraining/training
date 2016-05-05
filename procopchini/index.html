@@ -12,7 +12,7 @@
 			
 			// это сама функция
 			function wrapToLinks(){
-				var regexp = /w{3}\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{1,4})+/gim,
+				var regexp = /(?!<a[^>]*?>)(w{3}\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{1,4})+)(?![^<]*?<\/a>)/gim,
 					holder = jQuery('body'), // вот тут ты должен написать селектор (тег, имя класса и т.д.)
 					htmlString = holder.html();
 
