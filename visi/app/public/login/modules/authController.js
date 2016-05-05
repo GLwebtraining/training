@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.module('startPoint')
+		.module('auth', [])
 		.controller('authController', authController);
 		
 	authController.$inject = ['$rootScope', '$scope', 'authService', 'user'];
