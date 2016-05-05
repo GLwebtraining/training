@@ -67,10 +67,10 @@ app.post('/setup', function(req, res) {
 var apiRoutes = express.Router(); 
 
 
-apiRoutes.all('*', function(req, res, next){
-	console.log(123);
-	next();
-});
+// apiRoutes.all('/*', function(req, res, next){
+	// console.log(123);
+	// next();
+// });
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {

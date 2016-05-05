@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-		.module('startPoint')
+		.module('auth')
 		.factory('authService', authService);
 		
 	authService.$inject = ['$resource'];
