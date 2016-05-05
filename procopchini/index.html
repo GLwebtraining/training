@@ -4,13 +4,16 @@
 		<title>Wrap www text to links</title>
 		<script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
 		<script>
+			// это общий вызов для всех функций в твоем скрипте
 			jQuery(function(){
+				// это вызов функции, который тебе нужно вставить туда, где вызываются все функции
 				wrapToLinks();
 			});
 			
+			// это сама функция
 			function wrapToLinks(){
 				var regexp = /w{3}\.[a-zA-Z0-9-]+(?:\.[a-zA-Z]{1,4})+/gim,
-					holder = jQuery('body'),
+					holder = jQuery('body'), // вот тут ты должен написать селектор (тег, имя класса и т.д.)
 					htmlString = holder.html();
 
 				holder.html(htmlString.replace(regexp, "<a href='http://$&'>$&</a>"));
