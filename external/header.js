@@ -9,7 +9,7 @@
         HeaderABC = {};
 
     HeaderABC.template = 
-                        '<div class="header-wrapper">'
+                        '<div class="header-wrapper">' +
                             '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
                             '<ul class="predefine-actions">' +
                                 '<li>UserName</li>' +
