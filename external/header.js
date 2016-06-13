@@ -4,19 +4,23 @@
     var
         location = window.location,
         document = window.document,
-        head = document.head || document.getElementsByTagName('head')[0],
-        body = document.body,
         docElem = document.documentElement,
 
         HeaderABC = {};
 
-    HeaderABC.template = '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
-                        '<ul class="predefine-actions">' +
-                            '<li>UserName</li>' +
-                            '<li><a href="#">Logout</a></li>' +
-                        '</ul>';
+    HeaderABC.template = 
+                        '<div class="header-wrapper">'
+                            '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
+                            '<ul class="predefine-actions">' +
+                                '<li>UserName</li>' +
+                                '<li><a href="#">Logout</a></li>' +
+                            '</ul>' +
+                        '</div>' +
+                        '<div id="HeaderABC-SidebarMenu">'+
+                        '</div>';
     var cssArray = [
-        '#HeaderABC', '{ width: 100%; height: 40px; over }',
+        '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; }',
+        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 10px 20px; }',
         '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
         '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
         '#HeaderABC .predefine-actions', '{ float: right; }',
@@ -35,7 +39,10 @@
         HeaderABC.element.className = 'clearfix';
         HeaderABC.element.innerHTML = HeaderABC.template;
 
+        // apply html to external source
         body.insertBefore(HeaderABC.element, body.children[0]);
+
+
 
         // generate stylesheet
         HeaderABC.styleSheet = document.createElement('style');
@@ -48,7 +55,44 @@
             HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
         }
 
+        // apply css to external source
         head.appendChild(HeaderABC.styleSheet);
     });
 
 })(window);
+
+(function(){
+
+    'use strict';
+
+    var R = function(){};
+
+    R.defer = function(){
+        return new Promise; 
+    }
+
+    function Promise() {
+        this.promise = {
+            callbacks: [],
+            then: function () {
+                this.callbacks = Array.prototype.slice.call(arguments);
+            }
+        };
+    }
+
+    Promise.prototype = {
+        resolve: function() {
+            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
+                this.promise.callbacks[0]();
+            }
+        },
+        reject: function() {
+            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
+                this.promise.callbacks[1]();
+            }
+        }
+    }
+
+    window.R = R;
+
+})();
