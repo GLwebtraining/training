@@ -27,6 +27,7 @@
     ];
 
     document.addEventListener("DOMContentLoaded", function (event) {
+        var body = document.body;
         // generate html
         HeaderABC.element = document.createElement('div');
         HeaderABC.element.id = 'HeaderABC';
