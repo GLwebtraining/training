@@ -32,7 +32,8 @@
         HeaderABC.element.id = 'HeaderABC';
         HeaderABC.element.className = 'clearfix';
         HeaderABC.element.innerHTML = HeaderABC.template;
-        body.insertBefore(HeaderABC.element, document.body.children[0]);
+        debugger;
+        body.insertBefore(HeaderABC.element, body.children[0]);
 
         // generate stylesheet
         HeaderABC.styleSheet = document.createElement('style');
