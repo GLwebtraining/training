@@ -27,13 +27,14 @@
     ];
 
     document.addEventListener("DOMContentLoaded", function (event) {
-        var body = document.body;
+        var head = document.head || document.getElementsByTagName('head')[0],
+            body = document.body;
         // generate html
         HeaderABC.element = document.createElement('div');
         HeaderABC.element.id = 'HeaderABC';
         HeaderABC.element.className = 'clearfix';
         HeaderABC.element.innerHTML = HeaderABC.template;
-        debugger;
+
         body.insertBefore(HeaderABC.element, body.children[0]);
 
         // generate stylesheet
