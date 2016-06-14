@@ -45,11 +45,18 @@
             applyEvents: function() {
                 var header = document.getElementById('HeaderABC');
                 var sidebar = document.getElementById('HeaderABC-SidebarMenu');
+                var overlay = document.getElementById('HeaderABC-overlay');
 
                 var hamburgerMenuOpener = header.getElementsByClassName('hamburger-menu')[0];
 
                 this.on(hamburgerMenuOpener, 'click', function() {
-
+                    if (this.sidebarOpened) {
+                        sidebar.removeClass('opened');
+                        overlay.removeClass('opened');
+                    } else {
+                        sidebar.addClass('opened');
+                        overlay.addClass('opened');
+                    }
                 });
             },
             on: function(target, event, handler) {
@@ -67,7 +74,6 @@
                 } else if (!hasClass(target, className)) {
                     target.className += " " + className;
                 }
-
             },
             removeClass: function(target, className) {
                 if (target.classList) {
@@ -91,8 +97,9 @@
                                 '<li><a href="#">Logout</a></li>' +
                             '</ul>' +
                         '</div>' +
-                        '<div id="HeaderABC-SidebarMenu">'+
-                        '</div>',
+                        '<div id="HeaderABC-SidebarMenu">' +
+                        '</div>' +
+                        '<div id="HeaderABC-overlay"></div>',
             cssArray: [
                         '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; }',
                         '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 10px 20px; }',
@@ -103,7 +110,10 @@
                         '#HeaderABC .predefine-actions li a', '{ text-decoration: none;}',
                         '#HeaderABC .clearfix:before', '{ content: " "; display: table; }',
                         '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
-                        '#HeaderABC-SidebarMenu', '{ display: none }'
+                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; left: 0; top: 40px; height: calc(100vh - 40px); background: #fff; z-index: 10; }',
+                        '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
+                        '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
+                        '#HeaderABC-overlay.opened', '{ display: block; }'
             ],
             initialize: function () {
                 this.define();
