@@ -67,7 +67,7 @@
                 }
                 target.addEventListener(event, function(e) {
                     handler(e);
-                    e.stopPropagation();
+                    e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
                 });
             },
             addClass: function (target, className) {
