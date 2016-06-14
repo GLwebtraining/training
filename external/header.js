@@ -53,10 +53,12 @@
                     if (HeaderABC.sidebarOpened) {
                         HeaderABC.removeClass(sidebar, 'opened');
                         HeaderABC.removeClass(overlay, 'opened');
+                        HeaderABC.removeClass(HeaderABC.body, 'sidebar-abc-opened');
                         HeaderABC.sidebarOpened = false;
                     } else {
                         HeaderABC.addClass(sidebar, 'opened');
                         HeaderABC.addClass(overlay, 'opened');
+                        HeaderABC.addClass(HeaderABC.body, 'sidebar-abc-opened');
                         HeaderABC.sidebarOpened = true;
                     }
                 });
