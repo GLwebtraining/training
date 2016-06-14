@@ -114,6 +114,7 @@
                         '</div>' +
                         '<div id="HeaderABC-overlay"></div>',
             cssArray: [
+                        'body.sidebar-abc-opened', '{ overflow: hidden }',
                         '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
                         '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }',
                         '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
