@@ -101,8 +101,8 @@
                         '</div>' +
                         '<div id="HeaderABC-overlay"></div>',
             cssArray: [
-                        '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; }',
-                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 10px 20px; }',
+                        '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
+                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 10; }',
                         '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
                         '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
                         '#HeaderABC .predefine-actions', '{ float: right; }',
@@ -110,7 +110,7 @@
                         '#HeaderABC .predefine-actions li a', '{ text-decoration: none;}',
                         '#HeaderABC .clearfix:before', '{ content: " "; display: table; }',
                         '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
-                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; left: 0; top: 40px; height: calc(100vh - 40px); background: #fff; z-index: 10; }',
+                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: absolute; left: 0; top: 40px; height: calc(100vh - 40px); background: #fff; z-index: 10; }',
                         '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
                         '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
                         '#HeaderABC-overlay.opened', '{ display: block; }'
