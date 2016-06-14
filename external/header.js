@@ -60,7 +60,8 @@
                         '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
                         '#HeaderABC-SidebarMenu', '{ display: none }'
             ],
-            initialize: function() {
+            initialize: function () {
+                this.define();
                 this.generate.html();
                 this.generate.css();
                 this.applyMarkup();
