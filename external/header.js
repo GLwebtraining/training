@@ -23,7 +23,7 @@
                 css: function() {
                     HeaderABC.styleSheet = document.createElement('style');
                     HeaderABC.styleSheet.type = 'text/css';
-                    HeaderABC.css = cssArray.join('');
+                    HeaderABC.css = HeaderABC.cssArray.join('');
 
                     if (HeaderABC.styleSheet.styleSheet) {
                         HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
