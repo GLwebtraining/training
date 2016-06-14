@@ -120,6 +120,7 @@
                 this.generate.html();
                 this.generate.css();
                 this.applyMarkup();
+                this.applyEvents();
             }
         };
 
