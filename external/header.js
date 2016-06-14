@@ -51,11 +51,11 @@
 
                 this.on(hamburgerMenuOpener, 'click', function() {
                     if (HeaderABC.sidebarOpened) {
-                        sidebar.removeClass('opened');
-                        overlay.removeClass('opened');
+                        HeaderABC.removeClass(sidebar, 'opened');
+                        HeaderABC.removeClass(overlay, 'opened');
                     } else {
-                        sidebar.addClass('opened');
-                        overlay.addClass('opened');
+                        HeaderABC.addClass(sidebar, 'opened');
+                        HeaderABC.addClass(overlay, 'opened');
                     }
                 });
             },
