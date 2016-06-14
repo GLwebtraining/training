@@ -50,7 +50,7 @@
                 var hamburgerMenuOpener = header.getElementsByClassName('hamburger-menu')[0];
 
                 this.on(hamburgerMenuOpener, 'click', function() {
-                    if (this.sidebarOpened) {
+                    if (HeaderABC.sidebarOpened) {
                         sidebar.removeClass('opened');
                         overlay.removeClass('opened');
                     } else {
