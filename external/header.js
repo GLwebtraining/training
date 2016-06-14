@@ -67,7 +67,8 @@
                 }
                 target.addEventListener(event, function(e) {
                     handler(e);
-                    e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true);
+                    e.stopPropagation();
+                    e.preventDefault();
                 });
             },
             addClass: function (target, className) {
@@ -122,7 +123,7 @@
                         '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
                         '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 10; }',
                         '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
-                        '#HeaderABC-SidebarMenu .sidebar-wrapper', '{ width: 100%; overflow: hidden; padding: 40px 0 0; }',
+                        '#HeaderABC-SidebarMenu .sidebar-wrapper', '{ width: 100%; overflow: hidden; padding: 40px 0 0 20px; }',
                         '#HeaderABC-SidebarMenu .sidebar-wrapper .list', '{ margin: 0; padding: 0; list-style: none; }',
                         '#HeaderABC-SidebarMenu .sidebar-wrapper .list li', '{ margin: 0 0 10px; }',
                         '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
