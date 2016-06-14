@@ -100,11 +100,19 @@
                             '</ul>' +
                         '</div>' +
                         '<div id="HeaderABC-SidebarMenu">' +
+                            '<div class="sidebar-wrapper">' +
+                                '<ul class="list">' +
+                                    '<li><a href="#">Item 1</a></li>' +
+                                    '<li><a href="#">Item 2</a></li>' +
+                                    '<li><a href="#">Item 3</a></li>' +
+                                    '<li><a href="#">Item 4</a></li>' +
+                                '</ul>' +
+                            '</div>' +
                         '</div>' +
                         '<div id="HeaderABC-overlay"></div>',
             cssArray: [
                         '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
-                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 10; background: #fff; }',
+                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }',
                         '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
                         '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
                         '#HeaderABC .predefine-actions', '{ float: right; }',
@@ -112,8 +120,11 @@
                         '#HeaderABC .predefine-actions li a', '{ text-decoration: none;}',
                         '#HeaderABC .clearfix:before', '{ content: " "; display: table; }',
                         '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
-                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: absolute; left: 0; top: 40px; height: calc(100vh - 40px); background: #fff; z-index: 10; }',
+                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 10; }',
                         '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
+                        '#HeaderABC-SidebarMenu .sidebar-wrapper', '{ width: 100%; overflow: hidden; padding: 40px 0 0; }',
+                        '#HeaderABC-SidebarMenu .sidebar-wrapper .list', '{ margin: 0; padding: 0; list-style: none; }',
+                        '#HeaderABC-SidebarMenu .sidebar-wrapper .list li', '{ margin: 0 0 10px; }',
                         '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
                         '#HeaderABC-overlay.opened', '{ display: block; }'
             ],
