@@ -11,6 +11,9 @@
                 this.head = document.head || document.getElementsByTagName('head')[0];
                 this.body = document.body;
                 this.firstBodyElement = this.body.children[0];
+                this.isHtmlGenerated = false;
+                this.isCssGenerated = false;
+                this.sidebarOpened = false;
             },
             generate: {
                 html: function() {
@@ -37,6 +40,48 @@
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
                     this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
+                }
+            },
+            applyEvents: function() {
+                var header = document.getElementById('HeaderABC');
+                var sidebar = document.getElementById('HeaderABC-SidebarMenu');
+
+                var hamburgerMenuOpener = header.getElementsByClassName('hamburger-menu')[0];
+
+                this.on(hamburgerMenuOpener, 'click', function() {
+
+                });
+            },
+            on: function(target, event, handler) {
+                if (!target || !event) {
+                    return;
+                }
+                target.addEventListener(event, function(e) {
+                    handler(e);
+                    e.stopPropagation();
+                });
+            },
+            addClass: function (target, className) {
+                if (target.classList) {
+                    target.classList.add(className);
+                } else if (!hasClass(target, className)) {
+                    target.className += " " + className;
+                }
+
+            },
+            removeClass: function(target, className) {
+                if (target.classList) {
+                    target.classList.remove(className);
+                } else if (hasClass(target, className)) {
+                    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+                    target.className = target.className.replace(reg, ' ');
+                }
+            },
+            hasClass: function (target, className) {
+                if (target.classList) {
+                    return target.classList.contains(className);
+                } else {
+                    return !!target.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
                 }
             },
             template:   '<div class="header-wrapper">' +
