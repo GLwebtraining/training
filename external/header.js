@@ -53,9 +53,11 @@
                     if (HeaderABC.sidebarOpened) {
                         HeaderABC.removeClass(sidebar, 'opened');
                         HeaderABC.removeClass(overlay, 'opened');
+                        HeaderABC.sidebarOpene = false;
                     } else {
                         HeaderABC.addClass(sidebar, 'opened');
                         HeaderABC.addClass(overlay, 'opened');
+                        HeaderABC.sidebarOpene = true;
                     }
                 });
             },
@@ -102,7 +104,7 @@
                         '<div id="HeaderABC-overlay"></div>',
             cssArray: [
                         '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
-                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 10; }',
+                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 10; background: #fff; }',
                         '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
                         '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
                         '#HeaderABC .predefine-actions', '{ float: right; }',
