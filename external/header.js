@@ -4,11 +4,15 @@
     var
         location = window.location,
         document = window.document,
-        docElem = document.documentElement,
+        docElem = document.documentElement;
 
-        HeaderABC = {
+    var Utils = defineUtils();
+
+    Utils.ready(HeaderABC.initialize);
+
+    var HeaderABC = {
             define: function() {
-                this.head = document.head || document.getElementsByTagName('head')[0];
+                this.head = document.head || Utils.getElement('head')[0];
                 this.body = document.body;
                 this.firstBodyElement = this.body.children[0];
                 this.isHtmlGenerated = false;
@@ -17,17 +21,18 @@
             },
             generate: {
                 html: function() {
-                    HeaderABC.element = document.createElement('div');
-                    HeaderABC.element.id = 'HeaderABC';
-                    HeaderABC.element.className = 'clearfix';
-                    HeaderABC.element.innerHTML = HeaderABC.template;
+                    HeaderABC.element = Utils.createElement('div', {
+                        id: 'HeaderABC',
+                        className: 'clearfix'
+                    });
+                    Utils.html(HeaderABC.element, HeaderABC.template);
                     HeaderABC.isHtmlGenerated = true;
                 },
                 css: function() {
-                    HeaderABC.styleSheet = document.createElement('style');
-                    HeaderABC.styleSheet.type = 'text/css';
+                    HeaderABC.styleSheet = Utils.createElement('style', {
+                        type: 'text/css'
+                    });
                     HeaderABC.css = HeaderABC.cssArray.join('');
-
                     if (HeaderABC.styleSheet.styleSheet) {
                         HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
                     } else {
@@ -43,57 +48,25 @@
                 }
             },
             applyEvents: function() {
-                var header = document.getElementById('HeaderABC');
-                var sidebar = document.getElementById('HeaderABC-SidebarMenu');
-                var overlay = document.getElementById('HeaderABC-overlay');
+                var header = Utils.getElement('#HeaderABC');
+                var sidebar = Utils.getElement('#HeaderABC-SidebarMenu');
+                var overlay = Utils.getElement('#HeaderABC-overlay');
+                var hamburgerMenuOpener = Utils.getElement('.hamburger-menu')[0];
 
-                var hamburgerMenuOpener = header.getElementsByClassName('hamburger-menu')[0];
 
-                this.on(hamburgerMenuOpener, 'click', function() {
+                Utils.on(hamburgerMenuOpener, 'click', function() {
                     if (HeaderABC.sidebarOpened) {
-                        HeaderABC.removeClass(sidebar, 'opened');
-                        HeaderABC.removeClass(overlay, 'opened');
-                        HeaderABC.removeClass(HeaderABC.body, 'sidebar-abc-opened');
+                        Utils.removeClass(sidebar, 'opened');
+                        Utils.removeClass(overlay, 'opened');
+                        Utils.removeClass(HeaderABC.body, 'sidebar-abc-opened');
                         HeaderABC.sidebarOpened = false;
                     } else {
-                        HeaderABC.addClass(sidebar, 'opened');
-                        HeaderABC.addClass(overlay, 'opened');
-                        HeaderABC.addClass(HeaderABC.body, 'sidebar-abc-opened');
+                        Utils.addClass(sidebar, 'opened');
+                        Utils.addClass(overlay, 'opened');
+                        Utils.addClass(HeaderABC.body, 'sidebar-abc-opened');
                         HeaderABC.sidebarOpened = true;
                     }
                 });
-            },
-            on: function(target, event, handler) {
-                if (!target || !event) {
-                    return;
-                }
-                target.addEventListener(event, function(e) {
-                    handler(e);
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-            },
-            addClass: function (target, className) {
-                if (target.classList) {
-                    target.classList.add(className);
-                } else if (!hasClass(target, className)) {
-                    target.className += " " + className;
-                }
-            },
-            removeClass: function(target, className) {
-                if (target.classList) {
-                    target.classList.remove(className);
-                } else if (hasClass(target, className)) {
-                    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-                    target.className = target.className.replace(reg, ' ');
-                }
-            },
-            hasClass: function (target, className) {
-                if (target.classList) {
-                    return target.classList.contains(className);
-                } else {
-                    return !!target.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
-                }
             },
             template:   '<div class="header-wrapper">' +
                             '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
@@ -141,44 +114,114 @@
             }
         };
 
-    document.addEventListener("DOMContentLoaded", function (event) {
-        HeaderABC.initialize();
-    });
-
-})(window);
-
-(function(){
-
-    'use strict';
-
-    var R = function(){};
-
-    R.defer = function(){
-        return new Promise; 
-    }
-
-    function Promise() {
-        this.promise = {
-            callbacks: [],
-            then: function () {
-                this.callbacks = Array.prototype.slice.call(arguments);
+    function defineUtils() {
+        return {
+            ready: function (callback) {
+                window.document.addEventListener('DOMContentLoaded', function (event) {
+                    if (!!callback && typeof callback === 'function') {
+                        callback(event);
+                    }
+                });
+            },
+            on: function (target, event, handler) {
+                if (!target || !event) {
+                    return;
+                }
+                target.addEventListener(event, function (e) {
+                    handler(e);
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            },
+            addClass: function (target, className) {
+                if (target.classList) {
+                    target.classList.add(className);
+                } else if (!hasClass(target, className)) {
+                    target.className += " " + className;
+                }
+            },
+            removeClass: function (target, className) {
+                if (target.classList) {
+                    target.classList.remove(className);
+                } else if (hasClass(target, className)) {
+                    var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+                    target.className = target.className.replace(reg, ' ');
+                }
+            },
+            hasClass: function (target, className) {
+                if (target.classList) {
+                    return target.classList.contains(className);
+                } else {
+                    return !!target.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+                }
+            },
+            defer: function(){
+                return new Promise; 
+            },
+            ajax: function(settings) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(settings.method, settings.url, true);
+                if (settings.header) {
+                    xhr.setRequestHeader(settings.header.name, settings.header.value);
+                }
+                xhr.onreadystatechange = function () {
+                    if (this.readyState != 4) return;
+                    if (this.status != 200) {
+                        if (!!settings.error && typeof settings.error === 'function') {
+                            settings.error({ status: this.status, statusText: this.statusText, headers: xhr.getAllResponseHeaders() });
+                        }
+                        return;
+                    }
+                    if (!!settings.success && typeof settings.success === 'function') {
+                        settings.success(this.responseText, xhr.getAllResponseHeaders());
+                    }
+                }
+                xhr.send(settings.data || '');
+            },
+            getElement: function(selector, parentNode) {
+                if (selector.indexOf('#') !== -1) {
+                    return document.getElementById(selectors.substr(selector.indexOf('#') + 1));
+                }
+                if (selector.indexOf('.') !== -1) {
+                    return (parentNode || document).getElementsByClassName(selector.indexOf('.') + 1));
+                }
+                return document.getElementsByTagName(selector);
+            },
+            createElement: function(tag, attrs) {
+                var element = document.createElement(tag);
+                if (!!attrs) {
+                    for (var key in attrs) {
+                        element[key] = attrs[key];
+                    }
+                }
+                return element;
+            },
+            html: function(element, html) {
+                element.innerHTML = html;
             }
         };
-    }
 
-    Promise.prototype = {
-        resolve: function() {
-            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
-                this.promise.callbacks[0]();
-            }
-        },
-        reject: function() {
-            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
-                this.promise.callbacks[1]();
+        function Promise() {
+            this.promise = {
+                callbacks: [],
+                then: function () {
+                    this.callbacks = Array.prototype.slice.call(arguments);
+                }
+            };
+        }
+
+        Promise.prototype = {
+            resolve: function () {
+                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
+                    this.promise.callbacks[0].apply(this, arguments);
+                }
+            },
+            reject: function () {
+                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
+                    this.promise.callbacks[1].apply(this, arguments);
+                }
             }
         }
-    }
+    };
 
-    window.R = R;
-
-})();
+})(window);
