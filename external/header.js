@@ -8,8 +8,6 @@
 
     var Utils = defineUtils();
 
-    Utils.ready(HeaderABC.initialize);
-
     var HeaderABC = {
             define: function() {
                 this.head = document.head || Utils.getElement('head')[0];
@@ -223,5 +221,7 @@
             }
         }
     };
+
+    Utils.ready(HeaderABC.initialize);
 
 })(window);
