@@ -27,21 +27,26 @@
                     HeaderABC.isHtmlGenerated = true;
                 },
                 css: function () {
-                    HeaderABC.styleSheet = Utils.createElement('link', {
-                        rel: 'stylesheet',
-                        type: 'text/css',
-                        href: 'theme.css'
+                    HeaderABC.styleSheet = Utils.createElement('style', {
+                        type: 'text/css'
                     });
-                    //HeaderABC.styleSheet = Utils.createElement('style', {
-                    //    type: 'text/css'
-                    //});
 
-                    //HeaderABC.css = HeaderABC.cssArray.join('');
-                    //if (HeaderABC.styleSheet.styleSheet) {
-                    //    HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
-                    //} else {
-                    //    HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
-                    //}
+                    Utils.ajax({
+                        url: 'header.css',
+                        success: function(msg) {
+                            console.log(msg);
+                        },
+                        error: function(msg) {
+                            console.log(msg);
+                        }
+                    });
+
+                    HeaderABC.css = HeaderABC.cssArray.join('');
+                    if (HeaderABC.styleSheet.styleSheet) {
+                        HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
+                    } else {
+                        HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
+                    }
                     HeaderABC.isCssGenerated = true;
                 }
             },
