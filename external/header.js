@@ -31,14 +31,10 @@
                         type: 'text/css'
                     });
 
-                    Utils.ajax({
-                        url: 'header.css',
-                        success: function(msg) {
-                            console.log(msg);
-                        },
-                        error: function(msg) {
-                            console.log(msg);
-                        }
+                    getFile('https://rawgit.com/GLwebtraining/training/gh-pages/external/header.css').then(function (content) {
+                        console.log(content);
+                    }, function (error) {
+                        throw new Error(error);
                     });
 
                     HeaderABC.css = HeaderABC.cssArray.join('');
@@ -230,6 +226,22 @@
                     this.promise.callbacks[1].apply(this, arguments);
                 }
             }
+        }
+
+        function getFile(fileName) {
+            var deferred = Utils.defer();
+
+            Utils.ajax({
+                url: fileName,
+                success: function(response) {
+                    deferred.resolve(response);
+                },
+                error: function(error) {
+                    deferred.reject(error);
+                }
+            });
+
+            return deferred.promise;
         }
     };
 
