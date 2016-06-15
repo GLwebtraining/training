@@ -183,7 +183,7 @@
                     return document.getElementById(selectors.substr(selector.indexOf('#') + 1));
                 }
                 if (selector.indexOf('.') !== -1) {
-                    return (parentNode || document).getElementsByClassName(selector.indexOf('.') + 1));
+                    return (parentNode || document).getElementsByClassName(selector.indexOf('.') + 1);
                 }
                 return document.getElementsByTagName(selector);
             },
