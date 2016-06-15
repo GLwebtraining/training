@@ -24,9 +24,13 @@
                         id: 'HeaderABC',
                         className: 'clearfix'
                     });
-                    console.log(HeaderABC.template());
-                    Utils.html(HeaderABC.element, HeaderABC.template());
-                    HeaderABC.isHtmlGenerated = true;
+
+                    getFile(rootUrl + 'header.html').then(function (content) {
+                        Utils.html(HeaderABC.element, content);
+                        HeaderABC.isHtmlGenerated = true;
+                    }, function (error) {
+                        throw new Error(error);
+                    });
                 },
                 css: function () {
                     HeaderABC.styleSheet = Utils.createElement('style', {
@@ -80,13 +84,7 @@
                     }
                 });
             },
-            template: function() {
-                return getFile(rootUrl + 'header.html').then(function (content) {
-                    return content;
-                }, function (error) {
-                    throw new Error(error);
-                });
-            },
+            template: getMainTemplate(),
             cssArray: getCssArray(),
             initialize: function () {
                 this.define();
