@@ -222,6 +222,8 @@
         }
     };
 
-    Utils.ready(HeaderABC.initialize);
+    Utils.ready(function() {
+        HeaderABC.initialize();
+    });
 
 })(window);
