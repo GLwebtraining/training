@@ -49,7 +49,7 @@
                 var header = Utils.getElement('#HeaderABC');
                 var sidebar = Utils.getElement('#HeaderABC-SidebarMenu');
                 var overlay = Utils.getElement('#HeaderABC-overlay');
-                var hamburgerMenuOpener = Utils.getElement('.hamburger-menu')[0];
+                var hamburgerMenuOpener = Utils.getElement('.hamburger-menu', header)[0];
 
 
                 Utils.on(hamburgerMenuOpener, 'click', function() {
@@ -181,7 +181,7 @@
                     return document.getElementById(selector.substr(selector.indexOf('#') + 1));
                 }
                 if (selector.indexOf('.') !== -1) {
-                    return (parentNode || document).getElementsByClassName(selector.indexOf('.') + 1);
+                    return (!!parentNode ? parentNode : document).getElementsByClassName(selector.indexOf('.') + 1);
                 }
                 return document.getElementsByTagName(selector);
             },
