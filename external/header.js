@@ -91,25 +91,7 @@
                             '</div>' +
                         '</div>' +
                         '<div id="HeaderABC-overlay"></div>',
-            cssArray: [
-                        'body.sidebar-abc-opened', '{ overflow: hidden }',
-                        '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
-                        '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }',
-                        '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
-                        '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
-                        '#HeaderABC .predefine-actions', '{ float: right; }',
-                        '#HeaderABC .predefine-actions li', '{ float: left; margin: 0 0 0 10px; }',
-                        '#HeaderABC .predefine-actions li a', '{ text-decoration: none;}',
-                        '#HeaderABC .clearfix:before', '{ content: " "; display: table; }',
-                        '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
-                        '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 10; }',
-                        '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
-                        '#HeaderABC-SidebarMenu .sidebar-wrapper', '{ width: 100%; overflow: hidden; padding: 40px 0 0 20px; }',
-                        '#HeaderABC-SidebarMenu .sidebar-wrapper .list', '{ margin: 0; padding: 0; list-style: none; }',
-                        '#HeaderABC-SidebarMenu .sidebar-wrapper .list li', '{ margin: 0 0 10px; }',
-                        '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
-                        '#HeaderABC-overlay.opened', '{ display: block; }'
-            ],
+            cssArray: getCssArray(),
             initialize: function () {
                 this.define();
                 this.generate.html();
@@ -227,23 +209,45 @@
                 }
             }
         }
+    }
 
-        function getFile(fileName) {
-            var deferred = Utils.defer();
+    function getFile(fileName) {
+        var deferred = Utils.defer();
 
-            Utils.ajax({
-                url: fileName,
-                success: function(response) {
-                    deferred.resolve(response);
-                },
-                error: function(error) {
-                    deferred.reject(error);
-                }
-            });
+        Utils.ajax({
+            url: fileName,
+            success: function (response) {
+                deferred.resolve(response);
+            },
+            error: function (error) {
+                deferred.reject(error);
+            }
+        });
 
-            return deferred.promise;
-        }
-    };
+        return deferred.promise;
+    }
+
+    function getCssArray() {
+        return [
+            'body.sidebar-abc-opened', '{ overflow: hidden }',
+            '#HeaderABC', '{ width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }',
+            '#HeaderABC .header-wrapper', '{ width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }',
+            '#HeaderABC .hamburger-menu', '{ text-decoration: none; }',
+            '#HeaderABC .hamburger-menu .icon', '{ color: red; }',
+            '#HeaderABC .predefine-actions', '{ float: right; }',
+            '#HeaderABC .predefine-actions li', '{ float: left; margin: 0 0 0 10px; }',
+            '#HeaderABC .predefine-actions li a', '{ text-decoration: none;}',
+            '#HeaderABC .clearfix:before', '{ content: " "; display: table; }',
+            '#HeaderABC .clearfix:after', '{ content: " "; display: table; clear: both; }',
+            '#HeaderABC-SidebarMenu', '{ display: none; width: 200px; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 10; }',
+            '#HeaderABC-SidebarMenu.opened', '{ display: block; }',
+            '#HeaderABC-SidebarMenu .sidebar-wrapper', '{ width: 100%; overflow: hidden; padding: 40px 0 0 20px; }',
+            '#HeaderABC-SidebarMenu .sidebar-wrapper .list', '{ margin: 0; padding: 0; list-style: none; }',
+            '#HeaderABC-SidebarMenu .sidebar-wrapper .list li', '{ margin: 0 0 10px; }',
+            '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
+            '#HeaderABC-overlay.opened', '{ display: block; }'
+        ];
+    }
 
     Utils.ready(function() {
         HeaderABC.initialize();
