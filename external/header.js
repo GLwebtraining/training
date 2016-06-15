@@ -73,24 +73,7 @@
                     }
                 });
             },
-            template:   '<div class="header-wrapper">' +
-                            '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
-                            '<ul class="predefine-actions">' +
-                                '<li>UserName</li>' +
-                                '<li><a href="#">Logout</a></li>' +
-                            '</ul>' +
-                        '</div>' +
-                        '<div id="HeaderABC-SidebarMenu">' +
-                            '<div class="sidebar-wrapper">' +
-                                '<ul class="list">' +
-                                    '<li><a href="#">Item 1</a></li>' +
-                                    '<li><a href="#">Item 2</a></li>' +
-                                    '<li><a href="#">Item 3</a></li>' +
-                                    '<li><a href="#">Item 4</a></li>' +
-                                '</ul>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div id="HeaderABC-overlay"></div>',
+            template: getMainTemplate(),
             cssArray: getCssArray(),
             initialize: function () {
                 this.define();
@@ -102,6 +85,28 @@
         };
 
     function defineUtils() {
+        function Promise() {
+            this.promise = {
+                callbacks: [],
+                then: function () {
+                    this.callbacks = Array.prototype.slice.call(arguments);
+                }
+            };
+        }
+
+        Promise.prototype = {
+            resolve: function () {
+                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
+                    this.promise.callbacks[0].apply(this, arguments);
+                }
+            },
+            reject: function () {
+                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
+                    this.promise.callbacks[1].apply(this, arguments);
+                }
+            }
+        }
+
         return {
             ready: function (callback) {
                 window.document.addEventListener('DOMContentLoaded', function (event) {
@@ -187,28 +192,6 @@
                 element.innerHTML = html;
             }
         };
-
-        function Promise() {
-            this.promise = {
-                callbacks: [],
-                then: function () {
-                    this.callbacks = Array.prototype.slice.call(arguments);
-                }
-            };
-        }
-
-        Promise.prototype = {
-            resolve: function () {
-                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
-                    this.promise.callbacks[0].apply(this, arguments);
-                }
-            },
-            reject: function () {
-                if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
-                    this.promise.callbacks[1].apply(this, arguments);
-                }
-            }
-        }
     }
 
     function getFile(fileName) {
@@ -247,6 +230,27 @@
             '#HeaderABC-overlay', '{ display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }',
             '#HeaderABC-overlay.opened', '{ display: block; }'
         ];
+    }
+
+    function getMainTemplate() {
+        return '<div class="header-wrapper">' +
+                    '<a href="#" class="hamburger-menu"><span class="icon">=</span></a>' +
+                    '<ul class="predefine-actions">' +
+                        '<li>UserName</li>' +
+                        '<li><a href="#">Logout</a></li>' +
+                    '</ul>' +
+                '</div>' +
+                '<div id="HeaderABC-SidebarMenu">' +
+                    '<div class="sidebar-wrapper">' +
+                        '<ul class="list">' +
+                            '<li><a href="#">Item 1</a></li>' +
+                            '<li><a href="#">Item 2</a></li>' +
+                            '<li><a href="#">Item 3</a></li>' +
+                            '<li><a href="#">Item 4</a></li>' +
+                        '</ul>' +
+                    '</div>' +
+                '</div>' +
+                '<div id="HeaderABC-overlay"></div>';
     }
 
     Utils.ready(function() {
