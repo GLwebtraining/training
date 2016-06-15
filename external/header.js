@@ -50,11 +50,20 @@
                     });
                 },
                 menu: function() {
-                    getFile(rootUrl + 'config.json').then(function (content) {
-                        console.log(content);
+                    getFile(rootUrl + 'config.json').then(function (json) {
+                        console.log(JSON.parse(json));
                     }, function (error) {
                         throw new Error(error);
                     });
+
+                    function generateItems(json) {
+                        var listHtmlStart = '<ul class="list">';
+                        var listHtmlEnd = '</ul>';
+                        for (var key in json) {
+                            listHtmlStart += '<li><a href="' +  + '"></a></li>';
+                        }
+                        listHtmlStart += listHtmlEnd;
+                    }
                 }
             },
             applyMarkup: function() {
@@ -84,12 +93,25 @@
                     }
                 });
             },
+            getFiles: function () {
+                var deferred = Utils.defer();
+                var html = getFile(rootUrl + 'header.html');
+                var css = getFile(rootUrl + 'header.css');
+
+                deferred.all([html, css]).then(function (html, css) {
+                    
+                }, function() {
+                    console.log('Ajax error!');
+                });
+                return deferred.promise;
+            },
             template: getMainTemplate(),
             cssArray: getCssArray(),
             initialize: function () {
                 this.define();
                 this.generate.html();
                 this.generate.css();
+                this.generate.menu();
                 this.applyMarkup();
                 this.applyEvents();
             }
@@ -101,7 +123,9 @@
                 callbacks: [],
                 then: function () {
                     this.callbacks = Array.prototype.slice.call(arguments);
-                }
+                },
+                resolved: false,
+                rejected: false
             };
         }
 
@@ -109,11 +133,13 @@
             resolve: function () {
                 if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
                     this.promise.callbacks[0].apply(this, arguments);
+                    this.promise.resolved = true;
                 }
             },
             reject: function () {
                 if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
                     this.promise.callbacks[1].apply(this, arguments);
+                    this.promise.rejected = true;
                 }
             }
         }
