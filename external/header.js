@@ -7,6 +7,7 @@
         docElem = document.documentElement;
 
     var Utils = defineUtils();
+    var rootUrl = 'https://rawgit.com/GLwebtraining/training/gh-pages/external/';
 
     var HeaderABC = {
             define: function() {
@@ -23,7 +24,7 @@
                         id: 'HeaderABC',
                         className: 'clearfix'
                     });
-                    Utils.html(HeaderABC.element, HeaderABC.template);
+                    Utils.html(HeaderABC.element, HeaderABC.template());
                     HeaderABC.isHtmlGenerated = true;
                 },
                 css: function () {
@@ -31,19 +32,24 @@
                         type: 'text/css'
                     });
 
-                    getFile('https://rawgit.com/GLwebtraining/training/gh-pages/external/header.css').then(function (content) {
+                    getFile(rootUrl + 'header.css').then(function (content) {
+                        HeaderABC.css = content; //HeaderABC.cssArray.join('');
+                        if (HeaderABC.styleSheet.styleSheet) {
+                            HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
+                        } else {
+                            HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
+                        }
+                        HeaderABC.isCssGenerated = true;
+                    }, function (error) {
+                        throw new Error(error);
+                    });
+                },
+                menu: function() {
+                    getFile(rootUrl + 'config.json').then(function (content) {
                         console.log(content);
                     }, function (error) {
                         throw new Error(error);
                     });
-
-                    HeaderABC.css = HeaderABC.cssArray.join('');
-                    if (HeaderABC.styleSheet.styleSheet) {
-                        HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
-                    } else {
-                        HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
-                    }
-                    HeaderABC.isCssGenerated = true;
                 }
             },
             applyMarkup: function() {
@@ -73,7 +79,13 @@
                     }
                 });
             },
-            template: getMainTemplate(),
+            template: function() {
+                return getFile(rootUrl + 'header.html').then(function (content) {
+                    return content;
+                }, function (error) {
+                    throw new Error(error);
+                });
+            },
             cssArray: getCssArray(),
             initialize: function () {
                 this.define();
