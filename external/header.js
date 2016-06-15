@@ -26,16 +26,22 @@
                     Utils.html(HeaderABC.element, HeaderABC.template);
                     HeaderABC.isHtmlGenerated = true;
                 },
-                css: function() {
-                    HeaderABC.styleSheet = Utils.createElement('style', {
-                        type: 'text/css'
+                css: function () {
+                    HeaderABC.styleSheet = Utils.createElement('link', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: 'theme.css'
                     });
-                    HeaderABC.css = HeaderABC.cssArray.join('');
-                    if (HeaderABC.styleSheet.styleSheet) {
-                        HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
-                    } else {
-                        HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
-                    }
+                    //HeaderABC.styleSheet = Utils.createElement('style', {
+                    //    type: 'text/css'
+                    //});
+
+                    //HeaderABC.css = HeaderABC.cssArray.join('');
+                    //if (HeaderABC.styleSheet.styleSheet) {
+                    //    HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
+                    //} else {
+                    //    HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
+                    //}
                     HeaderABC.isCssGenerated = true;
                 }
             },
@@ -158,7 +164,7 @@
             },
             ajax: function(settings) {
                 var xhr = new XMLHttpRequest();
-                xhr.open(settings.method, settings.url, true);
+                xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
                 if (settings.header) {
                     xhr.setRequestHeader(settings.header.name, settings.header.value);
                 }
@@ -181,7 +187,7 @@
                     return document.getElementById(selector.substr(selector.indexOf('#') + 1));
                 }
                 if (selector.indexOf('.') !== -1) {
-                    return (!!parentNode ? parentNode : document).getElementsByClassName(selector.indexOf('.') + 1);
+                    return (!!parentNode ? parentNode : document).getElementsByClassName(selector.substr(selector.indexOf('.') + 1));
                 }
                 return document.getElementsByTagName(selector);
             },
