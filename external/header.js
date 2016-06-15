@@ -24,6 +24,7 @@
                         id: 'HeaderABC',
                         className: 'clearfix'
                     });
+                    console.log(HeaderABC.template());
                     Utils.html(HeaderABC.element, HeaderABC.template());
                     HeaderABC.isHtmlGenerated = true;
                 },
