@@ -3,7 +3,12 @@ body.sidebar-abc-opened { overflow: hidden }
 #HeaderABC ul { margin: 0;padding: 0;list-style: none; }
 #HeaderABC { width: 100%; height: 40px; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }
 #HeaderABC .header-wrapper { width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }
-#HeaderABC .header-wrapper .logo{ float: left;width: 100px;height: 14px; }
+#HeaderABC .header-wrapper .logo {
+    float: left;
+    width: 100px;
+    height: 14px;
+    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMwcHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDMwIDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCAzLjguMiAoMjk3NTMpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPkdyb3VwIDIgQ29weSAyPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9Im5ldyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkFwcHJvdmVyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTYuMDAwMDAwLCAtMTcuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yLUNvcHktMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTYuMDAwMDAwLCAxNy4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxwb2x5bGluZSBpZD0iUGF0aC0xMDM4IiBmaWxsPSIjQzcyNzJBIiBwb2ludHM9IjcuOTg1NTE5MjYgMC4wODM0MDA5NzQgMTUuMTAyOTgzIDExLjUzNjkzMTggMjIuMzUxODI5OCAxMS41MzY5MzE4IDE1LjIwNTc2ODYgMC4wODE1NzQ2NzUzIj48L3BvbHlsaW5lPgogICAgICAgICAgICAgICAgPHBvbHlsaW5lIGlkPSJQYXRoLTEwMzgtQ29weSIgZmlsbD0iI0IyQjRCMiIgcG9pbnRzPSIxNS41NjEyNzY4IDEyLjQ0NzAzNzMgMjIuNjc4NzQwNSAyMy45MDA1NjgyIDI5LjkyNzU4NzMgMjMuOTAwNTY4MiAyMi43ODE1MjYyIDEyLjQ0NTIxMSI+PC9wb2x5bGluZT4KICAgICAgICAgICAgICAgIDxwb2x5bGluZSBpZD0iUGF0aC0xMDM4LUNvcHktMiIgZmlsbD0iI0IyQjRCMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNy4xODg4NzcsIDE4LjE3Mjg5MCkgc2NhbGUoLTEsIDEpIHRyYW5zbGF0ZSgtNy4xODg4NzcsIC0xOC4xNzI4OTApICIgcG9pbnRzPSIwLjAwNTcyMTI3NTI1IDEyLjQ0NzAzNzMgNy4xMjMxODQ5NyAyMy45MDA1NjgyIDE0LjM3MjAzMTggMjMuOTAwNTY4MiA3LjIyNTk3MDY0IDEyLjQ0NTIxMSI+PC9wb2x5bGluZT4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+");
+}
 #HeaderABC .hamburger-menu { text-decoration: none;float: left;width: 14px;height: 14px; }
 #HeaderABC .hamburger-menu .icon { color: red; }
 #HeaderABC .predefine-actions { float: right; }
