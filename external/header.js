@@ -64,7 +64,7 @@
                         var listHtml = '<ul class="list">';
                         var listHtmlEnd = '</ul>';
                         for (var key in json) {
-                            listHtml += '<li><a href="' + + '"></a></li>';
+                            listHtml += '<li><a href="' + json.url + '">' + json.name + '</a></li>';
                         }
                         listHtml += listHtmlEnd;
                         return listHtml;
