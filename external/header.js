@@ -63,8 +63,8 @@
                     function generateItems(json) {
                         var listHtml = '<ul class="list">';
                         var listHtmlEnd = '</ul>';
-                        for (var key in json) {
-                            listHtml += '<li><a href="' + json.url + '">' + json.name + '</a></li>';
+                        for (var i = 0; i < json.length; i++) {
+                            listHtml += '<li><a href="' + json[i].url + '">' + json[i].name + '</a></li>';
                         }
                         listHtml += listHtmlEnd;
                         return listHtml;
