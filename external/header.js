@@ -110,7 +110,7 @@
                 return function(trigger) {
                     var done = true;
                     if (trigger in triggers) {
-                        triggers[triggers] = true;
+                        triggers[trigger] = true;
                     }
                     for (var key in triggers) {
                         if (!triggers[key]) {
