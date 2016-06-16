@@ -93,18 +93,32 @@
                     }
                 });
             },
-            getFiles: function () {
+            generated: (function () {
                 var deferred = Utils.defer();
-                var html = getFile(rootUrl + 'header.html');
-                var css = getFile(rootUrl + 'header.css');
-
-                deferred.all([html, css]).then(function (html, css) {
-                    
-                }, function() {
-                    console.log('Ajax error!');
-                });
-                return deferred.promise;
-            },
+                var triggers = (function () {
+                    var obj = {};
+                    for (var key in HeaderABC.generate) {
+                        obj[key] = false;
+                    }
+                    return obj;
+                })();
+                return function(trigger) {
+                    var done = true;
+                    if (trigger in triggers) {
+                        triggers[triggers] = true;
+                    }
+                    for (var key in triggers) {
+                        if (!triggers[key]) {
+                            done = false;
+                            break;
+                        }
+                    }
+                    if (done) {
+                        deferred.resolve();
+                    }
+                    return deferred.promise;
+                }
+            })(),
             template: getMainTemplate(),
             cssArray: getCssArray(),
             initialize: function () {
