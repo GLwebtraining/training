@@ -41,8 +41,21 @@ body.sidebar-abc-opened { overflow: hidden }
 #HeaderABC .clearfix:after { content: " "; display: table; clear: both; }
 #HeaderABC-SidebarMenu { display: none; width: 200px; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 10; }
 #HeaderABC-SidebarMenu.opened { display: block; }
-#HeaderABC-SidebarMenu .sidebar-wrapper { width: 100%; overflow: hidden; padding: 40px 0 0 20px; }
+#HeaderABC-SidebarMenu .sidebar-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 50px 0 0 0;
+}
 #HeaderABC-SidebarMenu .sidebar-wrapper .list { margin: 0; padding: 0; list-style: none; }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list li { margin: 0 0 10px; }
+#HeaderABC-SidebarMenu .sidebar-wrapper .list li a {
+    text-decoration: none;
+    display: block;
+    padding: 0 0 0 20px;
+    line-height: 24px;
+}
+#HeaderABC-SidebarMenu .sidebar-wrapper .list li a:hover {
+    background-color: #f1f1f1;
+}
 #HeaderABC-overlay { display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }
 #HeaderABC-overlay.opened { display: block; }
