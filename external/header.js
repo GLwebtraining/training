@@ -140,9 +140,17 @@
                 this.progressDone().then(function () {
                     HeaderABC.applyMarkup();
                     HeaderABC.applyEvents();
+                    HeaderABC.expenseNow();
+
                 });
+            },
+            expenseNow: function() {
+                var title = HeaderABC.getTitle();
+                if (title.toLowerCase() === 'expensenow') {
+                    intializeExpenseNow();
+                }
             }
-        };
+    };
 
     function defineUtils() {
         function Promise() {
@@ -338,13 +346,6 @@
 
     Utils.ready(function() {
         HeaderABC.initialize();
-    });
-
-    Utils.windowOnLoad(function() {
-        var title = HeaderABC.getTitle();
-        if (title.toLowerCase() === 'expensenow') {
-            intializeExpenseNow();
-        }
     });
 
 })(window);
