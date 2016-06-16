@@ -54,7 +54,7 @@
                 },
                 menu: function() {
                     getFile(rootUrl + 'config.json').then(function (json) {
-                        console.log(HeaderABC.element, JSON.parse(json));
+                        Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], generateItems(JSON.parse(json)));
                         HeaderABC.progressDone('menu');
                     }, function (error) {
                         throw new Error(error);
