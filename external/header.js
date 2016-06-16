@@ -93,7 +93,7 @@
                     }
                 });
             },
-            generated: (function () {
+            generated: function () {
                 var deferred = Utils.defer();
                 var triggers = (function () {
                     var obj = {};
@@ -118,7 +118,7 @@
                     }
                     return deferred.promise;
                 }
-            })(),
+            },
             template: getMainTemplate(),
             cssArray: getCssArray(),
             initialize: function () {
