@@ -126,9 +126,10 @@
                 this.generate.html();
                 this.generate.css();
                 this.generate.menu();
-                this.generated();
-                this.applyMarkup();
-                this.applyEvents();
+                this.generated.then(function() {
+                    HeaderABC.applyMarkup();
+                    HeaderABC.applyEvents();
+                });
             }
         };
 
