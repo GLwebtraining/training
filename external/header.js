@@ -54,7 +54,7 @@
                 },
                 menu: function() {
                     getFile(rootUrl + 'config.json').then(function (json) {
-                        Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], generateItems(JSON.parse(json)));
+                        HeaderABC.menu = generateItems(JSON.parse(json));
                         HeaderABC.progressDone('menu');
                     }, function (error) {
                         throw new Error(error);
@@ -75,6 +75,7 @@
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
                     this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
+                    Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                 }
             },
             applyEvents: function() {
