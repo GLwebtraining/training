@@ -17,6 +17,7 @@
                 this.isHtmlGenerated = false;
                 this.isCssGenerated = false;
                 this.sidebarOpened = false;
+                this.progress = this.generated();
             },
             generate: {
                 html: function() {
@@ -28,6 +29,7 @@
                     getFile(rootUrl + 'header.html').then(function (content) {
                         Utils.html(HeaderABC.element, content);
                         HeaderABC.isHtmlGenerated = true;
+                        HeaderABC.progress('html');
                     }, function (error) {
                         throw new Error(error);
                     });
@@ -45,6 +47,7 @@
                             HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
                         }
                         HeaderABC.isCssGenerated = true;
+                        HeaderABC.progress('css');
                     }, function (error) {
                         throw new Error(error);
                     });
@@ -52,6 +55,7 @@
                 menu: function() {
                     getFile(rootUrl + 'config.json').then(function (json) {
                         console.log(JSON.parse(json));
+                        HeaderABC.progress('menu');
                     }, function (error) {
                         throw new Error(error);
                     });
@@ -126,7 +130,7 @@
                 this.generate.html();
                 this.generate.css();
                 this.generate.menu();
-                this.generated.then(function() {
+                this.progress().then(function () {
                     HeaderABC.applyMarkup();
                     HeaderABC.applyEvents();
                 });
