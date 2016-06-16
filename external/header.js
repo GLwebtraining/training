@@ -325,7 +325,7 @@
     }
 
     function intializeExpenseNow() {
-        if (!!angular) {
+        if (!!window.angular) {
             var injector = angular.element(HeaderABC.body).injector();
             getRootScope.$inject = ['$rootScope'];
             return injector.invoke(getRootScope, null, null);
