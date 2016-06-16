@@ -106,6 +106,7 @@
                     }
                     return obj;
                 })();
+                console.log(triggers);
                 return function(trigger) {
                     var done = true;
                     if (trigger in triggers) {
@@ -117,6 +118,7 @@
                             break;
                         }
                     }
+                    console.log(triggers);
                     if (done) {
                         deferred.resolve();
                     }
