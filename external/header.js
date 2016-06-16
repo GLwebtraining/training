@@ -72,7 +72,7 @@
             },
             applyMarkup: function() {
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
-                    this.body.insertBefore(HeaderABC.element, this.firstBodyElement);
+                    this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
                 }
             },
