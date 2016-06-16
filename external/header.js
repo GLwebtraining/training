@@ -17,7 +17,7 @@
                 this.isHtmlGenerated = false;
                 this.isCssGenerated = false;
                 this.sidebarOpened = false;
-                this.progress = this.generated();
+                this.progressDone = this.generated();
             },
             generate: {
                 html: function() {
@@ -29,7 +29,7 @@
                     getFile(rootUrl + 'header.html').then(function (content) {
                         Utils.html(HeaderABC.element, content);
                         HeaderABC.isHtmlGenerated = true;
-                        HeaderABC.progress('html');
+                        HeaderABC.progressDone('html');
                     }, function (error) {
                         throw new Error(error);
                     });
@@ -47,26 +47,27 @@
                             HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
                         }
                         HeaderABC.isCssGenerated = true;
-                        HeaderABC.progress('css');
+                        HeaderABC.progressDone('css');
                     }, function (error) {
                         throw new Error(error);
                     });
                 },
                 menu: function() {
                     getFile(rootUrl + 'config.json').then(function (json) {
-                        console.log(JSON.parse(json));
-                        HeaderABC.progress('menu');
+                        console.log(HeaderABC.element, JSON.parse(json));
+                        HeaderABC.progressDone('menu');
                     }, function (error) {
                         throw new Error(error);
                     });
 
                     function generateItems(json) {
-                        var listHtmlStart = '<ul class="list">';
+                        var listHtml = '<ul class="list">';
                         var listHtmlEnd = '</ul>';
                         for (var key in json) {
-                            listHtmlStart += '<li><a href="' +  + '"></a></li>';
+                            listHtml += '<li><a href="' + + '"></a></li>';
                         }
-                        listHtmlStart += listHtmlEnd;
+                        listHtml += listHtmlEnd;
+                        return listHtml;
                     }
                 }
             },
@@ -106,7 +107,7 @@
                     }
                     return obj;
                 })();
-                console.log(triggers);
+
                 return function(trigger) {
                     var done = true;
                     if (trigger in triggers) {
@@ -118,7 +119,6 @@
                             break;
                         }
                     }
-                    console.log(triggers);
                     if (done) {
                         deferred.resolve();
                     }
@@ -132,7 +132,7 @@
                 this.generate.html();
                 this.generate.css();
                 this.generate.menu();
-                this.progress().then(function () {
+                this.progressDone().then(function () {
                     HeaderABC.applyMarkup();
                     HeaderABC.applyEvents();
                 });
