@@ -1,7 +1,28 @@
+@font-face {
+    font-family: DroidSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('DroidSans.eot');
+    src: url('DroidSans.eot?#iefix') format('embedded-opentype'), url('DroidSans.woff2') format('woff2'), url('DroidSans.woff') format('woff'), url('DroidSans.ttf') format('truetype'), url('DroidSans.svg#droid_sansregular') format('svg');
+}
+
+@font-face {
+    font-family: DroidSansBold;
+    font-style: normal;
+    font-weight: normal;
+    src: url('DroidSans-Bold.eot');
+    src: url('DroidSans-Bold.eot?#iefix') format('embedded-opentype'), url('DroidSans-Bold.woff2') format('woff2'), url('DroidSans-Bold.woff') format('woff'), url('DroidSans-Bold.ttf') format('truetype'), url('DroidSans-Bold.svg#droid_sansbold') format('svg');
+}
+
 body { margin-top: 0;margin-left: 0;margin-right: 0; }
 body.sidebar-abc-opened { overflow: hidden }
+#HeaderABC {
+    width: 100%;
+    font: 12px/14px DroidSans, Arial, sans-serif;
+    position: relative;
+    z-index: 9999;
+}
 #HeaderABC ul { margin: 0;padding: 0;list-style: none; }
-#HeaderABC { width: 100%; font: 12px/14px Arial, sans-serif; position: relative; z-index: 9999; }
 #HeaderABC .header-wrapper { width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }
 #HeaderABC .header-wrapper .logo {
     float: left;
