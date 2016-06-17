@@ -74,12 +74,16 @@
             getTitle: function() {
                 return 'ExpenseNow';
             },
+            setUserName: function(name) {
+                Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], name);
+            },
             applyMarkup: function() {
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
                     this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                     Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
+                    HeaderABC.setUserName('User Name');
                 }
             },
             applyEvents: function() {
@@ -347,5 +351,7 @@
     Utils.ready(function() {
         HeaderABC.initialize();
     });
+
+    window.HeaderABC = HeaderABC;
 
 })(window);
