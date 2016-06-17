@@ -1,0 +1,276 @@
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-7 user-info">
+                      <div class="clearfix ">
+                        <h2 class="pull-left" title="Oleksii Povazhnyi">Oleksii Povazhnyi</h2>
+
+                      </div>
+                      <p>Lead Software Engineer, Engineering</p>
+                        <div class="dropdown appreciate-dropdown clearfix" id="appreciate_dropdown">
+                          <a data-toggle="" class="appreciate-dropdown-toggle pull-left" title=" Appreciate Oleksii" id="appreciate_user_link" onclick="$('#appreciateModal').modal('show');">
+                              <span class="icon">)</span>
+                              <span id="appreciation_count">
+                                 Appreciate Oleksii
+                               </span>
+                          </a>
+                          <ul class="dropdown-menu profile-pic-dropdown">
+                              <li>
+                                  <span class="app-dropdown-arrow"></span>
+
+                                  <div class="appreciate-box">
+                                    <div id="last_appreciation">
+                                    </div>
+
+                                      <div class="clearfix">                                                                    
+                                          <input type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#appreciateModal" value="Appreciate">
+                                          <a href="javascript:void();" onclick="open_recognitions_tab();" class="btn btn-link pull-left">View All Appreciation</a>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 contact-details">
+                      <p>
+                          <i class="material-icons"></i>+38-057-7667667 x6167
+                      </p>
+                        <p>
+                            <i class="material-icons"></i> 0 66 202 18 47
+                        </p>
+                      <p class="email-id"><i class="material-icons"></i><span><a href="http://mail.globallogic.com/mail/?shva=1#compose" target="_blank" title="e-mail" class="color-white">oleksii.povazhnyi@globallogic.com</a></span></p>
+                    </div>
+                  </div>
+                </div>
+              <div>----------</div>
+                  <div class="profile-tab-content tab-info">
+  <div class="view-mode">
+
+    <form class="form-horizontal">
+      <div class="container-fluid">
+        <h3>Work Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Organization:</label>
+              <div class="col-xs-8">
+                    <p class="form-control-static"><a href="/organizations/corporate_directory?id=87">Product Engineering and Development</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Business Group:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">GlobalLogic Ukraine BG</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row form-group">
+              <label class="control-label col-xs-4">Base Location:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"><a href="https://glo.globallogic.com/app/glsites?id=12" class="location-icon">                      <i class="material-icons"></i>KHARKIV
+</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row form-group">
+              <label class="control-label col-xs-4">Work Location:</label>
+              <div class="col-xs-8">
+                  <p class="form-control-static"><a href="https://glo.globallogic.com/app/glsites?id=12" class="location-icon">                      <i class="material-icons"></i>KHARKIV
+</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="container-fluid">
+        <h3>Contact Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Emergency Phone:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Alternate e-Mail:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"><a href="http://mail.globallogic.com/mail/?shva=1#compose" target="_blank"></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Skype ID:</label>
+              <div class="col-xs-8">
+                  <p class="form-control-static">aleksey.povazhnyy</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">LinkedIn Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Twitter Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Facebook Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Office Address:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">GlobalLogic Ukraine
+                  <br>Kharkiv
+                  <br>Kharkivska obl.
+                  <br>Ukraine
+<br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Voip Extension:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr>
+      <div class="container-fluid">
+        <h3>Other Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Legal Name:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">Oleksii Borysovych Povazhnyi</p>
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label col-xs-4">Birthday:</label>
+                <div class="col-xs-8">
+                  <p class="form-control-static">18th May</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label col-xs-4">Anniversary:</label>
+                <div class="col-xs-8">
+                  <p class="form-control-static"></p>                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">My Interests:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Vehicle Reg. 1:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static break-word"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Vehicle Reg. 2:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static break-word"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </div>
+  <div class="edit-mode"></div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#info').qtip(
+        {   
+            content: {
+              text : "<ul class='prefrences-tip'><li>Birthday visible to all.</li><li>Wedding Anniversary is public.</li><li>Address only shown to you.</li><li>Mobile Phone is set to public.</li><li class='hint-text'><em>You can change the setting via <a href='/preferences' class='action-icon' title='Preferences'>My Prefrences</a> page.</em></li></ul>"
+            } ,
+            position: {
+                adjust:{
+                    y : 0
+                },
+                my: 'top right',
+                at: 'bottom left'
+            },
+            style: {
+                classes: 'qtip-dark help-tool-tip',
+                  },
+            show: {
+                effect: function() {
+                $(this).slideDown();
+                  }
+              },
+            hide: 'unfocus'            
+        });
+      
+ });
+</script>
+
+
+                

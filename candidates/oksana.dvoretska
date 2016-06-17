@@ -1,0 +1,231 @@
+
+                  <div class="profile-tab-content tab-info">
+  <div class="view-mode">
+
+    <form class="form-horizontal">
+      <div class="container-fluid">
+        <h3>Work Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Organization:</label>
+              <div class="col-xs-8">
+                    <p class="form-control-static"><a href="/organizations/corporate_directory?id=101">Employee Services</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Business Group:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">GlobalLogic Ukraine BG</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row form-group">
+              <label class="control-label col-xs-4">Base Location:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"><a href="https://glo.globallogic.com/app/glsites?id=12" class="location-icon">                      <i class="material-icons"></i>KHARKIV
+</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row form-group">
+              <label class="control-label col-xs-4">Work Location:</label>
+              <div class="col-xs-8">
+                  <p class="form-control-static"><a href="https://glo.globallogic.com/app/glsites?id=12" class="location-icon">                      <i class="material-icons"></i>KHARKIV
+</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="container-fluid">
+        <h3>Contact Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Emergency Phone:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Alternate e-Mail:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"><a href="http://mail.globallogic.com/mail/?shva=1#compose" target="_blank"></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Skype ID:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">LinkedIn Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Twitter Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Facebook Profile:</label>
+              <div class="col-xs-8">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Office Address:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">GlobalLogic Ukraine
+                  <br>Kharkiv
+                  <br>Kharkivska obl.
+                  <br>Ukraine
+<br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Voip Extension:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr>
+      <div class="container-fluid">
+        <h3>Other Details</h3>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Legal Name:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static">Oksana Petrivna Dvoretska</p>
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label col-xs-4">Birthday:</label>
+                <div class="col-xs-8">
+                  <p class="form-control-static">20th September</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="control-label col-xs-4">Anniversary:</label>
+                <div class="col-xs-8">
+                  <p class="form-control-static"></p>                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">My Interests:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static"></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Vehicle Reg. 1:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static break-word"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label col-xs-4">Vehicle Reg. 2:</label>
+              <div class="col-xs-8">
+                <p class="form-control-static break-word"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </div>
+  <div class="edit-mode"></div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#info').qtip(
+        {   
+            content: {
+              text : "<ul class='prefrences-tip'><li>Birthday visible to all.</li><li>Wedding Anniversary is public.</li><li>Address only shown to you.</li><li>Mobile Phone is set to public.</li><li class='hint-text'><em>You can change the setting via <a href='/preferences' class='action-icon' title='Preferences'>My Prefrences</a> page.</em></li></ul>"
+            } ,
+            position: {
+                adjust:{
+                    y : 0
+                },
+                my: 'top right',
+                at: 'bottom left'
+            },
+            style: {
+                classes: 'qtip-dark help-tool-tip',
+                  },
+            show: {
+                effect: function() {
+                $(this).slideDown();
+                  }
+              },
+            hide: 'unfocus'            
+        });
+      
+ });
+</script>
+
+
+                
