@@ -33,7 +33,7 @@ body.sidebar-abc-opened { overflow: hidden }
     padding: 0 0 0 35px;
     text-decoration: none;
     color: #3f545f;
-    font: 12px/14px DroidSansBold, Arial, sans-serif;
+    font: 14px/24px DroidSansBold, Arial, sans-serif;
 }
 #HeaderABC .hamburger-menu {
     text-decoration: none;
@@ -58,7 +58,7 @@ body.sidebar-abc-opened { overflow: hidden }
     padding: 0 0 0 35px;
     cursor: default;
     color: #3f545f;
-    font: 12px/14px DroidSans, Arial, sans-serif;
+    font: 14px/24px DroidSans, Arial, sans-serif;
 }
 #HeaderABC .predefine-actions li a { text-decoration: none;}
 #HeaderABC .hide-text { text-indent: -9999px;font-size: 0px;}
@@ -76,9 +76,8 @@ body.sidebar-abc-opened { overflow: hidden }
     text-decoration: none;
     display: block;
     padding: 0 0 0 20px;
-    line-height: 36px;
     color: #3f545f;
-    font: 12px/14px DroidSans, Arial, sans-serif;
+    font: 14px/42px DroidSans, Arial, sans-serif;
 }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list li a:hover {
     background-color: #f1f1f1;
