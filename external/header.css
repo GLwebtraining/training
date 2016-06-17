@@ -84,6 +84,3 @@ body.sidebar-abc-opened { overflow: hidden }
 }
 #HeaderABC-overlay { display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000; opacity: 0.5; z-index: 9; }
 #HeaderABC-overlay.opened { display: block; }
-#expensenow-tools {
-    float: right;
-}
