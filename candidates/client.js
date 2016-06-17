@@ -11,6 +11,7 @@
 	var suffix = '?tab=info_profile';
 
 	R.ready(function(){
+		console.log('DOM ready');
 		 getInternals();
 	});
 
@@ -39,7 +40,8 @@
 
 				return obj;
 			});
-			tryFoo(result);
+			// console.log(JSON.stringify(result, '', 4));
+			// tryFoo(result);
 		}, function(error){
 			console.log(error);
 		});
