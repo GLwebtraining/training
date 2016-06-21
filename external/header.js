@@ -72,7 +72,7 @@
                 }
             },
             getTitle: function() {
-                return 'ExpenseNow';
+                return 'Expense';
             },
             setUserName: function(name) {
                 Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], name);
