@@ -28,6 +28,7 @@ body.sidebar-abc-opened { overflow: hidden }
     z-index: 9999;
     left: 0;
     top: 0;
+    border-bottom: 1px solid #ddd;
 }
 #HeaderABC ul { margin: 0;padding: 0;list-style: none; }
 #HeaderABC .header-wrapper { width: 100%; box-sizing: border-box; padding: 18px 20px; position: relative; z-index: 11; background: #fff; }
