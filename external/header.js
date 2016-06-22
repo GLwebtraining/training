@@ -211,14 +211,14 @@
             addClass: function (target, className) {
                 if (target.classList) {
                     target.classList.add(className);
-                } else if (!hasClass(target, className)) {
+                } else if (!this.hasClass(target, className)) {
                     target.className += " " + className;
                 }
             },
             removeClass: function (target, className) {
                 if (target.classList) {
                     target.classList.remove(className);
-                } else if (hasClass(target, className)) {
+                } else if (this.hasClass(target, className)) {
                     var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
                     target.className = target.className.replace(reg, ' ');
                 }
