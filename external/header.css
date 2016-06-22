@@ -91,6 +91,7 @@ body.sidebar-abc-opened { overflow: hidden }
     padding: 0 0 0 56px;
     color: #3f545f;
     font: 13px/60px DroidSansBold, Arial, sans-serif;
+    text-transform: uppercase;
 }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list li a:hover {
     background-color: #f3f4f3;
