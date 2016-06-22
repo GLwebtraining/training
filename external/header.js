@@ -372,7 +372,7 @@
         $rootScope.$broadcast('header:init');
     }
 
-    Utils.windowOnLoad(function () {
+    Utils.ready(function() {
         HeaderABC.initialize();
     });
 
