@@ -72,7 +72,7 @@
                 }
             },
             getTitle: function() {
-                return 'Expense';
+                return 'Expenses';
             },
             setUserName: function(name) {
                 Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], name);
@@ -150,7 +150,7 @@
             },
             expenseNow: function() {
                 var title = HeaderABC.getTitle();
-                if (title.toLowerCase() === 'expensenow') {
+                if (title.toLowerCase() === 'expenses') {
                     intializeExpenseNow();
                 }
             }
@@ -233,41 +233,47 @@
             defer: function(){
                 return new Promise; 
             },
+            isFunction: function(func){
+                return !!func && typeof func === 'function';
+            },
             ajax: function (settings) {
-                var xdr = window.XDomainRequest;
-                var xhr = xdr ? new XDomainRequest() : new XMLHttpRequest();
-                if (xdr) {
-                    xhr.onload = function() {
-                        if (!!settings.success && typeof settings.success === 'function') {
-                            settings.success(xhr.responseText);
-                        }
-                    }
-                    xhr.onerror = function () {
-                        if (!!settings.error && typeof settings.error === 'function') {
-                            settings.error();
-                        }
-                    }
-                    xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
-                    xhr.send(settings.data || '');
-                } else {
-                    xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
-                    if (settings.header) {
-                        xhr.setRequestHeader(settings.header.name, settings.header.value);
-                    }
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState != 4) return;
-                        if (this.status != 200) {
-                            if (!!settings.error && typeof settings.error === 'function') {
-                                settings.error({ status: this.status, statusText: this.statusText, headers: xhr.getAllResponseHeaders() });
+                var _this = this;
+                var request = {
+                    isXdr: function(){
+                        return window.XDomainRequest ? true : false;
+                    },
+                    createCrossDomainRequest: function(){
+                        return this.isXdr ? new window.XDomainRequest() : new XMLHttpRequest();
+                    },
+                    call: function(){
+                        var invocation = this.createCrossDomainRequest();
+                        if(this.isXdr){
+                            invocation.onload = processResult;
+                            invocation.open((!!settings.method ? settings.method : 'get'), settings.url, true);
+                            invocation.send(settings.data || '');
+                        } else {
+                            invocation.open((!!settings.method ? settings.method : 'get'), settings.url, true);
+                            invocation.onreadystatechange = function(){
+                                if (invocation.readyState != 4) return;
+                                if (invocation.status != 200) {
+                                    if (!!settings.error && typeof settings.error === 'function') {
+                                        settings.error({ status: invocation.status, statusText: invocation.statusText, headers: invocation.getAllResponseHeaders() });
+                                    }
+                                    return;
+                                }
+                                processResult();
+                            };
+                            invocation.send(settings.data || '');
+                        };
+
+                        function processResult(result){
+                            if(_this.isFunction(settings.success)){
+                                settings.success(result.responseText);
                             }
-                            return;
-                        }
-                        if (!!settings.success && typeof settings.success === 'function') {
-                            settings.success(this.responseText, xhr.getAllResponseHeaders());
                         }
                     }
-                    xhr.send(settings.data || '');
-                }
+                };
+                request.call();
             },
             getElement: function(selector, parentNode) {
                 if (selector.indexOf('#') !== -1) {
