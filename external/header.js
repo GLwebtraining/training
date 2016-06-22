@@ -247,13 +247,14 @@
                     },
                     send: function(){
                         var invocation = this.createCrossDomainRequest();
-                        var parmas = [(!!settings.method ? settings.method : 'get'), settings.url, true];
+                        var params = [(!!settings.method ? settings.method : 'get'), settings.url, true];
+                        var body = settings.data || '';
                         if(this.isXdr()){
                             invocation.onload = processResult;
-                            invocation.open.apply(invocation, body);
-                            invocation.send(settings.data || '');
+                            invocation.open.apply(invocation, params);
+                            invocation.send(body);
                         } else {
-                            invocation.open.apply(invocation, body);
+                            invocation.open.apply(invocation, params);
                             invocation.onreadystatechange = function(){
                                 if (invocation.readyState != 4) return;
                                 if (invocation.status != 200) {
@@ -264,7 +265,7 @@
                                 }
                                 processResult(invocation.responseText);
                             };
-                            invocation.send(settings.data || '');
+                            invocation.send(body);
                         };
 
                         function processResult(result){
