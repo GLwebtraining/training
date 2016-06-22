@@ -79,6 +79,7 @@
             },
             applyMarkup: function() {
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
+                    Utils.addClass(this.body, 'header-abc');
                     this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);

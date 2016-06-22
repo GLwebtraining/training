@@ -14,13 +14,20 @@
     src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.eot?#iefix') format('embedded-opentype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff2') format('woff2'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff') format('woff'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.ttf') format('truetype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.svg#droid_sansbold') format('svg');
 }
 
-body { margin-top: 0;margin-left: 0;margin-right: 0; }
+body.header-abc {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 51px 0 0;
+}
 body.sidebar-abc-opened { overflow: hidden }
 #HeaderABC {
     width: 100%;
     font: 12px/14px DroidSans, Arial, sans-serif;
-    position: relative;
+    position: absolute;
     z-index: 9999;
+    left: 0;
+    top: 0;
 }
 #HeaderABC ul { margin: 0;padding: 0;list-style: none; }
 #HeaderABC .header-wrapper { width: 100%; box-sizing: border-box; padding: 13px 20px; position: relative; z-index: 11; background: #fff; }
