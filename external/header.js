@@ -243,7 +243,6 @@
                 xhr[xdr ? 'onload' : 'onreadystatechange'] = function () {
                     if (xdr && !!settings.success && typeof settings.success === 'function') {
                         settings.success(this.responseText);
-                        return;
                     }
                     if (this.readyState != 4) return;
                     if (this.status != 200) {
