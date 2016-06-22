@@ -245,7 +245,7 @@
                     createCrossDomainRequest: function(){
                         return this.isXdr() ? new XDomainRequest() : new XMLHttpRequest();
                     },
-                    call: function(){
+                    send: function(){
                         var invocation = this.createCrossDomainRequest();
                         if(this.isXdr){
                             invocation.onload = processResult;
@@ -273,7 +273,7 @@
                         }
                     }
                 };
-                request.call();
+                request.send();
             },
             getElement: function(selector, parentNode) {
                 if (selector.indexOf('#') !== -1) {
