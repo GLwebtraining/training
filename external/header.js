@@ -241,6 +241,10 @@
                     xhr.setRequestHeader(settings.header.name, settings.header.value);
                 }
                 xhr[xdr ? 'onload' : 'onreadystatechange'] = function () {
+                    if (xdr && !!settings.success && typeof settings.success === 'function') {
+                        settings.success(this.responseText);
+                        return;
+                    }
                     if (this.readyState != 4) return;
                     if (this.status != 200) {
                         if (!!settings.error && typeof settings.error === 'function') {
@@ -250,6 +254,13 @@
                     }
                     if (!!settings.success && typeof settings.success === 'function') {
                         settings.success(this.responseText, xhr.getAllResponseHeaders());
+                    }
+                }
+                if (xdr) {
+                    xhr.onerror = function() {
+                        if (!!settings.error && typeof settings.error === 'function') {
+                            settings.error();
+                        }
                     }
                 }
                 xhr.send(settings.data || '');
