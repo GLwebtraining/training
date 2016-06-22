@@ -18,7 +18,7 @@ body.header-abc {
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    padding: 51px 0 0;
+    padding: 61px 0 0;
 }
 body.sidebar-abc-opened { overflow: hidden }
 #HeaderABC {
@@ -77,7 +77,7 @@ body.sidebar-abc-opened { overflow: hidden }
 #HeaderABC-SidebarMenu .sidebar-wrapper {
     width: 100%;
     overflow: hidden;
-    padding: 50px 0 0 0;
+    padding: 61px 0 0 0;
 }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list {
     margin: 0; 

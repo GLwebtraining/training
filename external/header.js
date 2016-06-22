@@ -84,8 +84,8 @@
                     this.head.appendChild(HeaderABC.styleSheet);
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                     Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
-                    console.log(HeaderABC.element.offsetHeight);
                     HeaderABC.setUserName('User Name');
+                    // header height is HeaderABC.element.offsetHeight
                 }
             },
             applyEvents: function() {
