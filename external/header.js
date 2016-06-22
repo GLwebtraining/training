@@ -263,14 +263,14 @@
                                     }
                                     return;
                                 }
-                                processResult(invocation.responseText);
+                                processResult();
                             };
                             invocation.send(body);
                         };
 
-                        function processResult(result){
+                        function processResult(){
                             if(_this.isFunction(settings.success)){
-                                settings.success(result);
+                                settings.success(invocation.responseText);
                             }
                         }
                     }
