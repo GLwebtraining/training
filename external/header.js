@@ -233,8 +233,8 @@
             defer: function(){
                 return new Promise; 
             },
-            ajax: function(settings) {
-                var xhr = new XMLHttpRequest();
+            ajax: function (settings) {
+                var xhr = window.XDomainRequest ? new XDomainRequest : new XMLHttpRequest();
                 xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
                 if (settings.header) {
                     xhr.setRequestHeader(settings.header.name, settings.header.value);
