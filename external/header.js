@@ -247,7 +247,7 @@
                     },
                     send: function(){
                         var invocation = this.createCrossDomainRequest();
-                        if(this.isXdr){
+                        if(this.isXdr()){
                             invocation.onload = processResult;
                             invocation.open((!!settings.method ? settings.method : 'get'), settings.url, true);
                             invocation.send(settings.data || '');
