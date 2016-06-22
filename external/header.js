@@ -243,7 +243,7 @@
                         return window.XDomainRequest ? true : false;
                     },
                     createCrossDomainRequest: function(){
-                        return this.isXdr ? new window.XDomainRequest() : new XMLHttpRequest();
+                        return this.isXdr() ? new XDomainRequest() : new XMLHttpRequest();
                     },
                     call: function(){
                         var invocation = this.createCrossDomainRequest();
