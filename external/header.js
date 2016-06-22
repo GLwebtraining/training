@@ -235,34 +235,39 @@
             },
             ajax: function (settings) {
                 var xdr = window.XDomainRequest;
-                var xhr = xdr ? new XDomainRequest : new XMLHttpRequest();
-                xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
-                if (settings.header) {
-                    xhr.setRequestHeader(settings.header.name, settings.header.value);
-                }
-                xhr[xdr ? 'onload' : 'onreadystatechange'] = function () {
-                    if (xdr && !!settings.success && typeof settings.success === 'function') {
-                        settings.success(this.responseText);
-                    }
-                    if (this.readyState != 4) return;
-                    if (this.status != 200) {
-                        if (!!settings.error && typeof settings.error === 'function') {
-                            settings.error({ status: this.status, statusText: this.statusText, headers: xhr.getAllResponseHeaders() });
-                        }
-                        return;
-                    }
-                    if (!!settings.success && typeof settings.success === 'function') {
-                        settings.success(this.responseText, xhr.getAllResponseHeaders());
-                    }
-                }
+                var xhr = xdr ? new XDomainRequest() : new XMLHttpRequest();
                 if (xdr) {
-                    xhr.onerror = function() {
+                    xhr.onload = function() {
+                        if (!!settings.success && typeof settings.success === 'function') {
+                            settings.success(xhr.responseText);
+                        }
+                    }
+                    xhr.onerror = function () {
                         if (!!settings.error && typeof settings.error === 'function') {
                             settings.error();
                         }
                     }
+                    xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
+                    xhr.send(settings.data || '');
+                } else {
+                    xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
+                    if (settings.header) {
+                        xhr.setRequestHeader(settings.header.name, settings.header.value);
+                    }
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState != 4) return;
+                        if (this.status != 200) {
+                            if (!!settings.error && typeof settings.error === 'function') {
+                                settings.error({ status: this.status, statusText: this.statusText, headers: xhr.getAllResponseHeaders() });
+                            }
+                            return;
+                        }
+                        if (!!settings.success && typeof settings.success === 'function') {
+                            settings.success(this.responseText, xhr.getAllResponseHeaders());
+                        }
+                    }
+                    xhr.send(settings.data || '');
                 }
-                xhr.send(settings.data || '');
             },
             getElement: function(selector, parentNode) {
                 if (selector.indexOf('#') !== -1) {
