@@ -270,7 +270,7 @@
 
                         function processResult(result){
                             if(_this.isFunction(settings.success)){
-                                settings.success(responseText);
+                                settings.success(result);
                             }
                         }
                     }
