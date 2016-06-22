@@ -234,12 +234,13 @@
                 return new Promise; 
             },
             ajax: function (settings) {
-                var xhr = window.XDomainRequest ? new XDomainRequest : new XMLHttpRequest();
+                var xdr = window.XDomainRequest;
+                var xhr = xdr ? new XDomainRequest : new XMLHttpRequest();
                 xhr.open((!!settings.method ? settings.method : 'get'), settings.url, true);
                 if (settings.header) {
                     xhr.setRequestHeader(settings.header.name, settings.header.value);
                 }
-                xhr.onreadystatechange = function () {
+                xhr[xdr ? 'onload' : 'onreadystatechange'] = function () {
                     if (this.readyState != 4) return;
                     if (this.status != 200) {
                         if (!!settings.error && typeof settings.error === 'function') {
