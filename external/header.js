@@ -73,6 +73,7 @@
                 }
             },
             getTitle: function () {
+                var host = location.hostname;
                 return 'Expenses';
             },
             setUserName: function(name) {

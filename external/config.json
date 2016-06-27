@@ -1,18 +1,18 @@
 [
 	{
-		"name": "ExpenseNow",
-		"url": "http://google.com"
+		"name": "Expenses",
+		"url": "https://expenses.advisory.com"
 	},
 	{
 		"name": "Travel",
-		"url": "http://google.com"
+		"url": "https://travel.advisory.com"
 	},
 	{
 		"name": "Rewards",
-		"url": "http://google.com"
+		"url": "https://rewards.advisory.com"
 	},
 	{
 		"name": "Help",
-		"url": "http://google.com"
+		"url": "https://help.advisory.com"
 	}
 ]
