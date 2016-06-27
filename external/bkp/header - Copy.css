@@ -1,4 +1,18 @@
-@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@font-face {
+    font-family: DroidSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.eot');
+    src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.eot?#iefix') format('embedded-opentype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.woff2') format('woff2'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.woff') format('woff'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.ttf') format('truetype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans.svg#droid_sansregular') format('svg');
+}
+
+@font-face {
+    font-family: DroidSansBold;
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.eot');
+    src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.eot?#iefix') format('embedded-opentype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff2') format('woff2'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff') format('woff'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.ttf') format('truetype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.svg#droid_sansbold') format('svg');
+}
 
 body.header-abc {
     margin-top: 0;
