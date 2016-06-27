@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: DroidSans;
     font-style: normal;
     font-weight: normal;
@@ -12,7 +12,8 @@
     font-weight: normal;
     src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.eot');
     src: url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.eot?#iefix') format('embedded-opentype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff2') format('woff2'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.woff') format('woff'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.ttf') format('truetype'), url('https://rawgit.com/GLwebtraining/training/gh-pages/external/DroidSans-Bold.svg#droid_sansbold') format('svg');
-}
+}*/
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 body.header-abc {
     margin-top: 0;
