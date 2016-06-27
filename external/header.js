@@ -54,7 +54,8 @@
                 },
                 menu: function() {
                     getFile(rootUrl + 'config.json').then(function (json) {
-                        HeaderABC.menu = generateItems(JSON.parse(json));
+                        HeaderABC.menuConfig = JSON.parse(json);
+                        HeaderABC.menu = generateItems(HeaderABC.menuConfig);
                         HeaderABC.progressDone('menu');
                     }, function (error) {
                         throw new Error(error);
@@ -71,7 +72,7 @@
                     }
                 }
             },
-            getTitle: function() {
+            getTitle: function () {
                 return 'Expenses';
             },
             setUserName: function(name) {
