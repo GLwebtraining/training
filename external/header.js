@@ -133,10 +133,6 @@
                 var headerWidth = getHeaderWrapperWidth();
 
                 Utils.windowOnResize(function () {
-                    if (!gotHeaderWidth) {
-                        headerWidth = getHeaderWrapperWidth();
-                        gotHeaderWidth = true;
-                    }
                     if (HeaderABC.element.offsetWidth < headerWidth) {
                         Utils.addClass(HeaderABC.body, 'header-abc-overwidth');
                     } else {
@@ -151,7 +147,7 @@
                         var paddingLeft = Utils.getStyle(headerWrapper, 'paddingLeft') || 0;
                         var paddingRight = Utils.getStyle(headerWrapper, 'paddingRight') || 0;
                     
-                        width = paddingLeft + paddingRight + 100;
+                        width = paddingLeft + paddingRight + 108;
                         for (var i = 0; i < headerWrapper.children.length; i++) {
                             width += headerWrapper.children[i].offsetWidth;
                         }
