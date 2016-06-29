@@ -98,7 +98,7 @@
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                     Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
                     HeaderABC.setUserName('User Name');
-                    HeaderABC.applyResizeEvent();
+                    setTimeout(HeaderABC.applyResizeEvent, 0);
                 }
             },
             applyEvents: function() {
