@@ -15,6 +15,7 @@ body.sidebar-abc-opened { overflow: hidden }
     left: 0;
     top: 0;
     border-bottom: 1px solid #ddd;
+    min-width: 320px;
 }
 #HeaderABC ul { margin: 0;padding: 0;list-style: none; }
 #HeaderABC .header-wrapper { width: 100%; box-sizing: border-box; padding: 18px 20px; position: relative; z-index: 11; background: #fff; }
@@ -54,6 +55,9 @@ body.sidebar-abc-opened { overflow: hidden }
     cursor: default;
     color: #3f545f;
     font: 13px/24px DroidSansBold, Arial, sans-serif;
+}
+body.header-abc-overwidth #HeaderABC .predefine-actions li .avatar em:not(:first-child){
+    display: none;
 }
 #HeaderABC .predefine-actions li a { text-decoration: none;}
 #HeaderABC .hide-text { text-indent: -9999px;font-size: 0px;}

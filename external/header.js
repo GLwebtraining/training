@@ -76,17 +76,33 @@
                 var host = location.hostname;
                 return 'Expenses';
             },
-            setUserName: function(name) {
-                Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], name);
+            setUserName: function (name) {
+                var userName = name.split(' ');;
+                var userNameHtml = '';
+
+                for (var i = 0; i < userName.length; i++) {
+                    userNameHtml += '<em>' + userName[i] + '</em>';
+                }
+
+                Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], userNameHtml);
             },
             applyMarkup: function() {
                 if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
+                    var headerHeight, _this = this;
                     Utils.addClass(this.body, 'header-abc');
                     this.body.insertBefore(HeaderABC.element, this.body.children[0]);
                     this.head.appendChild(HeaderABC.styleSheet);
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                     Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
                     HeaderABC.setUserName('User Name');
+                    headerHeight = HeaderABC.element.offsetHeight;
+                    Utils.windowOnResize(function () {
+                        if (HeaderABC.element.offsetHeight > headerHeight) {
+                            Utils.addClass(_this.body, 'header-abc-overwidth');
+                        } else {
+                            Utils.removeClass(_this.body, 'header-abc-overwidth');
+                        }
+                    });
                     // header height is HeaderABC.element.offsetHeight
                 }
             },
@@ -197,6 +213,13 @@
             },
             windowOnLoad: function (callback) {
                 window.addEventListener('load', function (event) {
+                    if (!!callback && typeof callback === 'function') {
+                        callback(event);
+                    }
+                });
+            },
+            windowOnResize: function (callback) {
+                window.addEventListener('resize', function (event) {
                     if (!!callback && typeof callback === 'function') {
                         callback(event);
                     }
