@@ -134,7 +134,7 @@
                         headerWidth = getHeaderWrapperWidth();
                         gotHeaderWidth = true;
                     }
-                    if (HeaderABC.element.offsetWidth > headerWidth) {
+                    if (HeaderABC.element.offsetWidth < headerWidth) {
                         Utils.addClass(_this.body, 'header-abc-overwidth');
                     } else {
                         Utils.removeClass(_this.body, 'header-abc-overwidth');
