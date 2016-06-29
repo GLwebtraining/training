@@ -56,6 +56,9 @@ body.sidebar-abc-opened { overflow: hidden }
     color: #3f545f;
     font: 13px/24px DroidSansBold, Arial, sans-serif;
 }
+#HeaderABC .predefine-actions li .avatar em:not(:first-child) {
+    padding: 0 0 0 5px;
+}
 body.header-abc-overwidth #HeaderABC .predefine-actions li .avatar em:not(:first-child){
     display: none;
 }
