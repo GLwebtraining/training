@@ -87,6 +87,7 @@
                 Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], userNameHtml);
             },
             applyMarkup: function () {
+                var deferred = Utils.defer();
                 var _this = this;
                 if (!!_this.isHtmlGenerated && !!_this.isCssGenerated) {
                     _this.head.appendChild(HeaderABC.styleSheet);
@@ -97,10 +98,12 @@
                         Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                         Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
                         HeaderABC.setUserName('User Name');
-                        HeaderABC.applyEvents();
+                        
                         setTimeout(HeaderABC.applyResizeEvent, 0);
+                        deferred.resolve();
                     }
                 }
+                return deferred.promise;
             },
             applyEvents: function() {
                 var header = Utils.getElement('#HeaderABC');
@@ -191,8 +194,10 @@
                 this.generate.css();
                 this.generate.menu();
                 this.progressDone().then(function () {
-                    HeaderABC.applyMarkup();
-                    HeaderABC.expenseNow();
+                    HeaderABC.applyMarkup().then(function() {
+                        HeaderABC.applyEvents();
+                        HeaderABC.expenseNow();
+                    });
 
                 });
             },
