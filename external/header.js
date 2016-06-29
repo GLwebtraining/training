@@ -103,6 +103,7 @@
                 var overlay = Utils.getElement('#HeaderABC-overlay');
                 var hamburgerMenuOpener = Utils.getElement('.hamburger-menu', header)[0];
                 var headerWidth = getHeaderWrapperWidth();
+                var _this = this;
                 
                 Utils.on(hamburgerMenuOpener, 'click', function() {
                     if (HeaderABC.sidebarOpened) {
