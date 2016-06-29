@@ -39,10 +39,6 @@
                         type: 'text/css'
                     });
 
-                    HeaderABC.styleSheet.onload = function() {
-                        console.log(1);
-                    }
-
                     getFile(rootUrl + 'header.css').then(function (content) {
                         HeaderABC.css = content; //HeaderABC.cssArray.join('');
                         if (HeaderABC.styleSheet.styleSheet) {
@@ -90,15 +86,19 @@
 
                 Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], userNameHtml);
             },
-            applyMarkup: function() {
-                if (!!this.isHtmlGenerated && !!this.isCssGenerated) {
-                    Utils.addClass(this.body, 'header-abc');
-                    this.body.insertBefore(HeaderABC.element, this.body.children[0]);
-                    this.head.appendChild(HeaderABC.styleSheet);
-                    Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
-                    Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
-                    HeaderABC.setUserName('User Name');
-                    setTimeout(HeaderABC.applyResizeEvent, 0);
+            applyMarkup: function () {
+                var _this = this;
+                if (!!_this.isHtmlGenerated && !!_this.isCssGenerated) {
+                    _this.head.appendChild(HeaderABC.styleSheet);
+                    HeaderABC.styleSheet.onload = function () {
+                        Utils.addClass(_this.body, 'header-abc');
+                        _this.body.insertBefore(HeaderABC.element, _this.body.children[0]);
+
+                        Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
+                        Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
+                        HeaderABC.setUserName('User Name');
+                        setTimeout(HeaderABC.applyResizeEvent, 0);
+                    }
                 }
             },
             applyEvents: function() {
