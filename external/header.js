@@ -135,7 +135,7 @@
                     var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
                     var width = 0;
                     if (headerWrapper) {
-                        width = window.getComputedStyle(headerWrapper).paddingLeft.split('px')[0] * 1 + window.getComputedStyle(headerWrapper).paddingRigth.split('px')[0] * 1;
+                        width = Utils.getStyle(headerWrapper, 'paddingLeft') + Utils.getStyle(headerWrapper, 'paddingRight');
                         for (var i = 0; i < headerWrapper.children.length; i++) {
                             width += headerWrapper.children[i].offsetWidth;
                         }
@@ -319,6 +319,16 @@
                     }
                 };
                 request.send();
+            },
+            getStyle: function (element, style) {
+                var computedStyle = null;
+                if (!!element && !!style) {
+                    computedStyle = window.getComputedStyle(element)[style];
+                    if (!!computedStyle && computedStyle.indexOf('px')) {
+                        computedStyle = computedStyle.split('px')[0] * 1;
+                    }
+                }
+                return computedStyle;
             },
             getElement: function(selector, parentNode) {
                 if (selector.indexOf('#') !== -1) {
