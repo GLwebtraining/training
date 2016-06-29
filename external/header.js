@@ -121,32 +121,35 @@
             },
             applyResizeEvent: function () {
                 var _this = this;
+                var gotHeaderWidth = false;
+                var header = Utils.getElement('#HeaderABC');
+                var headerWidth = 0;
 
-                Utils.windowOnLoad(addResizeEvent);
-
-                function addResizeEvent() {
-                    var header = Utils.getElement('#HeaderABC');
-                    var headerWidth = getHeaderWrapperWidth();
-
-                    Utils.windowOnResize(function () {
-                        if (HeaderABC.element.offsetWidth > headerWidth) {
-                            Utils.addClass(_this.body, 'header-abc-overwidth');
-                        } else {
-                            Utils.removeClass(_this.body, 'header-abc-overwidth');
-                        }
-                    });
-
-                    function getHeaderWrapperWidth() {
-                        var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
-                        var width = 0;
-                        if (headerWrapper) {
-                            width = Utils.getStyle(headerWrapper, 'paddingLeft') + Utils.getStyle(headerWrapper, 'paddingRight');
-                            for (var i = 0; i < headerWrapper.children.length; i++) {
-                                width += headerWrapper.children[i].offsetWidth;
-                            }
-                        }
-                        return width;
+                Utils.windowOnResize(function () {
+                    if (!gotHeaderWidth) {
+                        headerWidth = getHeaderWrapperWidth();
+                        gotHeaderWidth = true;
                     }
+                    if (HeaderABC.element.offsetWidth > headerWidth) {
+                        Utils.addClass(_this.body, 'header-abc-overwidth');
+                    } else {
+                        Utils.removeClass(_this.body, 'header-abc-overwidth');
+                    }
+                });
+
+                function getHeaderWrapperWidth() {
+                    var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
+                    var width = 0;
+                    if (headerWrapper) {
+                        var paddingLeft = Utils.getStyle(headerWrapper, 'paddingLeft') || 0;
+                        var paddingRight = Utils.getStyle(headerWrapper, 'paddingRight') || 0;
+                    
+                        width = paddingLeft + paddingRight;
+                        for (var i = 0; i < headerWrapper.children.length; i++) {
+                            width += headerWrapper.children[i].offsetWidth;
+                        }
+                    }
+                    return width;
                 }
             },
             generated: function () {
