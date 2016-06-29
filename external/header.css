@@ -60,7 +60,7 @@ body.sidebar-abc-opened { overflow: hidden }
     position: absolute;
     height: 2px;
     width: 100%;
-    background: #b2b4b2;
+    background: #b2b2b2;
     opacity: 1;
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -76,7 +76,7 @@ body.sidebar-abc-opened { overflow: hidden }
   top: 0px;
 }
 
-#HeaderABC .hamburger-menu span:nth-child(2),#nav-icon3 span:nth-child(3) {
+#HeaderABC .hamburger-menu span:nth-child(2),#HeaderABC .hamburger-menu span:nth-child(3) {
   top: 4px;
 }
 
