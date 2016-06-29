@@ -39,6 +39,10 @@
                         type: 'text/css'
                     });
 
+                    HeaderABC.styleSheet.onload = function() {
+                        console.log(1);
+                    }
+
                     getFile(rootUrl + 'header.css').then(function (content) {
                         HeaderABC.css = content; //HeaderABC.cssArray.join('');
                         if (HeaderABC.styleSheet.styleSheet) {
