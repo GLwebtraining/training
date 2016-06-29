@@ -10,6 +10,7 @@
     var rootUrl = 'https://rawgit.com/GLwebtraining/training/gh-pages/external/';
 
     var HeaderABC = {
+            debug: true,
             define: function() {
                 this.head = document.head || Utils.getElement('head')[0];
                 this.body = document.body;
@@ -74,7 +75,22 @@
             },
             getTitle: function () {
                 var host = location.hostname;
-                return 'Expenses';
+                var title = '';
+                if (HeaderABC.debug) {
+                    HeaderABC.menuConfig.push({
+                        url: 'https://ers.local.synapse.com',
+                        name: 'Expenses'
+                    });
+                    HeaderABC.menuConfig.push({
+                        url: 'https://ers.qa.synapse.com',
+                        name: 'Expenses'
+                    });
+                }
+                for (var i = 0; i < HeaderABC.menuConfig.length; i++) {
+                    if (HeaderABC.menuConfig[i].url.indexOf(host) !== -1) {
+                        return Utils.capitalize(HeaderABC.menuConfig[i].name.toLowerCase());
+                    }
+                }
             },
             setUserName: function (name) {
                 var userName = name.split(' ');;
@@ -291,6 +307,9 @@
             },
             isFunction: function(func){
                 return !!func && typeof func === 'function';
+            },
+            capitalize: function (string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
             },
             ajax: function (settings) {
                 var _this = this;
