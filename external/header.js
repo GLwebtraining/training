@@ -102,11 +102,8 @@
                 var sidebar = Utils.getElement('#HeaderABC-SidebarMenu');
                 var overlay = Utils.getElement('#HeaderABC-overlay');
                 var hamburgerMenuOpener = Utils.getElement('.hamburger-menu', header)[0];
-                var headerHeight = 0,
-                    headerWidth = 0,
-                    _this = this;
-
-
+                var headerWidth = getHeaderWrapperWidth();
+                
                 Utils.on(hamburgerMenuOpener, 'click', function() {
                     if (HeaderABC.sidebarOpened) {
                         Utils.removeClass(sidebar, 'opened');
@@ -120,9 +117,7 @@
                         HeaderABC.sidebarOpened = true;
                     }
                 });
-
-                headerHeight = HeaderABC.element.offsetHeight;
-                headerWidth = getHeaderWrapperWidth();
+                
                 Utils.windowOnResize(function () {
                     if (HeaderABC.element.offsetWidth > headerWidth) {
                         Utils.addClass(_this.body, 'header-abc-overwidth');
