@@ -60,7 +60,7 @@ body.sidebar-abc-opened { overflow: hidden }
     position: absolute;
     height: 2px;
     width: 100%;
-    background: #d3531a;
+    background: #b2b4b2;
     opacity: 1;
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -73,19 +73,19 @@ body.sidebar-abc-opened { overflow: hidden }
     transition: .25s ease-in-out;
 }
 #HeaderABC .hamburger-menu span:nth-child(1) {
-  top: 1px;
+  top: 0px;
 }
 
 #HeaderABC .hamburger-menu span:nth-child(2),#nav-icon3 span:nth-child(3) {
-  top: 5px;
+  top: 4px;
 }
 
 #HeaderABC .hamburger-menu span:nth-child(4) {
-  top: 9px;
+  top: 8px;
 }
 
 .sidebar-abc-opened #HeaderABC .hamburger-menu span:nth-child(1) {
-  top: 5px;
+  top: 4px;
   width: 0%;
   left: 50%;
 }
@@ -105,7 +105,7 @@ body.sidebar-abc-opened { overflow: hidden }
 }
 
 .sidebar-abc-opened #HeaderABC .hamburger-menu span:nth-child(4) {
-  top: 5px;
+  top: 4px;
   width: 0%;
   left: 50%;
 }
