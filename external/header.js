@@ -130,7 +130,7 @@
             applyResizeEvent: function () {
                 var gotHeaderWidth = false;
                 var header = Utils.getElement('#HeaderABC');
-                var headerWidth = 0;
+                var headerWidth = getHeaderWrapperWidth();
 
                 Utils.windowOnResize(function () {
                     if (!gotHeaderWidth) {
