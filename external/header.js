@@ -94,7 +94,7 @@
                     Utils.html(Utils.getElement('.sidebar-wrapper', HeaderABC.element)[0], HeaderABC.menu);
                     Utils.html(Utils.getElement('.logo', HeaderABC.element)[0], HeaderABC.getTitle());
                     HeaderABC.setUserName('User Name');
-
+                    HeaderABC.applyResizeEvent();
                 }
             },
             applyEvents: function() {
@@ -102,8 +102,6 @@
                 var sidebar = Utils.getElement('#HeaderABC-SidebarMenu');
                 var overlay = Utils.getElement('#HeaderABC-overlay');
                 var hamburgerMenuOpener = Utils.getElement('.hamburger-menu', header)[0];
-                var headerWidth = getHeaderWrapperWidth();
-                var _this = this;
                 
                 Utils.on(hamburgerMenuOpener, 'click', function() {
                     if (HeaderABC.sidebarOpened) {
@@ -119,24 +117,36 @@
                     }
                 });
                 
-                Utils.windowOnResize(function () {
-                    if (HeaderABC.element.offsetWidth > headerWidth) {
-                        Utils.addClass(_this.body, 'header-abc-overwidth');
-                    } else {
-                        Utils.removeClass(_this.body, 'header-abc-overwidth');
-                    }
-                });
-                
-                function getHeaderWrapperWidth() {
-                    var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
-                    var width = 0;
-                    if (headerWrapper) {
-                        width = Utils.getStyle(headerWrapper, 'paddingLeft') + Utils.getStyle(headerWrapper, 'paddingRight');
-                        for (var i = 0; i < headerWrapper.children.length; i++) {
-                            width += headerWrapper.children[i].offsetWidth;
+
+            },
+            applyResizeEvent: function () {
+                var _this = this;
+
+                Utils.windowOnLoad(addResizeEvent);
+
+                function addResizeEvent() {
+                    var header = Utils.getElement('#HeaderABC');
+                    var headerWidth = getHeaderWrapperWidth();
+
+                    Utils.windowOnResize(function () {
+                        if (HeaderABC.element.offsetWidth > headerWidth) {
+                            Utils.addClass(_this.body, 'header-abc-overwidth');
+                        } else {
+                            Utils.removeClass(_this.body, 'header-abc-overwidth');
                         }
+                    });
+
+                    function getHeaderWrapperWidth() {
+                        var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
+                        var width = 0;
+                        if (headerWrapper) {
+                            width = Utils.getStyle(headerWrapper, 'paddingLeft') + Utils.getStyle(headerWrapper, 'paddingRight');
+                            for (var i = 0; i < headerWrapper.children.length; i++) {
+                                width += headerWrapper.children[i].offsetWidth;
+                            }
+                        }
+                        return width;
                     }
-                    return width;
                 }
             },
             generated: function () {
