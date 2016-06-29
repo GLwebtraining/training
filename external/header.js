@@ -124,7 +124,6 @@
 
             },
             applyResizeEvent: function () {
-                var _this = this;
                 var gotHeaderWidth = false;
                 var header = Utils.getElement('#HeaderABC');
                 var headerWidth = 0;
@@ -135,9 +134,9 @@
                         gotHeaderWidth = true;
                     }
                     if (HeaderABC.element.offsetWidth < headerWidth) {
-                        Utils.addClass(_this.body, 'header-abc-overwidth');
+                        Utils.addClass(HeaderABC.body, 'header-abc-overwidth');
                     } else {
-                        Utils.removeClass(_this.body, 'header-abc-overwidth');
+                        Utils.removeClass(HeaderABC.body, 'header-abc-overwidth');
                     }
                 });
 
