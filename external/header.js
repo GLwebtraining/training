@@ -112,7 +112,7 @@
                         var headerWrapper = Utils.getElement('.header-wrapper', header)[0];
                         var width = 0;
                         if (headerWrapper) {
-                            width = window.getComputedStyle($0).paddingLeft.split('px')[0] * 1 + window.getComputedStyle($0).paddingRigth.split('px')[0] * 1;
+                            width = window.getComputedStyle(headerWrapper).paddingLeft.split('px')[0] * 1 + window.getComputedStyle(headerWrapper).paddingRigth.split('px')[0] * 1;
                             for (var i = 0; i < headerWrapper.children.length; i++) {
                                 width += headerWrapper.children[i].offsetWidth;
                             }
