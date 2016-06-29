@@ -151,7 +151,7 @@
                         var paddingLeft = Utils.getStyle(headerWrapper, 'paddingLeft') || 0;
                         var paddingRight = Utils.getStyle(headerWrapper, 'paddingRight') || 0;
                     
-                        width = paddingLeft + paddingRight;
+                        width = paddingLeft + paddingRight + 40;
                         for (var i = 0; i < headerWrapper.children.length; i++) {
                             width += headerWrapper.children[i].offsetWidth;
                         }
