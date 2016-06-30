@@ -174,11 +174,7 @@
                 }
             },
             fallback: {
-                menu: [
-	                    { "name": "Expenses", "url": "https://expenses.advisory.com" },
-	                    { "name": "Travel", "url": "https://travel.advisory.com" },
-	                    { "name": "Help", "url": "https://help.advisory.com" }
-                ]
+                menu: []
             },
             generated: function () {
                 var deferred = Utils.defer();
@@ -485,6 +481,32 @@
         return new ABC.init(element);
     }
 
+    function Promise() {
+        this.promise = {
+            callbacks: [],
+            then: function () {
+                this.callbacks = Array.prototype.slice.call(arguments);
+            },
+            resolved: false,
+            rejected: false
+        };
+    }
+
+    Promise.prototype = {
+        resolve: function () {
+            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[0] === 'function') {
+                this.promise.callbacks[0].apply(this, arguments);
+                this.promise.resolved = true;
+            }
+        },
+        reject: function () {
+            if (!!this.promise.callbacks.length && !!this.promise.callbacks[0] && typeof this.promise.callbacks[1] === 'function') {
+                this.promise.callbacks[1].apply(this, arguments);
+                this.promise.rejected = true;
+            }
+        }
+    }
+
     ABC.init = function() {
         this.element = ABC.Element(element);
     }
@@ -501,40 +523,57 @@
             }
             return this;
         },
+        getStyle: function (style) {
+            var computedStyle = null;
+            if (!!style) {
+                computedStyle = window.getComputedStyle(this.element)[style];
+                if (!!computedStyle && computedStyle.indexOf('px')) {
+                    computedStyle = computedStyle.split('px')[0] * 1;
+                }
+            }
+            return computedStyle;
+        },
         has: function (key) {
             return this.element.hasOwnProperty(key);
         },
-        on: function (target, event, handler) {
-            if (!target || !event) {
+        on: function (event, handler) {
+            if (!event) {
                 return;
             }
-            target.addEventListener(event, function (e) {
+            this.element.addEventListener(event, function (e) {
                 handler(e);
                 e.stopPropagation();
                 e.preventDefault();
             });
         },
-        addClass: function (target, className) {
-            if (target.classList) {
-                target.classList.add(className);
-            } else if (!this.hasClass(target, className)) {
-                target.className += " " + className;
+        addClass: function (className) {
+            if (this.element.classList) {
+                this.element.classList.add(className);
+            } else if (!this.element.hasClass(className)) {
+                this.element.className += " " + className;
             }
+            return this;
         },
-        removeClass: function (target, className) {
-            if (target.classList) {
-                target.classList.remove(className);
-            } else if (this.hasClass(target, className)) {
+        removeClass: function (className) {
+            if (this.element.classList) {
+                this.element.classList.remove(className);
+            } else if (this.element.hasClass(target, className)) {
                 var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-                target.className = target.className.replace(reg, ' ');
+                this.element.className = this.element.className.replace(reg, ' ');
             }
+            return this;
         },
-        hasClass: function (target, className) {
-            if (target.classList) {
-                return target.classList.contains(className);
+        hasClass: function (className) {
+            if (this.element.classList) {
+                return this.element.classList.contains(className);
             } else {
-                return !!target.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+                return !!this.element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
             }
+            return this;
+        },
+        html: function (html) {
+            this.element.innerHTML = html;
+            return this;
         }
     };
 
@@ -618,6 +657,89 @@
     ABC.isQuerySelector = function (element) {
         return !ABC.isNodeElement(element) && !~['number', 'boolean'].indexOf(typeof element) && !(ABC.isArray(element) || ABC.isObject(element) || ABC.isFunction(element));
     }
+
+    ABC.isJson = function (str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+    ABC.defer = function(){
+        return new Promise; 
+    }
+
+    ABC.ajax = function (settings) {
+        var _this = this;
+        var request = {
+            isXdr: function () {
+                return window.XDomainRequest ? true : false;
+            },
+            createCrossDomainRequest: function () {
+                return this.isXdr() ? new XDomainRequest() : new XMLHttpRequest();
+            },
+            send: function () {
+                var invocation = this.createCrossDomainRequest();
+                var params = [(!!settings.method ? settings.method : 'get'), settings.url, true];
+                var body = settings.data || '';
+                if (this.isXdr()) {
+                    invocation.onload = processResult;
+                    invocation.open.apply(invocation, params);
+                    invocation.send(body);
+                } else {
+                    invocation.open.apply(invocation, params);
+                    invocation.onreadystatechange = function () {
+                        if (invocation.readyState != 4) return;
+                        if (invocation.status != 200) {
+                            if (_this.isFunction(settings.error)) {
+                                settings.error({ status: invocation.status, statusText: invocation.statusText, headers: invocation.getAllResponseHeaders() });
+                            }
+                            return;
+                        }
+                        processResult();
+                    };
+                    invocation.send(body);
+                };
+
+                function processResult() {
+                    if (_this.isFunction(settings.success)) {
+                        settings.success(invocation.responseText);
+                    }
+                }
+            }
+        };
+        request.send();
+    }
+
+    ABC.capitalize = function (string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    ABC.ready = function (callback) {
+        window.document.addEventListener('DOMContentLoaded', function (event) {
+            if (!!callback && typeof callback === 'function') {
+                callback(event);
+            }
+        });
+    }
+
+    ABC.windowOnLoad = function (callback) {
+        window.addEventListener('load', function (event) {
+            if (!!callback && typeof callback === 'function') {
+                callback(event);
+            }
+        });
+    }
+
+    ABC.windowOnResize = function (callback) {
+        window.addEventListener('resize', function (event) {
+            if (!!callback && typeof callback === 'function') {
+                callback(event);
+            }
+        });
+    },
 
     window.HeaderABC = HeaderABC;
 
