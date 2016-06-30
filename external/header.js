@@ -54,13 +54,15 @@
                     });
                 },
                 menu: function() {
-                    getFile(rootUrl + 'config.json').then(function (json) {
-                        HeaderABC.menuConfig = JSON.parse(json);
+                    getFile(rootUrl + 'config.json').then(getMenuCallback, function (error) {
+                        getMenuCallback(false);
+                    });
+
+                    function getMenuCallback(data) {
+                        HeaderABC.menuConfig = HeaderABC.isValidJson(json) ? JSON.parse(json) : HeaderABC.fallback.menu;
                         HeaderABC.menu = generateItems(HeaderABC.menuConfig);
                         HeaderABC.progressDone('menu');
-                    }, function (error) {
-                        throw new Error(error);
-                    });
+                    }
 
                     function generateItems(json) {
                         var listHtml = '<ul class="list">';
@@ -170,6 +172,13 @@
                     }
                     return width;
                 }
+            },
+            fallback: {
+                menu: [
+	                    { "name": "Expenses", "url": "https://expenses.advisory.com" },
+	                    { "name": "Travel", "url": "https://travel.advisory.com" },
+	                    { "name": "Help", "url": "https://help.advisory.com" }
+                ]
             },
             generated: function () {
                 var deferred = Utils.defer();
@@ -382,6 +391,14 @@
             },
             html: function(element, html) {
                 element.innerHTML = html;
+            },
+            isValidJson: function() {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
             }
         };
     }
