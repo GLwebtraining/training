@@ -12,7 +12,7 @@
     var HeaderABC = {
             debug: true,
             define: function() {
-                this.head = document.head || ABC('head')[0];
+                this.head = document.head || Utils.getElement('head')[0];
                 this.body = document.body;
                 this.firstBodyElement = this.body.children[0];
                 this.isHtmlGenerated = false;
@@ -22,13 +22,13 @@
             },
             generate: {
                 html: function() {
-                    HeaderABC.element = ABC('<div>').attrs({
+                    HeaderABC.element = Utils.createElement('div', {
                         id: 'HeaderABC',
                         className: 'clearfix'
                     });
 
                     getFile(rootUrl + 'header.html').then(function (content) {
-                        HeaderABC.element.html(content);
+                        Utils.html(HeaderABC.element, content);
                         HeaderABC.isHtmlGenerated = true;
                         HeaderABC.progressDone('html');
                     }, function (error) {
@@ -36,9 +36,9 @@
                     });
                 },
                 css: function () {
-                    HeaderABC.styleSheet = ABC('<style>').attrs({
+                    HeaderABC.styleSheet = Utils.createElement('style', {
                         type: 'text/css'
-                    }).get();
+                    });
 
                     getFile(rootUrl + 'header.css').then(function (content) {
                         HeaderABC.css = content; //HeaderABC.cssArray.join('');
@@ -59,7 +59,7 @@
                     });
 
                     function getMenuCallback(data) {
-                        HeaderABC.menuConfig = ABC.isJson(data) ? JSON.parse(data) : HeaderABC.fallback.menu;
+                        HeaderABC.menuConfig = Utils.isValidJson(data) ? JSON.parse(data) : HeaderABC.fallback.menu;
                         HeaderABC.menu = generateItems(HeaderABC.menuConfig);
                         HeaderABC.progressDone('menu');
                     }
@@ -102,7 +102,7 @@
                     userNameHtml += '<em>' + userName[i] + '</em>';
                 }
 
-                HeaderABC.element.find('.avatar').html(userNameHtml);
+                Utils.html(Utils.getElement('.avatar', HeaderABC.element)[0], userNameHtml);
             },
             applyMarkup: function () {
                 var deferred = Utils.defer();
@@ -512,20 +512,6 @@
     }
 
     ABC.init.prototype = {
-        attrs: function (obj) {
-            var element = this.element;
-
-            if (ABC.isExists(element) && ABC.isObject(obj)) {
-                var method = ABC(element).has('attr') && ABC.isFunction(element.attr) ? 'attr' : 'setAttribute';
-
-                for (var key in obj) {
-                    if (ABC(obj).has(key)) {
-                        element[method](key, obj[key]);
-                    }
-                }
-            }
-            return this;
-        },
         css: function (obj) {
             var element = this.element;
             if (ABC.isExists(element) && ABC.isObject(obj)) {
@@ -560,10 +546,6 @@
                 e.preventDefault();
             });
         },
-        find: function(selector) {
-            this.element;
-            return this;
-        },
         addClass: function (className) {
             if (this.element.classList) {
                 this.element.classList.add(className);
@@ -592,9 +574,6 @@
         html: function (html) {
             this.element.innerHTML = html;
             return this;
-        },
-        get: function () {
-            return this.element;
         }
     };
 
@@ -636,13 +615,11 @@
         }
         var delay, count = 0;
         var regEx = {
-            byTag: /[A-Za-z]+/,
             byClassName: /\.[A-Za-z0-9]+/,
             byId: /\#[A-Za-z0-9]+/,
             byCreation: /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
         };
         var api = {
-            byTag: getByTag,
             byClassName: getByClassName,
             byId: getById,
             byCreation: getByCreation
@@ -656,16 +633,12 @@
             }
         }
 
-        function getByTag(selector, parentNode) {
-            return (!!parentNode ? parentNode : document).getElementsByTagName(selector) || null;
-        }
-
         function getById(selector) {
             return document.getElementById(selector.substr(1)) || null;
         }
 
-        function getByClassName(selector, parentNode) {
-            var matched = (!!parentNode ? parentNode : document).querySelectorAll(selector);
+        function getByClassName(selector) {
+            var matched = document.querySelectorAll(selector);
             return matched.length > 0 ? matched : null;
         }
 
