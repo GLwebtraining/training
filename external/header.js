@@ -59,7 +59,7 @@
                     });
 
                     function getMenuCallback(data) {
-                        HeaderABC.menuConfig = HeaderABC.isValidJson(json) ? JSON.parse(json) : HeaderABC.fallback.menu;
+                        HeaderABC.menuConfig = HeaderABC.isValidJson(data) ? JSON.parse(data) : HeaderABC.fallback.menu;
                         HeaderABC.menu = generateItems(HeaderABC.menuConfig);
                         HeaderABC.progressDone('menu');
                     }
