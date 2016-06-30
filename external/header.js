@@ -392,7 +392,7 @@
             html: function(element, html) {
                 element.innerHTML = html;
             },
-            isValidJson: function() {
+            isValidJson: function (str) {
                 try {
                     JSON.parse(str);
                 } catch (e) {
@@ -477,6 +477,147 @@
     Utils.ready(function() {
         HeaderABC.initialize();
     });
+
+    function ABC(element) {
+        if (!element) {
+            return;
+        }
+        return new ABC.init(element);
+    }
+
+    ABC.init = function() {
+        this.element = ABC.Element(element);
+    }
+
+    ABC.init.prototype = {
+        css: function (obj) {
+            var element = this.element;
+            if (ABC.isExists(element) && ABC.isObject(obj)) {
+                for (var key in obj) {
+                    if (ABC(obj).has(key)) {
+                        element.style[key] = obj[key];
+                    }
+                }
+            }
+            return this;
+        },
+        has: function (key) {
+            return this.element.hasOwnProperty(key);
+        },
+        on: function (target, event, handler) {
+            if (!target || !event) {
+                return;
+            }
+            target.addEventListener(event, function (e) {
+                handler(e);
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        },
+        addClass: function (target, className) {
+            if (target.classList) {
+                target.classList.add(className);
+            } else if (!this.hasClass(target, className)) {
+                target.className += " " + className;
+            }
+        },
+        removeClass: function (target, className) {
+            if (target.classList) {
+                target.classList.remove(className);
+            } else if (this.hasClass(target, className)) {
+                var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+                target.className = target.className.replace(reg, ' ');
+            }
+        },
+        hasClass: function (target, className) {
+            if (target.classList) {
+                return target.classList.contains(className);
+            } else {
+                return !!target.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+            }
+        }
+    };
+
+    ABC.isArray = function (item) {
+        if (ABC.isExists(item)) {
+            if (item instanceof Array) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    };
+
+    ABC.isObject = function (item) {
+        if (ABC.isExists(item)) {
+            if (!ABC.isArray(item) && item instanceof Object) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    };
+
+    ABC.isFunction = function (f) {
+        return typeof f === 'function';
+    };
+
+    ABC.isExists = function (item) {
+        return !!item;
+    };
+
+    ABC.Element = function (selector) {
+        if (!ABC.isQuerySelector(selector)) {
+            return selector;
+        }
+        var delay, count = 0;
+        var regEx = {
+            byClassName: /\.[A-Za-z0-9]+/,
+            byId: /\#[A-Za-z0-9]+/,
+            byCreation: /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
+        };
+        var api = {
+            byClassName: getByClassName,
+            byId: getById,
+            byCreation: getByCreation
+        }
+
+        function checkSelector(selector) {
+            for (var key in regEx) {
+                if (regEx[key].test(selector)) {
+                    return api[key](selector);
+                }
+            }
+        }
+
+        function getById(selector) {
+            return document.getElementById(selector.substr(1)) || null;
+        }
+
+        function getByClassName(selector) {
+            var matched = document.querySelectorAll(selector);
+            return matched.length > 0 ? matched : null;
+        }
+
+        function getByCreation(selector) {
+            var tag = selector.match(/([\w:-]+)/g, '')[0];
+            return document.createElement(tag);
+        }
+
+        return checkSelector(selector);
+    }
+
+    ABC.isNodeElement = function (element) {
+        return !!~[1, 2, 3, 8].indexOf(element.nodeType);
+    }
+
+    ABC.isQuerySelector = function (element) {
+        return !ABC.isNodeElement(element) && !~['number', 'boolean'].indexOf(typeof element) && !(ABC.isArray(element) || ABC.isObject(element) || ABC.isFunction(element));
+    }
 
     window.HeaderABC = HeaderABC;
 
