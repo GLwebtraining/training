@@ -7,6 +7,7 @@
         docElem = document.documentElement;
 
     var rootUrl = 'https://rawgit.com/GLwebtraining/training/gh-pages/external/';
+    var globalMenuUrl = 'https://outergateway.local.synapse.com/api/globalmenu';
 
     var HeaderABC = {
         debug: true,
@@ -53,7 +54,7 @@
                 });
             },
             menu: function () {
-                getFile(rootUrl + 'config.json').then(getMenuCallback, function (error) {
+                getFile(globalMenuUrl).then(getMenuCallback, function (error) {
                     getMenuCallback(false);
                 });
 
