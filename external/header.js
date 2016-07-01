@@ -155,10 +155,10 @@
             });
 
             function getHeaderWrapperWidth() {
-                var i = width = 0, paddingLeft = paddingRight = 0, headerWrapper = header.find('.header-wrapper').get();
+                var width = 0, headerWrapper = header.find('.header-wrapper').get();
                 if (headerWrapper) {
-                    paddingLeft = ABC(headerWrapper).getStyle('paddingLeft') || 0;
-                    paddingRight = ABC(headerWrapper).getStyle('paddingRight') || 0;
+                    var paddingLeft = ABC(headerWrapper).getStyle('paddingLeft') || 0;
+                    var paddingRight = ABC(headerWrapper).getStyle('paddingRight') || 0;
 
                     width = paddingLeft + paddingRight + 108;
                     for (var i = 0; i < headerWrapper.children.length; i++) {
