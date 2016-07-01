@@ -145,7 +145,7 @@
             });
         },
         applyResizeEvent: function () {
-            var body = this.body,
+            var body = HeaderABC.body,
                 header = ABC('#HeaderABC'),
                 element = HeaderABC.element.get(),
                 headerWidth = getHeaderWrapperWidth();
