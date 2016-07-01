@@ -22,7 +22,8 @@
             },
             generate: {
                 html: function() {
-                    HeaderABC.element = ABC('<div>').attrs({
+                    HeaderABC.element = ABC('<div>');
+                    HeaderABC.element.attrs({
                         id: 'HeaderABC',
                         className: 'clearfix'
                     });
