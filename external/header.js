@@ -145,28 +145,23 @@
             });
         },
         applyResizeEvent: function () {
-            var body = this.body;
-            var header = ABC('#HeaderABC');
-            var element = HeaderABC.element.get();
-            var headerWidth = getHeaderWrapperWidth();
+            var body = this.body,
+                header = ABC('#HeaderABC'),
+                element = HeaderABC.element.get(),
+                headerWidth = getHeaderWrapperWidth();
 
             ABC.windowOnResize(function () {
-                if (element.offsetWidth < headerWidth) {
-                    body.addClass('header-abc-overwidth');
-                } else {
-                    body.removeClass('header-abc-overwidth');
-                }
+                body[(element.offsetWidth < headerWidth ? 'addClass': 'removeClass')]('header-abc-overwidth');
             });
 
             function getHeaderWrapperWidth() {
-                var headerWrapper = header.find('.header-wrapper').get();
-                var width = 0;
+                var i = width = paddingLeft = paddingRight = 0, headerWrapper = header.find('.header-wrapper').get();
                 if (headerWrapper) {
-                    var paddingLeft = ABC(headerWrapper).getStyle('paddingLeft') || 0;
-                    var paddingRight = ABC(headerWrapper).getStyle('paddingRight') || 0;
+                    paddingLeft = ABC(headerWrapper).getStyle('paddingLeft') || 0;
+                    paddingRight = ABC(headerWrapper).getStyle('paddingRight') || 0;
 
                     width = paddingLeft + paddingRight + 108;
-                    for (var i = 0; i < headerWrapper.children.length; i++) {
+                    for (i = 0; i < headerWrapper.children.length; i++) {
                         width += headerWrapper.children[i].offsetWidth;
                     }
                 }
