@@ -115,7 +115,7 @@ body.sidebar-abc-opened { overflow: hidden }
     line-height: 26px;
     display: block;
     padding: 0 0 0 35px;
-    cursor: default;
+    cursor: pointer;
     color: #3f545f;
     font: 13px/24px DroidSansBold, Arial, sans-serif;
 }
