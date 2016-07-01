@@ -55,7 +55,7 @@
             },
             menu: function () {
                 getFile(globalMenuUrl).then(getMenuCallback, function (error) {
-                    getMenuCallback(false);
+                    getMenuCallback('');
                 });
 
                 function getMenuCallback(data) {
