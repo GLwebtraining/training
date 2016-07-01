@@ -145,7 +145,6 @@
             });
         },
         applyResizeEvent: function () {
-            var gotHeaderWidth = false;
             var body = this.body;
             var header = ABC('#HeaderABC');
             var element = HeaderABC.element.get();
@@ -288,7 +287,7 @@
 
     function intializeExpenseNow() {
         if (!!window.angular) {
-            var injector = angular.element(HeaderABC.body).injector();
+            var injector = angular.element(HeaderABC.body.get()).injector();
             getRootScope.$inject = ['$rootScope'];
             return injector.invoke(getRootScope, null, null);
         }
