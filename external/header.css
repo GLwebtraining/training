@@ -140,6 +140,7 @@ body.header-abc-overwidth #HeaderABC .predefine-actions li .avatar em:not(:first
     margin: 0; 
     padding: 12px 0 0; 
     list-style: none;
+    border-top: 1px solid #ddd;
 }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list li a {
     text-decoration: none;
