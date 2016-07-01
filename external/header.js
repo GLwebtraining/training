@@ -516,11 +516,9 @@
             var element = this.element;
 
             if (ABC.isExists(element) && ABC.isObject(obj)) {
-                var method = ABC(element).has('attr') && ABC.isFunction(element.attr) ? 'attr' : 'setAttribute';
-
                 for (var key in obj) {
                     if (ABC(obj).has(key)) {
-                        element[method](key, obj[key]);
+                        element.setAttribute(key, obj[key]);
                     }
                 }
             }
