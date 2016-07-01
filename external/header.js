@@ -155,7 +155,8 @@
             });
 
             function getHeaderWrapperWidth() {
-                var i = width = paddingLeft = paddingRight = 0, headerWrapper = header.find('.header-wrapper').get();
+                var i = width = paddingLeft = paddingRight = 0;
+                var headerWrapper = header.find('.header-wrapper').get();
                 if (headerWrapper) {
                     paddingLeft = ABC(headerWrapper).getStyle('paddingLeft') || 0;
                     paddingRight = ABC(headerWrapper).getStyle('paddingRight') || 0;
