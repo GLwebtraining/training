@@ -634,10 +634,10 @@
         }
         var delay, count = 0;
         var regEx = {
-            byTag: /[A-Za-z]+/,
             byClassName: /\.[A-Za-z0-9]+/,
             byId: /\#[A-Za-z0-9]+/,
-            byCreation: /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
+            byCreation: /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+            byTag: /[A-Za-z]+/
         };
         var api = {
             byTag: getByTag,
