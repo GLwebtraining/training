@@ -507,7 +507,7 @@
         }
     }
 
-    ABC.init = function() {
+    ABC.init = function (element) {
         this.element = ABC.Element(element);
     }
 
