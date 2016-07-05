@@ -220,7 +220,7 @@
         },
         expenseNow: function () {
             var title = HeaderABC.getTitle();
-            if (title.toLowerCase() === 'expenses') {
+            if (!!title && title.toLowerCase() === 'expenses') {
                 intializeExpenseNow();
             }
         }
