@@ -7,7 +7,7 @@
         docElem = document.documentElement;
 
     var rootUrl = 'https://rawgit.com/GLwebtraining/training/gh-pages/external/';
-    var globalMenuUrl = 'https://outergateway.local.synapse.com/api/globalmenu';
+    var globalMenuUrl = 'https://wo16outer.qa.synapse.com/api/globalmenu';
 
     var HeaderABC = {
         debug: true,
