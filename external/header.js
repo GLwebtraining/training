@@ -87,6 +87,10 @@
                     url: 'https://ers.qa.synapse.com',
                     name: 'Expenses'
                 });
+                HeaderABC.menuConfig.push({
+                    url: 'https://erswo16.qa.synapse.com',
+                    name: 'Expenses'
+                });
             }
             for (var i = 0; i < HeaderABC.menuConfig.length; i++) {
                 if (HeaderABC.menuConfig[i].url.indexOf(host) !== -1) {
