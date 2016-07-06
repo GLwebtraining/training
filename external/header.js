@@ -118,7 +118,7 @@
                     _this.body.get().insertBefore(HeaderABC.element.get(), _this.body.get().children[0]);
 
                     HeaderABC.element.find('.sidebar-wrapper').html(HeaderABC.menu);
-                    HeaderABC.element.find('.logo').attrs({href: location.protocol + '//' + location.host}}).html(HeaderABC.getTitle());
+                    HeaderABC.element.find('.logo').attrs({href: location.protocol + '//' + location.host}).html(HeaderABC.getTitle());
 
                     HeaderABC.setUserName('User Name');
 
