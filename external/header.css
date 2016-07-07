@@ -149,6 +149,7 @@ body.header-abc-overwidth #HeaderABC .predefine-actions li .avatar em:not(:first
     color: #3f545f;
     font: 13px/60px DroidSansBold, Arial, sans-serif;
     text-transform: uppercase;
+    text-align: left;
 }
 #HeaderABC-SidebarMenu .sidebar-wrapper .list li a:hover {
     background-color: #f3f4f3;
