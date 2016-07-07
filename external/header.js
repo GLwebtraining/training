@@ -20,6 +20,17 @@
             this.sidebarOpened = false;
             this.progressDone = this.generated();
         },
+        settings: {
+            userName: 'User',
+            isExpenseNow: false
+        },
+        config: function (settings) {
+            if (settings) {
+                for (var key in settings) {
+                    this.settings[key] = settings[key];
+                }
+            }
+        },
         generate: {
             html: function () {
                 HeaderABC.element = ABC('<div></div>').attrs({
@@ -77,36 +88,30 @@
         },
         getTitle: function () {
             var host = location.hostname;
-            var title = '';
-            if (HeaderABC.debug) {
-                HeaderABC.menuConfig.push({
-                    url: 'https://ers.local.synapse.com',
-                    name: 'Expenses'
-                });
-                HeaderABC.menuConfig.push({
-                    url: 'https://ers.qa.synapse.com',
-                    name: 'Expenses'
-                });
-                HeaderABC.menuConfig.push({
-                    url: 'https://erswo16.qa.synapse.com',
-                    name: 'Expenses'
-                });
-            }
-            for (var i = 0; i < HeaderABC.menuConfig.length; i++) {
-                if (HeaderABC.menuConfig[i].url.indexOf(host) !== -1) {
-                    return ABC.capitalize(HeaderABC.menuConfig[i].name.toLowerCase());
+            if (!HeaderABC.settings.title) {
+                for (var i = 0; i < HeaderABC.menuConfig.length; i++) {
+                    if (HeaderABC.menuConfig[i].url.indexOf(host) !== -1) {
+                        return ABC.capitalize(HeaderABC.menuConfig[i].name.toLowerCase());
+                    }
                 }
+            } else {
+                return ABC.capitalize(HeaderABC.settings.title.toLowerCase());
             }
         },
-        setUserName: function (name) {
-            var userName = name.split(' ');;
-            var userNameHtml = '';
+        setUserName: function () {
+            var userName = HeaderABC.settings.userName.split(' ');
+            HeaderABC.userNameHtml = '';
 
             for (var i = 0; i < userName.length; i++) {
-                userNameHtml += '<em>' + userName[i] + '</em>';
+                HeaderABC.userNameHtml += '<em>' + userName[i] + '</em>';
             }
 
-            HeaderABC.element.find('.avatar').html(userNameHtml);
+            HeaderABC.element.find('.avatar').html(HeaderABC.userNameHtml);
+        },
+        render: {
+            userName: function() {
+                HeaderABC.setUserName();
+            }
         },
         applyMarkup: function () {
             var deferred = ABC.defer();
@@ -120,7 +125,7 @@
                     HeaderABC.element.find('.sidebar-wrapper').html(HeaderABC.menu);
                     HeaderABC.element.find('.logo').attrs({href: location.protocol + '//' + location.host + '/#/'}).html(HeaderABC.getTitle());
 
-                    HeaderABC.setUserName('User Name');
+                    HeaderABC.setUserName();
 
                     setTimeout(HeaderABC.applyResizeEvent, 0);
                     deferred.resolve();
@@ -215,12 +220,10 @@
                     HeaderABC.applyEvents();
                     HeaderABC.expenseNow();
                 });
-
             });
         },
         expenseNow: function () {
-            var title = HeaderABC.getTitle();
-            if (!!title && title.toLowerCase() === 'expenses') {
+            if (HeaderABC.settings.isExpenseNow === true) {
                 intializeExpenseNow();
             }
         }
