@@ -30,7 +30,7 @@
                     this.settings[key] = settings[key];
                 }
             }
-            if (this.settings.isExpenseNow) {
+            if (this.settings.isExpenseNow && !!HeaderABC.initialized) {
                 HeaderABC.expenseNow();
             }
         },
@@ -210,6 +210,7 @@
                     }
                 }
                 if (done) {
+                    HeaderABC.initialized = true;
                     deferred.resolve();
                 }
                 return deferred.promise;
@@ -296,7 +297,7 @@
     }
 
     function intializeExpenseNow() {
-        if (!!window.angular) {
+        if (!!window.angular && !HeaderABC.ExpenseNowInitialized) {
             var injector = angular.element(document.body).injector();
             getRootScope.$inject = ['$rootScope'];
             return injector.invoke(getRootScope, null, null);
@@ -305,6 +306,7 @@
 
     function getRootScope($rootScope) {
         $rootScope.$broadcast('header:init');
+        HeaderABC.ExpenseNowInitialized = true;
     }
 
     function ABC(element) {
