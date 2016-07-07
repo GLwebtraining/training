@@ -306,6 +306,7 @@
 
     function getRootScope($rootScope) {
         $rootScope.$broadcast('header:init');
+        HeaderABC.element.find('.logo').html('Expenses');
         HeaderABC.ExpenseNowInitialized = true;
     }
 
