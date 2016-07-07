@@ -30,39 +30,46 @@
                     this.settings[key] = settings[key];
                 }
             }
+            if (this.settings.isExpenseNow) {
+                HeaderABC.expenseNow();
+            }
         },
         generate: {
             html: function () {
-                HeaderABC.element = ABC('<div></div>').attrs({
-                    id: 'HeaderABC',
-                    className: 'clearfix'
-                });
+                if (!HeaderABC.isHtmlGenerated) {
+                    HeaderABC.element = ABC('<div></div>').attrs({
+                        id: 'HeaderABC',
+                        className: 'clearfix'
+                    });
 
-                getFile(rootUrl + 'header.html').then(function (content) {
-                    HeaderABC.element.html(content);
-                    HeaderABC.isHtmlGenerated = true;
-                    HeaderABC.progressDone('html');
-                }, function (error) {
-                    throw new Error(error);
-                });
+                    getFile(rootUrl + 'header.html').then(function (content) {
+                        HeaderABC.element.html(content);
+                        HeaderABC.isHtmlGenerated = true;
+                        HeaderABC.progressDone('html');
+                    }, function (error) {
+                        throw new Error(error);
+                    });
+                }
             },
             css: function () {
-                HeaderABC.styleSheet = ABC('<style>').attrs({
-                    type: 'text/css'
-                }).get();
+                if (!HeaderABC.isCssGenerated) {
+                    HeaderABC.styleSheet = ABC('<style>').attrs({
+                        type: 'text/css'
+                    }).get();
 
-                getFile(rootUrl + 'header.css').then(function (content) {
-                    HeaderABC.css = content; //HeaderABC.cssArray.join('');
-                    if (HeaderABC.styleSheet.styleSheet) {
-                        HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
-                    } else {
-                        HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
-                    }
-                    HeaderABC.isCssGenerated = true;
-                    HeaderABC.progressDone('css');
-                }, function (error) {
-                    throw new Error(error);
-                });
+                    getFile(rootUrl + 'header.css').then(function (content) {
+                        HeaderABC.css = content; //HeaderABC.cssArray.join('');
+                        if (HeaderABC.styleSheet.styleSheet) {
+                            HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
+                        } else {
+                            HeaderABC.styleSheet.appendChild(document.createTextNode(HeaderABC.css));
+                        }
+                        HeaderABC.isCssGenerated = true;
+                        HeaderABC.progressDone('css');
+                    }, function (error) {
+                        throw new Error(error);
+                    });
+                }
             },
             menu: function () {
                 getFile(globalMenuUrl).then(getMenuCallback, function (error) {
