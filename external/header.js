@@ -57,7 +57,7 @@
                         type: 'text/css'
                     }).get();
 
-                    getFile(rootUrl + 'header.css').then(function (content) {
+                    getFile(rootUrl + 'header.css?' + Math.random()).then(function (content) {
                         HeaderABC.css = content; //HeaderABC.cssArray.join('');
                         if (HeaderABC.styleSheet.styleSheet) {
                             HeaderABC.styleSheet.styleSheet.cssText = HeaderABC.css;
@@ -106,17 +106,20 @@
             }
         },
         setUserName: function () {
-            var userName = HeaderABC.settings.userName.split(' ');
-            HeaderABC.userNameHtml = '';
-
-            for (var i = 0; i < userName.length; i++) {
-                HeaderABC.userNameHtml += '<em>' + userName[i] + '</em>';
+            var userNameHtml = '',
+                name = HeaderABC.settings.userName,
+                onBehalfOf = HeaderABC.settings.onBehalfOf;
+            function breakWords(input) {
+                return input ? '<em>' + input.split(' ').join('</em><em>') + '</em>' : '';
             }
-
-            HeaderABC.element.find('.avatar').html(HeaderABC.userNameHtml);
+            userNameHtml += breakWords(name);
+            if (onBehalfOf) {
+                userNameHtml += ' on behalf of' + breakWords(onBehalfOf);
+            }
+            HeaderABC.element.find('.avatar').html(userNameHtml);
         },
         render: {
-            userName: function() {
+            userName: function () {
                 HeaderABC.setUserName();
             }
         },
@@ -130,7 +133,7 @@
                     _this.body.get().insertBefore(HeaderABC.element.get(), _this.body.get().children[0]);
 
                     HeaderABC.element.find('.sidebar-wrapper').html(HeaderABC.menu);
-                    HeaderABC.element.find('.logo').attrs({href: location.protocol + '//' + location.host + '/#/'}).html(HeaderABC.getTitle());
+                    HeaderABC.element.find('.logo').attrs({ href: location.protocol + '//' + location.host + '/#/' }).html(HeaderABC.getTitle());
 
                     HeaderABC.setUserName();
 
@@ -168,7 +171,7 @@
                 headerWidth = getHeaderWrapperWidth();
 
             ABC.windowOnResize(function () {
-                body[(element.offsetWidth < headerWidth ? 'addClass': 'removeClass')]('header-abc-overwidth');
+                body[(element.offsetWidth < headerWidth ? 'addClass' : 'removeClass')]('header-abc-overwidth');
             });
 
             function getHeaderWrapperWidth() {
