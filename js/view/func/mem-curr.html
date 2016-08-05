@@ -1,0 +1,128 @@
+﻿<h3>Memoization</h3>
+<p>Шаблон кэширования результатов функции.</p>
+<p>Функции – это объекты, поэтому они могут иметь свойства. Фактически функции уже при создании имеют некоторые предопределенные
+свойства и методы. <strong>Ex. - name, length, call, apply</strong>.</p>
+<p>Также можно добавлять к функции свои свойства и методы, которые можно использовать для
+кэширования результатов (возвращаемого значения) функции, чтобы
+при следующем обращении к функции ей не приходилось выполнять
+сложные и продолжительные вычисления.</p>
+<p>Шаблон:</p>
+<p>
+	<code>function myFunc(param) {</code>
+	<br />
+	<code>&nbsp;&nbsp;if (!myFunc.cache) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;myFunc.cache = {};</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;if (!myFunc.cache[param]) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;var result = /* operations */;</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;myFunc.cache[param] = result;</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;return myFunc.cache[param];</code>
+	<br />
+	<code>}</code>
+</p>
+<p>Для изучения - <a href="http://addyosmani.com/blog/faster-javascript-memoization/">Memoize</a></p>
+
+<p>Пример использования:</p>
+<p>
+	<code>function calculation(x, y){</code>
+	<br />
+	<code>&nbsp;&nbsp;var key = x.toString() + "|" + y.toString();</code>
+	<br />
+	<code>&nbsp;&nbsp;var result = 0;</code>
+	<br />
+	<code>&nbsp;&nbsp;if (!calculation.cache[key]){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;for (var i = 0; i < y; ++i) result += x;</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;calculation.cache[key] = result;</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;return calculation.cache[key];</code>
+	<br />
+	<code>}</code>
+	<br />
+	<code>calculation.cache = {};</code>
+</p>
+
+<h3>Curry</h3>
+<p>Частичное применение</p>
+<p>Каррирование – это процесс преобразования функции, в результате которого появляются функции, обладающие
+возможностью частичного применения.</p>
+<p>Если обнаружится, что вы неоднократно вызываете одну и ту же функцию, передавая ей практически одни и те же параметры, эта функция
+наверняка является отличным кандидатом на каррирование. Вы можете создать новую функцию, используя прием применения части пара
+метров к оригинальной функции. Новая функция будет хранить повто
+ряющиеся параметры (благодаря чему вам не придется передавать их
+каждый раз) и использовать их для заполнения полного списка аргу
+ментов, ожидаемых оригинальной функцией.</p>
+<p>Простой пример (из HomeTasks):</p>
+<p>
+	<code>function add(x, y) {</code>
+	<br />
+	<code>&nbsp;&nbsp;if (typeof y === “undefined”) { // partial</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;return function (y) {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x + y;</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;};</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>&nbsp;&nbsp;// full</code>
+	<br />
+	<code>&nbsp;&nbsp;return x + y;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<br />
+	<code>var add5 = add(5);</code>
+	<br />
+	<code>add5(4);</code>
+	<br />
+	<code>add(5)(4);</code>
+</p>
+<p>Шаблон:</p>
+<p>
+	<code>function curry( fn ){</code>
+	<br />
+	<code>&nbsp;&nbsp;var slice = Array.prototype.slice,</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;storedArgs = slice.call( arguments, 1 );</code>
+	<br />
+	<br />
+	<code>&nbsp;&nbsp;return function() {</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;var args = storedArgs.concat( slice.call( arguments ) );</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;return fn.apply( this, args );</code>
+	<br />
+	<code>&nbsp;&nbsp;}</code>
+	<br />
+	<code>}</code>
+</p>
+<p>Пример применения:</p>
+<p>
+	<code>function add(x,y){</code>
+	<br />
+	<code>&nbsp;&nbsp;return x+y;</code>
+	<br />
+	<code>}</code>
+	<br />
+	<br />
+	<br />
+	<br />
+	<code>var add5 = curry(add, 5);</code>
+	<br />
+	<code>add5(4);</code>
+	<br />
+	<code>curry(add, 5)(4);</code>
+</p>

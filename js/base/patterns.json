@@ -1,0 +1,62 @@
+﻿[
+	{
+		"name": "Object Creation Patterns",
+		"templateUrl": "patterns/obj-create",
+		"topics": [
+			{
+				"name": "Namespace Pattern",
+				"templateUrl": "patterns/namespace"
+			},
+			{
+				"name": "Private Properties and Methods",
+				"templateUrl": "patterns/private"
+			},
+			{
+				"name": "Module Pattern",
+				"templateUrl": "patterns/module"
+			}
+		]
+	},
+	{
+		"name": "Design Patterns",
+		"templateUrl": "patterns/design",
+		"topics": [
+			{
+				"name": "Singleton",
+				"templateUrl": "patterns/singleton"
+			},
+			{
+				"name": "Factory",
+				"templateUrl": "patterns/factory"
+			},
+			{
+				"name": "Iterator",
+				"templateUrl": "patterns/iterator"
+			},
+			{
+				"name": "Decorator",
+				"templateUrl": "patterns/decorator"
+			},
+			{
+				"name": "Strategy",
+				"templateUrl": "patterns/strategy"
+			},
+			{
+				"name": "Facade",
+				"templateUrl": "patterns/facade"
+			},
+			{
+				"name": "Proxy",
+				"templateUrl": "patterns/proxy"
+			},
+			{
+				"name": "Mediator",
+				"templateUrl": "patterns/mediator"
+			},
+			{
+				"name": "Observer",
+				"templateUrl": "patterns/observer"
+			}
+		]
+	}
+]

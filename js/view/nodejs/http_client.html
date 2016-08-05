@@ -1,0 +1,62 @@
+﻿<h3>HTTP client</h3>
+<p>Чтобы использовать функции специфичные для HTTP вам необходимо подключить модуль <strong>http</strong>: <code>var http = require('http');</code></p>
+<h4>GET request</h4>
+<p>Метод <code>http.get()</code> используется как простой GET запрос, где первый параметр это URL, а второй - это callback функция вида <code>function callback (response) { /* ... */ }</code>.
+Функция принимает один параметр <code>response</code>, это Node Stream объект, с которым вы можете работать как с объектом(listen), который генерирует(emit) события. Самые используемы события это data, error и end.
+<br />
+<code>response.on("data", function (data) { /* ... */ })</code><br />
+<strong>data</strong> вызывается, когда фрагмент данных доступен и может быть обработан <br />
+<strong>end</strong> вызывается, когда ответ сервера отослан <br />
+<strong>error</strong> вызывается, когда возникли ошибки. Callback функция принимает объект Error <br />
+</p>
+<p>
+	<code>var http = require('http');</code>
+	<br />
+	<code>var url = 'http://glwebtraining.github.io/training/js/base/base.json';</code>
+	<br />
+	<code>http.get(url, function(response){</code>
+	<br />
+	<code>&nbsp;&nbsp;response.on('data', function(data){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(data.toString());</code>
+	<br />
+	<code>&nbsp;&nbsp;});</code>
+	<br />
+	<code>&nbsp;&nbsp;response.on('end', function(){</code>
+	<br />
+	<code>&nbsp;&nbsp;&nbsp;&nbsp;/*...*/</code>
+	<br />
+	<code>&nbsp;&nbsp;});</code>
+	<br />
+	<code>});</code>
+</p>
+<p>Метод <code>http.createServer()</code> создает HTTP сервер. Метод принимает callback функцию вида - <code>function callback (request, response) { /* ... */ }</code>, 
+где аргументы это объекты представляющие собой HTTP запрос и соответствующий ответ на этот запрос. <br />
+<strong>request</strong> используется для извлечения свойств(header, query string) из запроса <br /> 
+<strong>response </strong> - для отправки данных на клиент(headers, body). <br />
+Оба аргумента являются Node Stream, что означает, что можно использовать потоковые абстракции для отправки и получения данных</p>
+<p>Метод <strong>createServer</strong> возвращает экземпляр созданного сервера.</p>
+<p>Чтобы начать работать с созданным сервером нужно вызвать метод <code>listen</code> и передать номер порта: <br />
+<code>var http = require('http')</code><br />
+<code>var server = http.createServer(function (req, res) {</code><br />
+<code>&nbsp;&nbsp;/*...*/</code><br />
+<code>});</code><br />
+<code>server.listen(8000);</code>
+</p>	
+<p><strong>request.method</strong> возвращает метод HTTP запроса. <code>GET</code>, <code>POST</code>, <code>...</code></p>
+<p><strong>request.url</strong> возвращает запрошенный URL</p>
+<p><strong>response.writeHead</strong> отправляет необходимый заголовок на запрос <br /> <code>res.writeHead(200, {'Content-Type': 'application/json'});</code></p>
+<p><strong>response.end</strong> отправляет серверу сигнал, что все заголовки и тело ответа были отправлены; сервер должен считать это сообщение законченным. Метод ДОЛЖЕН быть вызван при каждом ответе. 
+Если передаются данные, то это эквивалентно вызову <code>response.write(данные)</code>, после это будет выполнен <code>response.end()</code>.<br /><code>res.end(JSON.stringify({value: '123'}));</code></p>
+<h4>модуль URL</h4>
+<p>Модуль сожержит утилиты для форматирования и парсинга URL. Подключается с помощью <code>require('url')</code>.</p>
+<p><strong>url.parse(urlStr, [parseQueryString])</strong> метод принимает URL строку и возвращает объект, передавая <strong>true</strong> как второй параметр также распарсит <strong>query string</strong><br /><code>url.parse(request.url, true)</code></p>
+<p><strong>url.parse(req.url, true).query</strong> - содержит query string</p><p>
+	<code>var http = require('http')</code><br />
+	<code>var url = require('url')</code><br />
+	<code>var server = http.createServer(function (req, res) {</code><br />
+	<code>&nbsp;&nbsp;console.log(url.parse(req.url, true).query);</code><br />
+	<code>});</code><br />
+	<code>server.listen(8000);</code>
+</p>
+<p>После запроса <code>http://localhost:8000/?value=1</code>, вернет <code>{ value: '1' }</code></p>

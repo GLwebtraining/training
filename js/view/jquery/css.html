@@ -1,0 +1,70 @@
+﻿<ul>
+	<li>
+		<code>.css()</code>
+		<p>Вернет значени атрибута style для первого элемента в массиве найденых элементов и позволяет установить одно и более CSS свойства для каждого найденого элемента.</p>
+		<p>
+			<code>element.css('margin');</code><br />
+			<code>element.css('marginLeft', 50);</code><br />
+			<code>element.css({marginLeft: 50, width: 100});</code><br />
+			<code>element.css('marginLeft', function(index){ return index*2 });</code><br />
+		</p>
+	</li>
+	<li>
+		<code>.height()</code>
+		<p>Вернет высоту (без padding, border) для первого элемента в массиве найденых элементов и позволяет установить высоту для каждого найденого элемента.</p>
+		<p><code>element.height();</code><br /><code>element.height(100);</code></p>
+	</li>
+	<li>
+		<code>.innerHeight()</code>
+		<p>Вернет высоту (включая padding, без border) для первого элемента в массиве найденых элементов и позволяет установить высоту для каждого найденого элемента.</p>
+		<p><code>element.innerHeight();</code><br /><code>element.innerHeight(100);</code></p>
+	</li>
+	<li>
+		<code>.outerHeight()</code>
+		<p>Вернет высоту (включая padding, border и опцирнально margin) для первого элемента в массиве найденых элементов.</p>
+		<p><code>element.outerHeight();</code><br /><code>element.outerHeight(true);</code></p>
+	</li>
+	<li>
+		<code>.width()</code>
+		<p>Вернет ширину (без padding, border) для первого элемента в массиве найденых элементов и позволяет установить ширину для каждого найденого элемента.</p>
+		<p><code>element.width();</code><br /><code>element.width(100);</code></</p>
+	</li>
+	<li>
+		<code>.innerWidth()</code>
+		<p>Вернет ширину (включая padding, без border) для первого элемента в массиве найденых элементов и позволяет установить ширину для каждого найденого элемента.</p>
+		<p><code>element.innerWidth();</code><br /><code>element.innerWidth(100);</code></p>
+	</li>
+	<li>
+		<code>.outerWidth()</code>
+		<p>Вернет ширину (включая padding, border и опцирнально margin) для первого элемента в массиве найденых элементов.</p>
+		<p><code>element.outerWidth();</code><br /><code>element.outerWidth(true);</code></p>
+	</li>
+	<li>
+		<code>.offset()</code>
+		<p>Вернет текущие координаты(объект) первого элемента в массиве найденых элементов относительно document.</p>
+		<p><code>element.offest();</code><br /><code>element.offest().top;</code><br /><code>element.offest().left;</code></p>
+	</li>
+	<li>
+		<code>.position()</code>
+		<p>Вернет текущие координаты(объект) первого элемента в массиве найденых элементов относительно родителя, у которого есть position: relative.</p>
+		<p><code>element.position();</code><br /><code>element.position().top;</code><br /><code>element.position().left;</code></p>
+	</li>
+	<li>
+		<code>.scrollLeft()</code>
+		<p>Вернет текущую позицию горизонтального скролл бара для первого элемента в массиве найденых элементов и позволяет установить позицию горизонтального скролл бара для каждого найденого элемента.</p>
+		<p>
+			<code>element.scrollLeft()</code>
+			<br />
+			<code>element.scrollLeft(100)</code>
+		</p>
+	</li>
+	<li>
+		<code>.scrollTop()</code>
+		<p>Вернет текущую позицию вертикального скролл бара для первого элемента в массиве найденых элементов и позволяет установить позицию вертикального скролл бара для каждого найденого элемента.</p>
+		<p>
+			<code>element.scrollTop()</code>
+			<br />
+			<code>element.scrollTop(100)</code>
+		</p>
+	</li>
+</ul>

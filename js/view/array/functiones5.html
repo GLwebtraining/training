@@ -1,0 +1,129 @@
+﻿
+http://kangax.github.io/compat-table/es5/
+
+<p><a href="http://kangax.github.io/compat-table/es5/">Таблиця сумісності ECMAScript 5</a></p>
+
+<p>ECMAScript 5 і JavaScript 1.8.5 - JavaScript 1.8.5 цу реалізація ECMAScript від Mozilla з додатковими функціями. Це розширений варіант специфікації ECMAScript (і її поточних реалізацій в IE, Chrome і Opera). Mozilla просуває нові функції, додаючи їх до власного браузера.</p>
+
+<h4>Array.forEach()</h4>
+
+<p>Послідовно проходить по кожному елементу масиву, щоразу викликаючи функцію, яка передається як перший і єдиний параметр методу. У свою чергу, ця передана функція приймає три параметри: значення поточного елемента, його індекс та посилання на сам масив.</p>
+
+<pre>arr.forEach(function(value) { });
+arr.forEach(function(v, i, a) {  });</pre>
+
+<p>Приклад:</p>
+<pre>
+var data = [1,2,3,4,5];
+var sum = 0;
+data.forEach(function(value) { 
+  sum += value; 
+  Core.Print('sum = ' + sum);
+});
+</pre>
+
+<p>На жаль, якщо нам знадобиться передчасно вийти з циклу, то інструкція <code>break</code> тут не спрацює і ми отримаємо помилку "unlabeled break must be inside loop or switch" "непозначене переривання має бути всередині циклу або інструкції-перемикача", тобто break працює тільки в циклах і перемикачах, а forEach не є ні тим ні іншим, а методом масиву.</p>
+
+<p>Пропонується рішення через збудження винятку. Якщо функція, яка передається в forEach(), збуджує виключення foreach.break, то виконання припиняється.</p>
+
+<p>Приклад:</p>
+
+<pre>var ar = [1,2,3];
+&nbsp;&nbsp;&nbsp;&nbsp;function foreach(array, func){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array.forEach(func);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch(e){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(e == foreach.break) return;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else throw e;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;foreach.break = new Error('StopIteration');
+&nbsp;&nbsp;&nbsp;&nbsp;foreach(ar, function(value) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(value);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(value == 2)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw foreach.break;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});
+</pre>
+
+<h4>Array.map()</h4>
+
+<p>Порядок виклику аналогічний forEach, але функція зворотного виклику (callback) мусить повернути значення. Тобто ми проходимся по кожному елементу, наша функція проробляє якісь операції і повертає нове значення, але не для цього масиву, а для нового, старий масив не змінюється! Якщо масив був з дірками, тобто мав індекси з розривами між ними (а[0], а[5], а[78]), то результуючий масив матиме точно такий же вигляд (b[0], b[5], b[78])</p>
+
+<pre>
+a = [1, 2, 3];
+b = a.map(function(x) { return x*x; });  // b is [1, 4, 9]
+</pre>
+
+<h4>Array.filter()</h4>
+
+<p>Корисна для фільтрації елементів, функція зворотного виклику (та, яку ми передаємо в Array.filter, Array.forEach, Array.map і т.д.) мусить повертати true або false. У першому випадку поточний елемент поміщається в новий масив, у другому — йдемо далі по масиву.</p>
+
+<p>Як і у випадку з Array.map() ми отримуємо на виході новий масив, старий не змінюється.</p>
+
+<pre>a = [5, 4, 3, 2, 1];
+    smallvalues = a.filter(function(x) { return x &lt; 3 }); // [2, 1]
+    everyother = a.filter(function(x,i) { return i%2==0 });
+</pre>
+
+<h4>Array.every() і Array.some()</h4>
+
+<p>Ці два методи повертають не масив, а true або false.</p>
+
+<p>every() повертає істину тоді і тільки тоді, коли колбек-функція повернула true після всіх викликів дял кожного елемента.</p>
+
+<pre>var ar = [1,2,3,4,5,6,7,8,9];
+ar.every(function(value){ return value &lt; 10;}); // true, всі значення менші з 10
+ar.every(function(x) { return x % 2 === 0; })  // => false: бо не всі парні
+</pre>
+
+<p>some() ж повертає true, якщо хоча б один раз функція зворотного виклику повернула true.</p>
+
+    <pre>a = [1,2,3,4,5];
+    a.some(function(x) { return x%2===0; })  // => true — бо є деякі парні числа.</code>
+    a.some(isNaN)
+    </pre>
+    
+</p>
+
+<h4>Array.reduce() і Array.reduceRight()</h4>
+
+<p>Два параметри: перший - функція зворотного виклику функція, другий (додатковий) - початкове значення змінної.</p>
+
+<p>Функція зворотного виклику функція приймає два значення: перше є результатом попередньої роботи функції, друге - черговим елементом масиву.</p>
+
+<pre>
+	var a = [1,2,3,4,5]
+	
+	var sum = a.reduce(function(x,y) { return x+y }, 0);     // Сума
+	
+	var product = a.reduce(function(x,y) { return x*y }, 1); // Продукт (множення)
+	
+	var max = a.reduce(function(x,y) { return (x>y)?x:y; }); // Найбільше
+</pre>
+
+<p>
+    <code>var ar = [4,3,2,1];</code>
+    <br />
+    <code>var result = ar.reduce(function(x, y){ return x + y;}, 0);</code>
+    <br />
+    <code>console.log(result);</code>
+    <br />
+</p>
+
+<p>Спочатку перший параметр х = 0.
+    <br /> Крок 1: x = 0, y = ar[0] = 4; x + y = 4;
+    <br />Крок 2: x = 4, y = ar[1] = 3; x + y = 7;
+    <br />Крок 3: x = 7, y = ar[2] = 2; x + y = 9;
+    <br />Крок 2: x = 9, y = ar[1] = 1; x + y = 10;</p>
+<p>reduceRight іде з кінця масиву.</p>
+
+<h4>Array.indexOf() і Array.lastIndexOf()</h4>
+
+<p>Повертає індекс першого і останнього входження елемента в масив.</p>
+
+<pre>
+    a = [0,1,2,1,0];
+    a.indexOf(1) // => 1: a[1] is 1
+    a.lastIndexOf(1) // => 3: a[3] is 1
+    a.indexOf(3) // => -1: no element has value 3
+</pre>

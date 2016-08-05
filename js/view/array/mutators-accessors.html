@@ -1,0 +1,223 @@
+﻿<h2>Які методи масивів у JavaScript змінюють оригінальний масив, а які — ні? </h2>
+<h3>Мутатори, акцесори та ітератори</h3>
+    <p>Умовні позначення:</p>
+    <dl class="dl-horizontal">
+        <dt>✔</dt>
+        <dd>”Так, змінює масив”. Тобто є методом-мутатором (мutator =  той, що змінює).</dd>
+        <dt>✘</dt>
+        <dd>”Ні, не змінює масив”. Є методом-акцесором (accessor = той, що отримує доступ).</dd>
+        <dt>✘ | ✔</dt>
+        <dd>”Ні, але можливі варіанти”. Є методом-ітератором, що приймає у якості параметра (колбек-)функцію, яка може, але не мусить змінити масив. Приклад є після таблиці.</dd>
+    </dl>
+    </p>
+
+<div class="col-md-9 col-md-offset-1">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    Метод масиву
+                </th>
+                <th>
+                    Чи змінює метод масив-оригінал?
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <p>Array.prototype.pop()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.push()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.reverse()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.shift()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.sort()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.splice()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.unshift()</p>
+                </td>
+                <td>
+                    <p>✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.concat()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.join()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.slice()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.toString()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.toLocaleString()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.indexOf()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.lastIndexOf()</p>
+                </td>
+                <td>
+                    ✘
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.forEach()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.every()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.some()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.filter()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.map()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.reduce()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Array.prototype.reduceRight()</p>
+                </td>
+                <td>
+                    <p>✘ | ✔</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-12">
+    <p>✘ | ✔ — означає, що сам метод не змінює оригінальний  масив, але його параметр (колбек-функція, вона ж функція-ітератор) може його змінити, оскільки має на нього посилання у власних параметрах. Тому саме від реалізації функції-ітератора залежить, чи зміниться оригінальний масив. Ось приклад, що ілюструє ці дві протилежні можливості:</p>
+    <p>
+        <pre>
+    var a = [1, 2, 3];
+    // 1. Коли метод forEach не змінює масив
+    a.forEach(function(element, index, array) {
+            element = element + 10;
+    });
+    // Виведе [1, 2, 3] — масив не змінився
+    console.log(a);
+    
+    // 2. Коли метод forEach, а насправді - його ітератор - таки змінює масив
+    a.forEach(function(element, index, array) {
+          // масив змінюється всередині функції-ітератора
+            array[index] = element + 10;
+    });
+    // Виведе [11, 12, 13] — масив змінився
+    console.log(a);</pre>
+    </p>
+    <h3>Більше методів, включно з експериментальними:</h3>
+    <p><a href="https://www.google.com/url?q=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array%23Methods&sa=D&usg=AFQjCNG9-fjPgrK87pRXM9zJ4tf59O1nCQ">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods</a></p>
+    <p>Непогано написано про методи масивів, з прикладами: </p>
+    <p><a href="https://www.google.com/url?q=http://colintoh.com/blog/5-array-methods-that-you-should-use-today&sa=D&usg=AFQjCNHYd9XZpPZPT0XXPzckpoXVaTpKOw">http://colintoh.com/blog/5-array-methods-that-you-should-use-today</a></p>
+    <!-- ORIG: https://docs.google.com/document/d/1qfz63XQxqkgmOUgEaatpwm2yXyqpWJgHYS5IYpEtc28/edit# -->
+</div>

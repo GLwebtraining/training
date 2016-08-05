@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="js-lessons">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Уроки JavaScript</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="js/lib/angular.min.js"></script>
+		<script src="js/lib/angular-route.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controller/main.js"></script>
+	</head>
+	<body>
+		<script type="text/ng-template" id="render_base.html">
+			<div ng-style="{'padding-left': (topic.topics.length ? '0px' : '12px'), 'cursor':'pointer'}"><span ng-if="topic.topics" ng-show="!topic.open" ng-click="topic.open = true">&#9656;</span><span ng-if="topic.topics" ng-show="topic.open" ng-click="topic.open = false">&#9662;</span><a href="#{{topic.templateUrl}}">{{topic.name}}</a></div>
+			<ul class="nav nav-pills nav-stacked nav-child" ng-if="topic.topics" ng-init="topic.open = false" ng-show="topic.open" style="margin: 5px 0 0 10px;">
+				<li ng-repeat="topic in topic.topics" ng-include="'render_base.html'" ng-class="{'opened': topic.open}">
+					<a href="#{{topic.templateUrl}}">{{topic.name}}</a>
+				</li>
+			</ul>
+		</script>
+		<div id="wrapper" class="container-fluid">
+			<div id="header" class="page-header">
+				<h1><a href="#/dataTypes/intro">Уроки JavaScript</a> для початківців</h1>
+			</div>
+			<div id="main" class="row" ng-controller="mainCtrl as main">
+				<div id="sidebar" class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							База
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.base" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Функція
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.functions" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Javascript для веб
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.web" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							jQuery
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.jquery" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							this, Constructor, Prototype
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.proto" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Шаблони
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.patterns" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							NodeJS
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.nodejs" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							UI Responsiveness
+						</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li ng-repeat="topic in main.responsiveness" ng-include="'render_base.html'" ng-class="{'opened': topic.open}"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="page" class="col-md-8">
+					<div ng-view>Виберіть тему уроку у меню зліва: </div>
+				</div>
+			</div>
+			<div id="footer">
+				<div class="well well-lg">Good luck and have fun :)</div>
+				<!-- pre>
+				// TODO: додати про:
+				// ключові (зарезервовані) слова
+				// кращі практики написання коду: http://www.w3schools.com/js/js_best_practices.asp
+				</pre -->
+			</div>
+		</div>
+	</body>
+</html>

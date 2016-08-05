@@ -1,0 +1,50 @@
+﻿<h4>Свойства стилей, получение о них информации и изменение при помощи JavaScript</h4>
+<ul>
+	<li>
+		<code>className</code>
+		<p>Свойство className соответствует HTML-атрибуту class.</p>
+		<p>
+			<code> document.body.className += ' class3';</code>
+		</p>
+	</li>
+	<li>
+		<code>classList</code>
+		<p>Предоставляет удобный интерфейс для работы с отдельными классами. <strong>IE10+</strong></p>
+	</li>
+	<li>
+		<code>style</code>
+		<p>Свойство дает доступ к стилю элемента. Это свойство можно как читать, так и править.</p>
+		<p><code>element.style.width='100px';</code></p>
+		<p>Исключением является свойство float, используется element.style.cssFloat. Специфические свойства браузеров, типа -moz-border-radius, -webkit-border-radius, записываются следующим способом: <code>elem.style.MozBorderRadius = '5px';</code></p>
+	</li>
+	<li>
+		<code>style.cssText</code>
+		<p>Свойство style является специальным объектом, ему нельзя присваивать такую строку div.style="color:blue". Свойство style.cssText позволяет поставить стиль целиком в виде строки.</p>
+		<p>
+			<code>div.style.cssText="color: red !important; \</code>
+			<br />
+			<code>background-color: yellow; \</code>
+			<br />
+			<code>width: 100px";</code>
+		</p>
+	</li>
+</ul>
+<h4>Получение информации о style</h4>
+<p>Свойство style позволяет читать лишь ту информацию, которая доступна напрямую из свойства/атрибута "style" (дает доступ только к той информации, которая хранится в elem.style).</p>
+<p>
+	<code>document.body.style.margin = '20px';</code>
+	<br />
+	<code>console.log(document.body.style.marginTop);</code>
+</p>
+<ul>
+	<li>
+		<code>window.getComputedStyle(element, pseudo)</code>
+		<p>Позволяют получить живое значение свойств стилей после того, как эти стили были применены. <strong>IE9+</strong></p>
+		<p>element - элемент, значения для которого нужно получить <br />pseudo - указывается, если нужен стиль псевдо-элемента, например "::before". Пустая строка означает сам элемент.</p>
+		<p><code>var computedStyle = getComputedStyle(document.body, '');</code>
+		<br />
+		<code>console.log(computedStyle.marginTop);</code>
+		<br />
+		<code>console.log(computedStyle.color);</code></p>
+	</li>
+</ul>
