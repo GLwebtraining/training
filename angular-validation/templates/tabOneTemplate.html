@@ -1,0 +1,31 @@
+<div class="content" ng-controller="tabOneController as tabOne">
+	<p>Layer: <span class="label label-info">{{tabOne.data}}</span></p>
+	<div class="form-horizontal" ng-form="tabOne.model.form">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" required ng-model="tabOne.content.email" name="email123" ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" placeholder="Email">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" required ng-model="tabOne.content.name" name="name123" placeholder="Name">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" required name="accept" ng-model="tabOne.content.accept"> Accepted it
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default">Save</button>
+			</div>
+		</div>
+	</div>
+</div>

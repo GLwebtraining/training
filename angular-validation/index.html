@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Helper</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="styles/all.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script type="text/javascript" src="scripts/app.js"></script>
+		<script type="text/javascript" src="scripts/main.js"></script>
+		<script type="text/javascript" src="scripts/enumsService.js"></script>
+		<script type="text/javascript" src="scripts/contentService.js"></script>
+		<script type="text/javascript" src="scripts/validationService.js"></script>
+		<script type="text/javascript" src="scripts/validationApiService.js"></script>
+		<script type="text/javascript" src="scripts/validationModelService.js"></script>
+		<script type="text/javascript" src="scripts/rootController.js"></script>
+		<script type="text/javascript" src="scripts/tabOneController.js"></script>
+		<script type="text/javascript" src="scripts/tabTwoController.js"></script>
+	</head>
+	<body ng-app="angular-validation">
+		<div class="jumbotron" ng-controller="rootController as root">
+			<h1>Angular validation</h1>
+			<p>Layer: <span class="label label-info">{{root.data}}</span></p>
+			<p>
+				Validation state
+				<span class="label label-default" ng-if="!validation.isEnabled()">Disabled</span>
+				<span class="label label-primary" ng-if="validation.isEnabled()">Enabled</span>
+				<span class="label label-success" ng-if="validation.isValid()">Success</span>
+				<span class="label label-danger" ng-if="validation.isInvalid()">Failed</span>
+			</p>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-4">
+								<ul class="nav nav-pills nav-stacked">
+									<li role="presentation" ng-class="{'active': root.tabs.isActive(enums.Tabs.tabOne)}">
+										<a href="#" ng-click="root.tabs.setActive(enums.Tabs.tabOne)">
+											{{enums.Names[enums.Tabs.tabOne]}}
+											<span ng-if="validation.getModel(enums.Models.tabOne).isInvalid()" class="label label-danger pull-right">!</span>
+										</a>
+									</li>
+									<li role="presentation" ng-class="{'active': root.tabs.isActive(enums.Tabs.tabTwo)}">
+										<a href="#" ng-click="root.tabs.setActive(enums.Tabs.tabTwo)">
+											{{enums.Names[enums.Tabs.tabTwo]}}
+											<span ng-if="validation.getModel(enums.Models.tabTwo).isInvalid()" class="label label-danger pull-right">!</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-sm-8">
+								<div class="tab-content" ng-if="root.tabs.isActive(enums.Tabs.tabOne)" ng-include="'templates/tabOneTemplate.html'"></div>
+								<div class="tab-content" ng-if="root.tabs.isActive(enums.Tabs.tabTwo)" ng-include="'templates/tabTwoTemplate.html'"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

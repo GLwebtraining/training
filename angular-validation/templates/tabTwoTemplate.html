@@ -1,0 +1,35 @@
+<div class="content" ng-controller="tabTwoController as tabTwo">
+	<p>Layer: <span class="label label-info">{{tabTwo.data}}</span></p>
+	<form name="tabTwo.model.form">
+		<div class="form-group">
+			<label>Age</label>
+			<input type="text" ng-model="tabTwo.content.age" name="age123" required ng-pattern="/^[0-9]{2}$/" class="form-control" placeholder="Age">
+		</div>
+		<div class="form-group">
+			<label>Phone</label>
+			<input type="text" class="form-control" placeholder="Phone">
+		</div>
+		<div class="form-group">
+			<label>Sex</label>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" value="option1" checked>
+					Male
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" value="option2">
+					Female
+				</label>
+			</div>
+			<div class="radio disabled">
+				<label>
+					<input type="radio" name="optionsRadios" value="option3" disabled>
+					Unicorn
+				</label>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-default">Agree</button>
+	</form>
+</div>
