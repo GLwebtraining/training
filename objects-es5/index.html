@@ -51,7 +51,7 @@
 				<br>
 				for(var key in o) console.log(key);
 				<br>
-				// помечаем toString как не подлежащее перебору в for..in
+				// помечаем toString как не подлежащее перебору в for..in <br>
 				Object.defineProperty(o, "toString", {enumerable: false});
 				<br>
 				for(var key in o) console.log(key);<br>
@@ -107,8 +107,8 @@
 				&nbsp;&nbsp;}
 				};<br>
 				<br>
-				console.log(user.fullName);
-				user.fullName = 'Trololo ololo';
+				console.log(user.fullName);<br>
+				user.fullName = 'Trololo ololo';<br>
 				console.log(user.fullName);
 				<br>
 			</code></p>		
