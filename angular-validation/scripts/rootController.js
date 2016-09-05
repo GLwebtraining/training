@@ -27,7 +27,6 @@
 				}
 			}
 		}
-		console.log($scope.validation);
 		$scope.validation.enable();
 
 		vm.data = 'Root';

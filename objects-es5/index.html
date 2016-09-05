@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Objects - ES5</title>
+		<link rel="stylesheet" type="text/css" href="styles/all.css"/>
+		<script type="text/javascript" src="scripts/main.js"></script>
+	</head>
+	<body>
+		<h1>Descriptors, getter and setter</h1>
+		<article>
+			<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty()</a></h2>
+			<p>Метод позволяет установить новое свойство объекту, модифицировать существующее и вернуть объект.</p>
+			<h3>Syntax</h3>
+			<p>
+				<code>Object.defineProperty(obj, prop, descriptor)</code>
+				<ul>
+					<li><strong>obj</strong> - Объект, в котором объявляется свойство</li>
+					<li><strong>prop</strong> - Имя свойства, которое нужно объявить или модифицировать</li>
+					<li><strong>descriptor</strong> - Дескриптор свойства, которое нужно объявить или модифицировать</li>
+				</ul>
+			</p>
+			<p>Этот метод позволяет объявить дополнительное или модифицировать существующее свойство объекта. Обычное добавление свойств через присвоение создает свойства, которые показываются во время перечисления свойств (в цикле for/in или с помощью метода Object.keys), значения которых могут быть изменены или удалены. Этот метод позволяет изменять эти свойства. По умолчанию значения, добавленные с помощью Object.defineProperty () неизменяемые (immutable).</p>
+			<p>Свойство <strong>descriptor</strong>, присутствует в объектах в двух основных вариантах: описание данных (data descriptors) и описание методов доступа (accessor descriptors). Дескриптор данных это свойство, которое: имеет значение, может или не может быть доступно для записи. Дескриптор методов доступа является свойством, которое описывает get/set функции. Т.е. запрещено одновременно указывать значение value и функции get/set - либо значение, либо функции для его чтения-записи, одно из двух.</p>
+			<p>Объект <strong>descriptor</strong> может содержать следующие свойства:</p>
+			<ul>
+				<li><em>value</em> – значение свойства, по умолчанию undefined</li>
+				<li><em>writable</em> – значение свойства можно менять, если true. По умолчанию false</li>
+				<li><em>configurable</em> – если true, то свойство можно удалять, а также менять его в дальнейшем при помощи новых вызовов defineProperty. По умолчанию false</li>
+				<li><em>enumerable</em> – если true, то свойство просматривается в цикле for..in и методе Object.keys(). По умолчанию false</li>
+				<li><em>get</em> – функция, которая возвращает значение свойства. По умолчанию undefined</li>
+				<li><em>set</em> – функция, которая записывает значение свойства. По умолчанию undefined</li>
+			</ul>
+			<p><code>
+				var o = {}; <br>
+				Object.defineProperty(o, 'test', {<br>
+				&nbsp;&nbsp;value: 'foo', <br>
+				&nbsp;&nbsp;writable: false, <br>
+				&nbsp;&nbsp;configurable: false <br>
+				});<br>
+				<br>
+				// try to run with 'use strict' and without one<br>
+				o.test = 'boo';<br>
+				<br>
+			</code></p>
+			<p>Встроенный метод toString, как и большинство встроенных методов, не участвует в цикле for..in. Это удобно, так как обычно такое свойство является служебным. А свойство toString, объявленное следующим способом, будет видно в цикле for..in:</p>
+			<p><code>
+				var o = {<br>
+				&nbsp;&nbsp;test: 'foo', <br>
+				&nbsp;&nbsp;toString: function(){ return this.test; } <br>
+				};
+				<br>
+				for(var key in o) console.log(key);
+				<br>
+				// помечаем toString как не подлежащее перебору в for..in
+				Object.defineProperty(o, "toString", {enumerable: false});
+				<br>
+				for(var key in o) console.log(key);<br>
+				// вызов defineProperty не перезаписал свойство, а просто модифицировал настройки у существующего toString.<br>
+			</code></p>
+			<h3>Свойство как функция</h3>
+			<p>Дескриптор позволяет задать свойство, которое на самом деле работает как функция. Для этого в нём нужно указать эту функцию в get.</p>
+			<p><code>
+				var user = {<br>
+				&nbsp;&nbsp;firstName: 'Vadim', <br>
+				&nbsp;&nbsp;lastName: 'Reznik' <br>
+				};<br>
+				<br>
+				Object.defineProperty(user, "fullName", {<br>
+				&nbsp;&nbsp;get: function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return this.firtsName + ' ' + this.lastName; <br>
+				&nbsp;&nbsp;} <br>
+				}; <br>
+
+			</code></p>
+			<p>Также можно указать функцию, которая используется для записи значения, при помощи дескриптора set.</p>
+			<p><code>
+				var user = {<br>
+				&nbsp;&nbsp;firstName: 'Vadim', <br>
+				&nbsp;&nbsp;lastName: 'Reznik' <br>
+				};<br>
+				<br>
+				Object.defineProperty(user, "fullName", {<br>
+				&nbsp;&nbsp;get: function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return this.firtsName + ' ' + this.lastName; <br>
+				&nbsp;&nbsp;}, <br>
+				&nbsp;&nbsp;set: function(name){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.firtsName = name.split(' ')[0]; <br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.lastName = name.split(' ')[1]; <br>
+				&nbsp;&nbsp;} <br>
+				}; <br>
+				<br>
+				user.fullName = 'Trololo ololo';
+				<br>
+			</code></p>
+			<h3>Get/set в литералах</h3>
+			<p>Если мы создаём объект при помощи синтаксиса { ... }, то задать свойства-функции можно прямо в его определении. Для этого используется следующий синтаксис:</p>
+			<p><code>
+				var user = {<br>
+				&nbsp;&nbsp;firstName: 'Vadim', <br>
+				&nbsp;&nbsp;lastName: 'Reznik', <br>
+				&nbsp;&nbsp;get fullName(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return this.firtsName + ' ' + this.lastName; <br>
+				&nbsp;&nbsp;}, <br>
+				&nbsp;&nbsp;set fullName(name){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.firtsName = name.split(' ')[0]; <br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.lastName = name.split(' ')[1]; <br>
+				&nbsp;&nbsp;}
+				};<br>
+				<br>
+				console.log(user.fullName);
+				user.fullName = 'Trololo ololo';
+				console.log(user.fullName);
+				<br>
+			</code></p>		
+		</article>
+		<article>
+			<h2>Object.defineProperties()</h2>
+			<p>Этот метод позволяет объявить несколько свойств сразу</p>
+			<p><code><br>
+				var user = {};<br>
+				<br>
+				Object.defineProperties({<br>
+				&nbsp;&nbsp;firstName: {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;value: 'Vadim'<br>
+				&nbsp;&nbsp;},<br>
+				&nbsp;&nbsp;lastName: {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;value: 'Reznik'<br>
+				&nbsp;&nbsp;},<br>
+				&nbsp;&nbsp;fullName: {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;get: function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this.firtsName + ' ' + this.lastName; <br>
+				&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+				&nbsp;&nbsp;} <br>
+				});<br>
+				<br>
+				console.log(user.fullName);
+			</code></p>
+		</article>
+		<article>
+			<h2>Object.keys(), Object.getOwnPropertyNames()</h2>
+			<p>Возвращают массив – список свойств объекта.</p>
+			<p><strong>Object.keys</strong> возвращает только enumerable-свойства</p>
+			<p><strong>Object.getOwnPropertyNames</strong> возвращает все</p>
+		</article>
+		<article>
+			<h2>Object.getOwnPropertyDescriptor(obj, prop)</h2>
+			<p>Возвращает дескриптор для свойства obj[prop]. Полученный дескриптор можно изменить и использовать defineProperty для сохранения изменений.</p>
+		</article>
+		<article>
+			<h2>Object.preventExtensions(obj)</h2>
+			<p>Запрещает добавление свойств в объект.</p>
+		</article>
+		<article>
+			<h2>Object.seal(obj)</h2>
+			<p>Запрещает добавление и удаление свойств, все текущие свойства делает configurable: false.</p>
+		</article>
+		<article>
+			<h2>Object.freeze(obj)</h2>
+			<p>Запрещает добавление, удаление и изменение свойств, все текущие свойства делает configurable: false, writable: false.</p>
+		</article>
+		<article>
+			<h2>Object.isExtensible(obj)</h2>
+			<p>Возвращает false, если добавление свойств объекта было запрещено вызовом метода Object.preventExtensions.</p>
+		</article>
+		<article>
+			<h2>Object.isSealed(obj)</h2>
+			<p>Возвращает true, если добавление и удаление свойств объекта запрещено, и все текущие свойства являются configurable: false.</p>
+		</article>
+		<article>
+			<h2>Object.isFrozen(obj)</h2>
+			<p>Возвращает true, если добавление, удаление и изменение свойств объекта запрещено, и все текущие свойства являются configurable: false, writable: false.</p>
+		</article>
+	</body>
+</html>
