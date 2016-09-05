@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Objects - ES5</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="styles/all.css"/>
 		<script type="text/javascript" src="scripts/main.js"></script>
 	</head>
@@ -31,7 +32,7 @@
 				<li><em>set</em> – функция, которая записывает значение свойства. По умолчанию undefined</li>
 			</ul>
 			<p><code>
-				var o = {}; <br>
+				var o = {}; <br><br>
 				Object.defineProperty(o, 'test', {<br>
 				&nbsp;&nbsp;value: 'foo', <br>
 				&nbsp;&nbsp;writable: false, <br>
@@ -48,13 +49,17 @@
 				&nbsp;&nbsp;test: 'foo', <br>
 				&nbsp;&nbsp;toString: function(){ return this.test; } <br>
 				};
-				<br>
-				for(var key in o) console.log(key);
+				<br><br>
+				for(var key in o) {<br>
+				&nbsp;&nbsp;console.log(key);<br>
+				} <br>
 				<br>
 				// помечаем toString как не подлежащее перебору в for..in <br>
-				Object.defineProperty(o, "toString", {enumerable: false});
+				Object.defineProperty(o, "toString", {enumerable: false});<br>
 				<br>
-				for(var key in o) console.log(key);<br>
+				for(var key in o) {<br>
+				&nbsp;&nbsp;console.log(key); <br>
+				} <br>	
 				// вызов defineProperty не перезаписал свойство, а просто модифицировал настройки у существующего toString.<br>
 			</code></p>
 			<h3>Свойство как функция</h3>
