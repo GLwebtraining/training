@@ -12,19 +12,23 @@
 	var load = q.defer();
 
 	Object.defineProperty(w.module, 'export', {
+		get: function(){
+			var isValueNotExists = cache[currentFile] === undefined;
+
+			return cache[currentFile]; 
+		},
 		set: function(value){
 			cache[currentFile] = value;
-			load.resolve();
-			console.log(1);
 		}
 	});
 
 	function require(path){
 		if(!!path && !cache.hasOwnProperty(path) && !!head){;
 			currentFile = path;
-			head.appendChild(createScript(path));
+			var script = createScript(path);
+			head.appendChild(script);
 		}
-		return w.module;
+		return script.onload();
 	}
 
 	function createScript(path){
@@ -32,6 +36,9 @@
 		var script = w.document.createElement('script');
 		script.type = 'text/javascript';
 		script.src = path + hasExt;
+		script.onload = function(){
+			return w.module.export;
+		};
 		
 		return script;
 	}
