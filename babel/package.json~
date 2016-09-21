@@ -1,0 +1,14 @@
+{
+  "name": "babel",
+  "version": "1.0.0",
+  "description": "learning - how to ...",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.14.0"
+  }
+}

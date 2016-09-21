@@ -1,0 +1,19 @@
+{
+  "name": "babel",
+  "version": "1.0.0",
+  "description": "learning - how to ...",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo In progress && exit 1"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}
