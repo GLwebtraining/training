@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Function bind</title>
+		<script> 
+		
+		function bind(func, context){
+			return function(){
+				return func.apply(context, arguments);
+			}
+		}
+
+		var myObj = {
+			method: function(){
+				console.log(this.param, 'Method');
+
+				function test(){
+					console.log(this, 'Function');
+				}
+
+				test.bind(this)();
+				bind(test, this)();
+			},
+			param: 10
+		};
+		
+		myObj.method();
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
