@@ -1,0 +1,64 @@
+How to:
+
+1. Setup env for ReactJS:
+
+	- npm init
+		(skip all question as default)
+
+	- npm install react react-dom --save
+	- npm install babel-loader babel-core babel-preset-es2015 babel-preset-react
+
+	- create index.html, app.js, main.js, webpack.config.js
+	- npm install babel webpack webpack-dev-server -g
+		(should be installed as global before)
+
+	- update the package.json:
+		-- add to "script" section next: "start": "webpack-dev-server"
+	
+	webpack.config.js
+	--------------------
+	module.exports = {
+		entry: './main.js',
+		output: {
+			path: './',
+			filename: 'index.js'
+		},
+		devServer: {
+			inline: true,
+			port: 3333
+		},
+		module: {
+			loaders: [
+				{
+					test: /\.js$/,
+					exclude: /node_moudles/,
+					loader: 'babel',
+					query: {
+						presets: ['es2015', 'react']
+					}
+				}
+			]
+		}
+	}
+
+	index.html
+	------------
+	- include script with src to index.js to the end of body
+
+	app.js
+	-------
+	import React from 'react';
+	class App extends React.Component{
+		render(){
+			return <div>Hello</div>
+		}
+	}
+	export default App;
+
+
+	main.js
+	-------
+	import React from 'react';
+	import ReactDOM from 'react-dom';
+	import App from './App';
+	ReactDOM.render(<App />, document.getElementById('app'));
