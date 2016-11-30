@@ -49,14 +49,47 @@ function isObject(obj){
 	return typeof obj === 'object' && obj instanceof Object;
 }
 
+var mySingleton = (function () {
+	var instance;
+
+	function init() {
+		return {};
+	};
+	return {
+		getInstance: function () {
+			if ( !instance ) {
+				instance = init();
+			}
+			return instance;
+		}
+	};
+})();
+
 var ABC = {
-	Component: function(obj){
-		return new Component(obj);
-	}
+	Component: (function () {
+		var instance;
+
+		function init(obj) {
+			return new Component(obj);
+		};
+
+		return function (obj) {
+			if ( !instance ) {
+				instance = init(obj);
+			}
+			return instance.update();
+		};
+	})();
 };
 
+// var ABC = {
+// 	Component: function(obj){
+// 		return new Component(obj);
+// 	}
+// };
+
 function Component(settings){
-	var required = ['element', 'model', 'events', 'template', 'render'];
+	var required = ['element', 'model', 'events', 'template', 'render', 'update'];
 	var hop = settings.hasOwnProperty;
 	var keys = Object.keys(settings);
 

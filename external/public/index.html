@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Https - header - test</title>
+        <style>
+		#pdf {
+		    max-width: 100%;
+			width: 600px;
+			height: 600px;
+			border: 10px solid rgba(0,0,0,.2);
+			margin: 0;
+		}        </style>
+        <script src="https://localhost:3000/newheader"></script>
+	    <script>
+	        if (window.HeaderABC) {
+	            HeaderABC.config({
+	                isExpenseNow: true,
+	                menuUrl: 'https://launchpad.local.synapse.com/exd/api/globalmenu',
+	                upmUrl: 'https://launchpad.local.synapse.com/upm'
+				});
+	        }
+	    </script>
+		<script src="pdfobject.js"></script>
+		<script>
+
+			window.onload = function(){
+				var options = {
+					page: 2,
+					pdfOpenParams: {
+						view: "FitV",
+						pagemode: "thumbs",
+						search: "lorem ipsum"
+					},
+					// type: "image/jpg",
+					forcePDFJS: true,
+					PDFJS_URL: 'https://pdfobject.com/pdfjs/web/viewer.html'
+				}
+				var path = "https://writingwithoutwords.files.wordpress.com/2013/09/";
+				// PDFObject.embed("women_monochrome_faces_portraits_desktop_2972x2548_hd-wallpaper-1182095.jpg", "#pdf", options);
+				PDFObject.embed("https://www.ets.org/Media/Tests/TOEFL/pdf/SampleQuestions.pdf", "#pdf", options);
+			};
+		</script>
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <div id="pdf"></div>
+    </body>
+<html>

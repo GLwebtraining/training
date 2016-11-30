@@ -159,7 +159,7 @@ Someone.prototype = {
 			return course.courseName + '(ID: ' + course.id + ')';
 		});
 	},
-	sendRequest: function(courseId){
+	subscribe: function(courseId){
 		var courseApply = School.addToCourse(courseId, this);
 		if(!!courseApply){
 			this.appliedTo.push(courseApply);
@@ -197,23 +197,23 @@ var userC = users[2];
 var userD = users[3];
 var userE = users[4];
 
-userA.sendRequest(1);
-userB.sendRequest(1);
-userC.sendRequest(1);
-userD.sendRequest(1);
-userE.sendRequest(1);
+userA.subscribe(1);
+userB.subscribe(1);
+userC.subscribe(1);
+userD.subscribe(1);
+userE.subscribe(1);
 
-userA.sendRequest(2);
-userB.sendRequest(2);
-userC.sendRequest(2);
-userD.sendRequest(2);
+userA.subscribe(2);
+userB.subscribe(2);
+userC.subscribe(2);
+userD.subscribe(2);
 
-userA.sendRequest(3);
-userB.sendRequest(3);
-userC.sendRequest(3);
+userA.subscribe(3);
+userB.subscribe(3);
+userC.subscribe(3);
 
-userD.sendRequest(5);
-userE.sendRequest(5);
+userD.subscribe(5);
+userE.subscribe(5);
 
 console.log(userA.getAppliedCourses());
 console.log(userB.getAppliedCourses());

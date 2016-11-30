@@ -1,0 +1,4 @@
+var office = require('office');
+office.parse('LearningGuide.docx', function(err, data) {
+	console.log(data.sheets);
+});
