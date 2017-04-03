@@ -1,3 +1,15 @@
+
+/*
+
+	NOTE:
+
+	1. It is for running mongo base from npm scritp - "start mongod -dbpath d:\\git\\training\\mongo_database"
+	2. Be sure that you have the latest version of typescript and tsc
+	2.1. For removing old ver of tsc go to c:\program files x86\windows sdk\typescript
+	2.2. Go to Evironment variables and check the PATH where existing reference to typescript
+	2.3. For install latest version run "npm install -g typescript@latest"
+*/
+
 var fs = require('fs');
 var exec = require('child_process').spawn;
 var mongoose = require('mongoose');

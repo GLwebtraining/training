@@ -1,0 +1,41 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "rimraf dist && webpack --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "~2.4.0",
+    "@angular/compiler": "~2.4.0",
+    "@angular/core": "~2.4.0",
+    "@angular/forms": "~2.4.0",
+    "@angular/http": "~2.4.0",
+    "@angular/platform-browser": "~2.4.0",
+    "@angular/platform-browser-dynamic": "~2.4.0",
+    "@angular/router": "~3.4.0",
+
+    "angular-in-memory-web-api": "~0.2.4",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.1",
+    "zone.js": "^0.7.4"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.0.4",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.5",
+    "file-loader": "^0.10.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
+    "resolve-url-loader": "^2.0.0",
+    "sass-loader": "^6.0.0",
+    "style-loader": "^0.13.1",
+    "typescript": "^2.1.6",
+    "webpack": "^2.2.1"
+  }
+}

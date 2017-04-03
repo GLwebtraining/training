@@ -1,0 +1,472 @@
+undefined 'development' false
+
+Webpack is watching the files…
+
+{
+  "errors": [],
+  "warnings": [],
+  "version": "2.2.1",
+  "hash": "7db0bfd84134fa67da87",
+  "time": 928,
+  "publicPath": "",
+  "assetsByChunkName": {
+    "home": "home.js",
+    "about": "about.js",
+    "common": "common.js"
+  },
+  "assets": [
+    {
+      "name": "home.js",
+      "size": 726,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "home"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "about.js",
+      "size": 1112,
+      "chunks": [
+        1
+      ],
+      "chunkNames": [
+        "about"
+      ],
+      "emitted": true
+    },
+    {
+      "name": "common.js",
+      "size": 28142,
+      "chunks": [
+        2
+      ],
+      "chunkNames": [
+        "common"
+      ],
+      "emitted": true
+    }
+  ],
+  "entrypoints": {
+    "home": {
+      "chunks": [
+        2,
+        0
+      ],
+      "assets": [
+        "common.js",
+        "home.js"
+      ]
+    },
+    "about": {
+      "chunks": [
+        2,
+        1
+      ],
+      "assets": [
+        "common.js",
+        "about.js"
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "extraAsync": false,
+      "size": 96,
+      "names": [
+        "home"
+      ],
+      "files": [
+        "home.js"
+      ],
+      "hash": "2b7f8cd794f9cc0acdcb",
+      "parents": [
+        2
+      ],
+      "modules": [
+        {
+          "id": 3,
+          "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+          "name": "./home.js",
+          "index": 0,
+          "index2": 2,
+          "size": 96,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "profile": {
+            "factory": 50,
+            "building": 605
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "usedExports": true,
+          "providedExports": null,
+          "depth": 0,
+          "source": "'use strict';\n\nlet welcome = require('./welcome');\n\nwelcome('home');\n\nexports.welcome = welcome;"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 3,
+          "module": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+          "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+          "moduleName": "./home.js",
+          "loc": "",
+          "name": "home",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "extraAsync": false,
+      "size": 95,
+      "names": [
+        "about"
+      ],
+      "files": [
+        "about.js"
+      ],
+      "hash": "88983a4aa3c8516aa5bd",
+      "parents": [
+        2
+      ],
+      "modules": [
+        {
+          "id": 2,
+          "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+          "name": "./about.js",
+          "index": 3,
+          "index2": 3,
+          "size": 95,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            1
+          ],
+          "assets": [],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "profile": {
+            "factory": 594,
+            "building": 70,
+            "dependencies": 3
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "usedExports": true,
+          "providedExports": null,
+          "depth": 0,
+          "source": "'use strict';\n\nimport welcome from './welcome';\n\nwelcome('aboout');\n\nexports.welcome = welcome;"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "moduleId": 2,
+          "module": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+          "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+          "moduleName": "./about.js",
+          "loc": "",
+          "name": "about",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "extraAsync": false,
+      "size": 5467,
+      "names": [
+        "common"
+      ],
+      "files": [
+        "common.js"
+      ],
+      "hash": "818dc84026d2193dc162",
+      "parents": [],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+          "name": "./welcome.js",
+          "index": 1,
+          "index2": 1,
+          "size": 158,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "assets": [],
+          "issuer": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+          "issuerId": 3,
+          "issuerName": "./home.js",
+          "profile": {
+            "factory": 15,
+            "building": 18
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 2,
+              "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+              "module": "./about.js",
+              "moduleName": "./about.js",
+              "type": "harmony import",
+              "userRequest": "./welcome",
+              "loc": "3:0-32"
+            },
+            {
+              "moduleId": 3,
+              "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+              "module": "./home.js",
+              "moduleName": "./home.js",
+              "type": "cjs require",
+              "userRequest": "./welcome",
+              "loc": "3:14-34"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "depth": 1,
+          "source": "'use strict';\n\nmodule.exports = function (message) {\n\tif (process.env.NODE_ENV == 'development') {\n\t\tconsole.log(message);\n\t}\n\talert('Welcome ' + message);\n};"
+        },
+        {
+          "id": 1,
+          "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\node_modules\\process\\browser.js",
+          "name": "../~/process/browser.js",
+          "index": 2,
+          "index2": 0,
+          "size": 5309,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            2
+          ],
+          "assets": [],
+          "issuer": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+          "issuerId": 0,
+          "issuerName": "./welcome.js",
+          "profile": {
+            "factory": 5,
+            "building": 138
+          },
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+              "module": "./welcome.js",
+              "moduleName": "./welcome.js",
+              "type": "cjs require",
+              "userRequest": "process",
+              "loc": "1:0-47"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "depth": 2,
+          "source": "// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout() {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n})();\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch (e) {\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch (e) {\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e) {\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e) {\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while (len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () {\n    return '/';\n};\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function () {\n    return 0;\n};"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": []
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+      "name": "./welcome.js",
+      "index": 1,
+      "index2": 1,
+      "size": 158,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        2
+      ],
+      "assets": [],
+      "issuer": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+      "issuerId": 3,
+      "issuerName": "./home.js",
+      "profile": {
+        "factory": 15,
+        "building": 18
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 2,
+          "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+          "module": "./about.js",
+          "moduleName": "./about.js",
+          "type": "harmony import",
+          "userRequest": "./welcome",
+          "loc": "3:0-32"
+        },
+        {
+          "moduleId": 3,
+          "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+          "module": "./home.js",
+          "moduleName": "./home.js",
+          "type": "cjs require",
+          "userRequest": "./welcome",
+          "loc": "3:14-34"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 1,
+      "source": "'use strict';\n\nmodule.exports = function (message) {\n\tif (process.env.NODE_ENV == 'development') {\n\t\tconsole.log(message);\n\t}\n\talert('Welcome ' + message);\n};"
+    },
+    {
+      "id": 1,
+      "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\node_modules\\process\\browser.js",
+      "name": "../~/process/browser.js",
+      "index": 2,
+      "index2": 0,
+      "size": 5309,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        2
+      ],
+      "assets": [],
+      "issuer": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+      "issuerId": 0,
+      "issuerName": "./welcome.js",
+      "profile": {
+        "factory": 5,
+        "building": 138
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": 0,
+          "moduleIdentifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\welcome.js",
+          "module": "./welcome.js",
+          "moduleName": "./welcome.js",
+          "type": "cjs require",
+          "userRequest": "process",
+          "loc": "1:0-47"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 2,
+      "source": "// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout() {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n})();\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch (e) {\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch (e) {\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e) {\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e) {\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while (len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () {\n    return '/';\n};\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function () {\n    return 0;\n};"
+    },
+    {
+      "id": 2,
+      "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\about.js",
+      "name": "./about.js",
+      "index": 3,
+      "index2": 3,
+      "size": 95,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        1
+      ],
+      "assets": [],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "profile": {
+        "factory": 594,
+        "building": 70,
+        "dependencies": 3
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 0,
+      "source": "'use strict';\n\nimport welcome from './welcome';\n\nwelcome('aboout');\n\nexports.welcome = welcome;"
+    },
+    {
+      "id": 3,
+      "identifier": "D:\\git\\training\\webpack\\node_modules\\babel-loader\\lib\\index.js!D:\\git\\training\\webpack\\frontend\\home.js",
+      "name": "./home.js",
+      "index": 0,
+      "index2": 2,
+      "size": 96,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        0
+      ],
+      "assets": [],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "profile": {
+        "factory": 50,
+        "building": 605
+      },
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [],
+      "usedExports": true,
+      "providedExports": null,
+      "depth": 0,
+      "source": "'use strict';\n\nlet welcome = require('./welcome');\n\nwelcome('home');\n\nexports.welcome = welcome;"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
