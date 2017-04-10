@@ -31,7 +31,17 @@ var fuelSchema = mongoose.Schema({
 	dateTime: 'date'
 });
 var fuel = mongoose.model('Fuel', fuelSchema);
-var pipe = exec('C:\\Program Files\\MongoDB\\Server\\3.2\\bin\\mongod.exe', ['--dbpath=d:\\git\\training\\mongo_database']);
+
+if(args[0] === 'startdb'){
+	var pipe = exec('C:\\Program Files\\MongoDB\\Server\\3.2\\bin\\mongod.exe', ['--dbpath=d:\\git\\training\\mongo_database']);
+	pipe.stdout.on('data', function (data) {
+	    connectToDb();
+	});
+	pipe.on('close', function(code) {
+	    console.log('Process exited with code: '+ code);
+	});	
+}
+
 
 var express = require('express');
 var app = express();
@@ -43,17 +53,10 @@ app.get('/', function(req, res){
 	res.end();
 });
 
-app.listen(3305, 'local', function(){
+app.listen(3305, function(){
 	console.log('Server started on port 3305');
 })
 
-pipe.stdout.on('data', function (data) {
-    connectToDb();
-});
-
-pipe.on('close', function(code) {
-    console.log('Process exited with code: '+ code);
-});
 
 function connectToDb(){
 	mongoose.connect('mongodb://localhost:27017/fuel');
