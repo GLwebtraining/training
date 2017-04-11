@@ -1,0 +1,92 @@
+[
+	{
+		"id": 0,
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john.doe@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 1,
+		"firstName": "James",
+		"lastName": "Smith",
+		"email": "james.smith@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 2,
+		"firstName": "Maria",
+		"lastName": "Garcia",
+		"email": "maria.garcia@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 3,
+		"firstName": "Maria",
+		"lastName": "Rodriguez",
+		"email": "maria.rodriguez@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 4,
+		"firstName": "James",
+		"lastName": "Johnson",
+		"email": "james.johnson@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 5,
+		"firstName": "Robert",
+		"lastName": "Hernandez",
+		"email": "robert.hernandez@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 6,
+		"firstName": "David",
+		"lastName": "Martinez",
+		"email": "david.martinez@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 7,
+		"firstName": "William",
+		"lastName": "Brown",
+		"email": "william.brown@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 8,
+		"firstName": "George",
+		"lastName": "Clark",
+		"email": "george.clark@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	},
+	{
+		"id": 9,
+		"firstName": "Charles",
+		"lastName": "Williams",
+		"email": "charles.williams@email.com",
+		"age": 30,
+		"sex": "Male",
+		"phoneNumber": "1234567890"
+	}
+]

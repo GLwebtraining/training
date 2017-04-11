@@ -1,0 +1,56 @@
+IT School (ITS)
+
+ITS is just a list of possible IT courses. 
+You can get all courses, add a new one or remove one from the list using the app. 
+Each of courses represents as an instance of a class Course that contains a name of course, duration of the course, a list of trainees and a group limit. 
+You can get all trainees, add or remove a trainee from the course.
+Each of trainees represents as an instance of a class User which in turn contains a first and last name of an user, an email of the user, phone, sex and age of the user.
+The user can subscribe to a course or unsubscribe from a course. You can get all subscribed courses of the user.
+The app has log a message for the each action (add/remove course, subscribe/unsubcribe user etc).
+
+Input data of courses:
+[
+	{
+		name: 'Native JS',
+		duration: 16,
+		limit: 4
+	},
+	{
+		name: 'Angular JS',
+		duration: 9,
+		limit: 3
+	},
+	{
+		name: 'Node JS',
+		duration: 6,
+		limit: 2
+	},
+	{
+		name: 'jQuery advanced',
+		duration: 6,
+		limit: 4
+	},
+	{
+		name: 'Unit testing',
+		duration: 2,
+		limit: 2
+	},
+	{
+		name: 'Performance and Optimization',
+		duration: 3,
+		limit: 2
+	}
+]
+
+Input data of users:
+[
+	{
+		firstName: 'John',
+		lastName: 'Doe',
+		email: 'jdoe@mail.com',
+		age: 30,
+		sex: 'Male',
+		phone: 123456789
+	}
+	...
+]

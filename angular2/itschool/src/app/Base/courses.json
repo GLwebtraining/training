@@ -1,0 +1,68 @@
+[
+	{
+		"id": 0,
+		"name": "Native Javascript",
+		"duration": 24,
+		"limit": 16
+	},
+	{
+		"id": 1,
+		"name": "AngularJS v.1.x.x",
+		"duration": 16,
+		"limit": 10
+	},
+	{
+		"id": 2,
+		"name": "NodeJS",
+		"duration": 8,
+		"limit": 10
+	},
+	{
+		"id": 3,
+		"name": "jQuery beginner",
+		"duration": 8,
+		"limit": 16
+	},
+	{
+		"id": 4,
+		"name": "jQuery Advanced",
+		"duration": 8,
+		"limit": 16
+	},
+	{
+		"id": 5,
+		"name": "ECMASctript2015",
+		"duration": 8,
+		"limit": 10
+	},
+	{
+		"id": 6,
+		"name": "TypeScript",
+		"duration": 4,
+		"limit": 5
+	},
+	{
+		"id": 7,
+		"name": "AngularJS 2",
+		"duration": 4,
+		"limit": 4
+	},
+	{
+		"id": 8,
+		"name": "Unit testing",
+		"duration": 8,
+		"limit": 10
+	},
+	{
+		"id": 9,
+		"name": "Performance and Optimization",
+		"duration": 16,
+		"limit": 10
+	},
+	{
+		"id": 10,
+		"name": "Webpack 2.x",
+		"duration": 10,
+		"limit": 6
+	}
+]
