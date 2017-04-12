@@ -7,15 +7,36 @@ import { Tab } from '../../common/enum.service';
 	styleUrls: ['./project.component.scss']
 })
 
-
 export class ProjectComponent implements OnInit {
 	@Input() model: any;
 	tabs = Tab;
 	level: Object;
 	deepCount: Number = 0;
 	activeTab: number;
+	types = [];
 	ngOnInit(): void {
 		this.activeTab = this.tabs.Project;
+		let found = find(this.model.hierarchy)('type');
+		console.log(found);
+
+		function find(target){
+			debugger;
+			let res = [];
+			return function(key){
+				if(!!target.children && !!target.children.length){
+					for(let i = 0; i < target.children.length; i++){
+						let o = target.children[i];
+						for(let k in o){
+							if(o.hasOwnProperty(key) && k === key){
+								res.push(o[k]);
+								continue;
+							}
+						}
+					}
+				}
+				return res;
+			}
+		}
 	}
 	levelFirst(hierarchy): void {
 		if (!hierarchy.hasOwnProperty('children')){

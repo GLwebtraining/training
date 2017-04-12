@@ -66,9 +66,11 @@ export const Enums = {
 				],
 				hierarchy: {
 					name: 'Building',
+					type: 'Building',
 					children: [
 						{
 							name: 'Block A',
+							type: 'Block',
 							children: [
 								{
 									name: 'Floor #1'
@@ -80,58 +82,75 @@ export const Enums = {
 						},
 						{
 							name: 'Block B',
+							type: 'Block',
 							children: [
 								{
 									name: 'Floor #1',
+									type: 'Floor',
 									children: [
 										{
 											name: 'Area B1A',
+											type: 'Area',
 											children: [
 												{
-													name: 'Room A101'
+													name: 'Room A101',
+													type: 'Room'
 												},
 												{
-													name: 'Room A102'
+													name: 'Room A102',
+													type: 'Room'
 												},
 												{
-													name: 'Room A103'
+													name: 'Room A103',
+													type: 'Room'
 												},
 												{
-													name: 'Room A104'
+													name: 'Room A104',
+													type: 'Room'
 												},
 												{
-													name: 'Room A105'
+													name: 'Room A105',
+													type: 'Room'
 												}
 											]
 										},
 										{
 											name: 'Area B1B',
+											type: 'Area',
 											children: [
 												{
-													name: 'Room B111'
+													name: 'Room B111',
+													type: 'Room'
 												},
 												{
-													name: 'Room B112'
+													name: 'Room B112',
+													type: 'Room'
 												},
 												{
-													name: 'Room B113'
+													name: 'Room B113',
+													type: 'Room'
 												},
 												{
-													name: 'Room B114'
+													name: 'Room B114',
+													type: 'Room'
 												},
 												{
-													name: 'Room B115'
+													name: 'Room B115',
+													type: 'Room'
 												}
 											]
 										},
 										{
 											name: 'Area B1C',
+											type: 'Area',
 											children: [
 												{
-													name: 'Room - Open space #1'
+													name: 'Room - Open space #1',
+													type: 'Room'
 												},
 												{
-													name: 'Room - Open space #2'
+													name: 'Room - Open space #2',
+													type: 'Room'
 												}
 											]
 										}
@@ -139,28 +158,35 @@ export const Enums = {
 								},
 								{
 									name: 'Floor #2',
+									type: 'Floor',
 									children: [
 										{
 											name: 'Area B2A',
+											type: 'Area',
 											children: [
 												{
-													name: 'Level 6'
+													name: 'Level 6',
+													type: 'Room'
 												}
 											]
 										},
 										{
 											name: 'Area B2B',
+											type: 'Area',
 											children: [
 												{
-													name: 'Level 6'
+													name: 'Level 6',
+													type: 'Room'
 												}
 											]
 										},
 										{
 											name: 'Area B2C',
+											type: 'Area',
 											children: [
 												{
-													name: 'Level 6'
+													name: 'Level 6',
+													type: 'Room'
 												}
 											]
 										}
