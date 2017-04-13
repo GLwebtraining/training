@@ -6,10 +6,11 @@ import { Enums } from '../common/enum.service';
   template: `
   	<div class="level-deep" (mouseover)="level.showMinus = true" (mouseleave)="level.showMinus = false" [ngClass]="['level-'+deepCount]">
 	  	<span class="title" (mouseover)="level.showPlus = true" (mouseleave)="level.showPlus = false" [class.deepend]="!level?.children">
-	  		{{level.name}}
+	  		<em *ngIf="!!level.children && !!level.children.length" [ngClass]="{'glyphicon-menu-down': level?.children && level.open, 'glyphicon-menu-right': level?.children && !level.open}" (click)="toggleState(level)" class="glyphicon expand" aria-hidden="true"></em>
+	  		{{level.name + (level?.description ? ' ' + level?.description : '' )}}
 	  		<em *ngIf="level.showPlus && (!!level.children)" (click)="singleClick(level, 'add');" class="glyphicon glyphicon-plus"></em>
 	  		<em *ngIf="level.showMinus && !level?.children" (click)="handleRemoveClick(level);" class="glyphicon glyphicon-minus"></em>
-	  		<em *ngIf="!!level.children && !!level.children.length" [ngClass]="{'glyphicon-menu-down': level?.children && level.open, 'glyphicon-menu-right': level?.children && !level.open}" (click)="toggleState(level)" class="glyphicon" aria-hidden="true"></em>
+	  		<em class="glyphicon glyphicon-pencil"></em>
 	  	</span>
 		<ul class="tree-component" [hidden]="!level.open" *ngIf="level?.children">
 			<li *ngFor="let level of level?.children">
@@ -104,6 +105,10 @@ import { Enums } from '../common/enum.service';
 	.level-deep span.title em.glyphicon:hover{
 		opacity: 1;
 	}
+	.level-deep span.title em.glyphicon.glyphicon-pencil{
+		border: 0;
+	    margin: -10px -10px -10px 0;
+	}
 	.level-deep span.title em.glyphicon{
 	    padding: 0 0 0 7px;
 	    float: right;
@@ -117,6 +122,10 @@ import { Enums } from '../common/enum.service';
 	    margin: -10px -10px -10px 10px;
 	    text-align: center;
 	    opacity: 0.7;
+	}
+	.level-deep span.title em.glyphicon.expand{
+		float: left;
+		margin: -10px 10px -10px -14px;
 	}
 	.level-deep span.title em.glyphicon:before{
 		font-size: 10px;
@@ -136,9 +145,7 @@ export class TreeComponent implements OnInit {
 
 	clicked: Boolean = false;
 
-	ngOnInit(): void {
-		console.log(this.editable);
-	}
+	ngOnInit(): void {}
 
 	handleClick(level): void {
 		if (this.editable) {

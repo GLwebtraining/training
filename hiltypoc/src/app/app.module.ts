@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { Enums } from './common/enum.service';
+import { GenerateInfo } from './main/project/project.service';
 import { MainComponent } from './main/main.component';
 import { TreeComponent } from './common/tree.component';
 
@@ -27,7 +28,7 @@ import { ProjectComponent } from './main/project/project.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [GenerateInfo],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GenerateInfo } from './project.service';
 import { Tab } from '../../common/enum.service';
 
 @Component({
@@ -13,30 +14,16 @@ export class ProjectComponent implements OnInit {
 	level: Object;
 	deepCount: Number = 0;
 	activeTab: number;
-	types = [];
+	dataFetch: Boolean = false;
+	statistic: Object = {};
+
+
+	constructor(
+		private generate: GenerateInfo
+	) { }
+
 	ngOnInit(): void {
 		this.activeTab = this.tabs.Project;
-		let found = find(this.model.hierarchy)('type');
-		console.log(found);
-
-		function find(target){
-			debugger;
-			let res = [];
-			return function(key){
-				if(!!target.children && !!target.children.length){
-					for(let i = 0; i < target.children.length; i++){
-						let o = target.children[i];
-						for(let k in o){
-							if(o.hasOwnProperty(key) && k === key){
-								res.push(o[k]);
-								continue;
-							}
-						}
-					}
-				}
-				return res;
-			}
-		}
 	}
 	levelFirst(hierarchy): void {
 		if (!hierarchy.hasOwnProperty('children')){
@@ -53,11 +40,14 @@ export class ProjectComponent implements OnInit {
 		} else {
 			currentLevel.children.push({ name: 'Level N' })
 		}
+		console.log(GenerateInfo, this, this.generate);
+
+		// this.model = this.main.prototype.genarateInfo(this.model);
 	}
 	removeLevel(currentLevel): void {
 		let base = this.model.hierarchy;
 		let foundObject = findObjectIndex(base, 'name', currentLevel.name);
-
+		debugger;
 		if (foundObject){
 			foundObject.array.splice(foundObject.index, 1);
 			if (!foundObject.array.length){

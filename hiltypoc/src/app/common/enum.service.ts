@@ -1,4 +1,4 @@
-export enum Status { 
+export enum Status {
 	Active,
 	Inactive
 };
@@ -73,10 +73,12 @@ export const Enums = {
 							type: 'Block',
 							children: [
 								{
-									name: 'Floor #1'
+									name: 'Floor #1',
+									type: 'Floor'
 								},
 								{
-									name: 'Floor #2'
+									name: 'Floor #2',
+									type: 'Floor'
 								}
 							]
 						},

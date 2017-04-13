@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-modal',
@@ -22,9 +22,11 @@ export class ModalComponent {
 
 	public visible = false;
 	private visibleAnimate = false;
+  @Output() OnShow: EventEmitter<any> = new EventEmitter()
 
 	public show(): void {
 		this.visible = true;
+    this.OnShow.emit();
 		setTimeout(() => this.visibleAnimate = true);
 	}
 

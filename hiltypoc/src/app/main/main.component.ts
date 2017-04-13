@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Enums, Status } from '../common/enum.service';
 import { ModalComponent } from '../common/modal.component';
+import { GenerateInfo } from '../main/project/project.service';
 
 @Component({
 	selector: 'main',
@@ -14,10 +15,15 @@ export class MainComponent {
 	attrs: Object = Enums;
 	status = Status;
 	projectFilter = Status.Active;
-	selectedProject: Object = {};
+	selectedProject: any = {};
 	@ViewChild(ModalComponent) public readonly modal: ModalComponent;
+
+	constructor(
+		private generate: GenerateInfo
+	) { }
+
 	showDetails(project){
-		this.selectedProject = project;
+		this.selectedProject = this.generate.extend(project);
 		this.modal.show();
 	}
 }

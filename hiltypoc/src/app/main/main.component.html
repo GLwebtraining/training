@@ -65,7 +65,7 @@
       Project "<strong>{{selectedProject.name}}</strong>" details 
     </div>
     <div class="app-modal-body">
-      <project [model]="selectedProject"></project>
+      <project [model]="selectedProject" (info)="generateInfo($event)"></project>
     </div>
     <div class="app-modal-footer">
       <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>

@@ -64,7 +64,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hierarchy1" class="sr-only">Hierarchy</label>
-						<input type="text" class="form-control input-sm" id="hierarchy1" placeholder="Building">
+						<input type="text" class="form-control input-sm" id="hierarchy1" disabled="" placeholder="Building" [(ngModel)]="model.types.level1.name" name="level1">
 					</div>
 					<div class="form-group">
 						<label class="sr-only">Hierarchy</label>
@@ -72,7 +72,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hierarchy2" class="sr-only">Hierarchy</label>
-						<input type="text" class="form-control input-sm" id="hierarchy2" placeholder="Floor">
+						<input type="text" class="form-control input-sm" id="hierarchy2" placeholder="Floor" [(ngModel)]="model.types.level2.name" name="level2">
 					</div>
 					<div class="form-group">
 						<label class="sr-only">Hierarchy</label>
@@ -80,7 +80,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hierarchy3" class="sr-only">Hierarchy</label>
-						<input type="text" class="form-control input-sm" id="hierarchy3" placeholder="Floor">
+						<input type="text" class="form-control input-sm" id="hierarchy3" placeholder="Room" [(ngModel)]="model.types.level3.name" name="level3">
 					</div>
 					<div class="form-group">
 						<label class="sr-only">Hierarchy</label>
@@ -88,7 +88,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hierarchy4" class="sr-only">Hierarchy</label>
-						<input type="text" class="form-control input-sm" id="hierarchy4" placeholder="">
+						<input type="text" class="form-control input-sm" id="hierarchy4" placeholder="" [(ngModel)]="model.types.level4.name" name="level4">
 					</div>
 				</form>
 			</div>
