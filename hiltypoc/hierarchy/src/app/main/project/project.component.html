@@ -1,0 +1,137 @@
+<div class="project-details">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li [class.active]="activeTab === tabs.Project"><a href="#" (click)="activeTab = tabs.Project">Project</a></li>
+			<li [class.active]="activeTab === tabs.Attributes"><a href="#" (click)="activeTab = tabs.Attributes">Attributes</a></li>
+			<li [class.active]="activeTab === tabs.Hierarchy"><a href="#" (click)="activeTab = tabs.Hierarchy">Hierarchy</a></li>
+			<li [class.active]="activeTab === tabs.Documents"><a href="#" (click)="activeTab = tabs.Documents">Documents</a></li>
+			<li [class.active]="activeTab === tabs.Users"><a href="#" (click)="activeTab = tabs.Users">Users</a></li>
+		</ol>
+	</div>
+	<div class="row" [ngSwitch]="activeTab">
+		<ng-container *ngSwitchCase="tabs.Project">
+			<div class="row-wrap col-lg-6">
+				<ul>
+					<li>
+						<strong>Project:</strong>
+						<span>{{model.name}}</span>
+					</li>
+					<li>
+						<strong>Building:</strong>
+						<span>{{model.building}}</span>
+					</li>
+					<li>
+						<strong>Address:</strong>
+						<span *ngFor="let line of model.address">{{line}}</span>
+					</li>
+				</ul>
+			</div>
+			<div class="row-wrap col-lg-6">
+				<div class="group">
+					<strong class="subtitle">Reports</strong>
+					<div class="control-panel">
+						<span class="btn btn-link">Create report</span>
+					</div>					
+				</div>
+				<ul class="list">
+					<li *ngFor="let report of model.reports">
+						<span>{{report}}</span>
+						<a href="#" class="remove">X</a>
+					</li>
+				</ul>				
+			</div>
+		</ng-container>
+		<ng-container *ngSwitchCase="tabs.Attributes">
+			<div class="row-wrap">
+				<div class="control-panel">
+					<span class="btn btn-link">Add attribute</span>
+				</div>
+				<table class="table table-condensed table-hover">
+					<tr *ngFor="let attr of model.attributes">
+						<td>{{attr.name}}</td>
+						<td class="text-center">{{attr.value}}</td>
+						<td class="width-10 text-right"><a href="#" class="remove">X</a></td>
+					</tr>
+				</table>
+			</div>
+		</ng-container>
+		<ng-container *ngSwitchCase="tabs.Hierarchy">
+			<div class="project-legent">
+				<form class="form-inline">
+					<div class="form-group">
+						<label class="sr-only">Hierarchy</label>
+						<p class="form-control-static">Hierarchy 1</p>
+					</div>
+					<div class="form-group">
+						<label for="hierarchy1" class="sr-only">Hierarchy</label>
+						<input type="text" class="form-control input-sm" id="hierarchy1" disabled="" placeholder="Building" [(ngModel)]="model.types.level1.name" name="level1">
+					</div>
+					<div class="form-group" *ngIf="model.types.level2">
+						<label class="sr-only">Hierarchy</label>
+						<p class="form-control-static">Hierarchy 2</p>
+					</div>
+					<div class="form-group" *ngIf="model.types.level2">
+						<label for="hierarchy2" class="sr-only">Hierarchy</label>
+						<input type="text" class="form-control input-sm" id="hierarchy2" placeholder="Floor" [(ngModel)]="model.types.level2.name" name="level2">
+					</div>
+					<div class="form-group" *ngIf="model.types.level3">
+						<label class="sr-only">Hierarchy</label>
+						<p class="form-control-static">Hierarchy 3</p>
+					</div>
+					<div class="form-group" *ngIf="model.types.level3">
+						<label for="hierarchy3" class="sr-only">Hierarchy</label>
+						<input type="text" class="form-control input-sm" id="hierarchy3" placeholder="Room" [(ngModel)]="model.types.level3.name" name="level3">
+					</div>
+					<div class="form-group" *ngIf="model.types.level4">
+						<label class="sr-only">Hierarchy</label>
+						<p class="form-control-static">Hierarchy 4</p>
+					</div>
+					<div class="form-group" *ngIf="model.types.level5">
+						<label for="hierarchy4" class="sr-only">Hierarchy</label>
+						<input type="text" class="form-control input-sm" id="hierarchy4" placeholder="" [(ngModel)]="model.types.level4.name" name="level4">
+					</div>
+				</form>
+			</div>
+			<div class="row-wrap">
+				<tree 
+					[editable]="true"
+					[deepCount]="deepCount"
+					[level]="model.hierarchy" 
+					[handler]="addLevel" 
+					[handlerRemove]="removeLevel" 
+					[handlerFirst]="levelFirst"
+					(toggle)="toggleLevel($event)"
+					(clickRemoveHandler)="removeLevel($event)"
+					(clickHandler)="addLevel($event)" class="hierarchy">
+				</tree>
+			</div>
+		</ng-container>
+		<ng-container *ngSwitchCase="tabs.Documents">
+			<div class="row-wrap">
+				<div class="control-panel">
+					<span class="btn btn-link">Create document</span>
+				</div>
+				<ul class="list">
+					<li *ngFor="let doc of model.documents">
+						<span>{{doc}}</span>
+						<a href="#" class="remove">X</a>
+					</li>
+				</ul>
+			</div>
+		</ng-container>
+		<ng-container *ngSwitchCase="tabs.Users">
+			<div class="row-wrap">
+				<strong class="subtitle">Assigned users:</strong>
+				<ul class="list-form">
+					<li *ngFor="let user of model.users">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> <span>{{user}}</span>
+							</label>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</ng-container>
+	</div>
+</div>
