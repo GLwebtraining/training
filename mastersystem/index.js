@@ -46,12 +46,6 @@ function createKey(){
 
 		count++;
 	}
-
-	// if(!system.hasOwnProperty(pins.join(''))){
-	// 	system[pins.join('')] = pins;
-	// } else {
-
-	// }
 }
 
 function isKeyValid(pins){
@@ -78,6 +72,7 @@ function defineKey(pins){
 
 		count++;
 	}
+
 	system[pins.join('')] = pins;
 }
 
@@ -88,7 +83,7 @@ function defineKeyFromExists(pins, currentPin){
 		if(isKeyValid(pins)){
 			return pins;
 		} else {
-			pins[currentPin]--;
+			// pins[currentPin]--;
 			return defineKeyFromExists(pins, ++currentPin);
 		}
 	} else {
@@ -98,7 +93,7 @@ function defineKeyFromExists(pins, currentPin){
 
 function buildSystem(){
 	var isExistMoreKeys = true;
-	var pins;
+	var pins, index = 0;
 
 	while(isExistMoreKeys){
 
@@ -106,13 +101,22 @@ function buildSystem(){
 		var keySample = !!systemKeys.length ? systemKeys.length - 1 : 0;
 		if(keySample === 0) {
 			defineKey(new Array(size));
+			index = -1;
 		}
 		systemKeys = Object.keys(system);
 		pins = system[systemKeys[keySample]].slice();
 
-		var extendedPins = defineKeyFromExists(pins, 0);
+		if(index >= size) index = 0;
+		else index++;
+		var extendedPins = defineKeyFromExists(pins, index);
 
-		isExistMoreKeys = !!extendedPins;
+		if(!extendedPins){
+			index = 0;
+			pins = system[systemKeys[keySample]].slice();
+			extendedPins = defineKeyFromExists(pins, index);
+			isExistMoreKeys = !!extendedPins
+		}
+
 		if(isExistMoreKeys){
 			if(!system.hasOwnProperty(extendedPins.join(''))){
 				system[extendedPins.join('')] = extendedPins;
@@ -121,7 +125,25 @@ function buildSystem(){
 	}
 
 }
-debugger;
+
 buildSystem();
 
 console.log(system);
+
+var arrLetters = [2,3,4,5];
+var comboDepth = 3;
+var resString = LoopIt(6, "|", arrLetters);
+var result = resString.split('|');
+var unique = result.filter(function(item){
+	return !!item && isKeyValid(item.split(''));
+});
+
+console.log(unique);
+
+function LoopIt(depth, baseString, arrLetters) {
+	var returnValue = "";
+	for (var i = 0; i < arrLetters.length; i++) {
+		returnValue += (depth == 1 ? baseString + arrLetters[i] : LoopIt(depth - 1, baseString + arrLetters[i], arrLetters));
+	}
+  return returnValue;
+}
