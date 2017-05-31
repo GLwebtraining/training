@@ -1,27 +1,145 @@
-var keys = 4;
-var size = 6;
-var steps = 5;
+window.onload = init;
 
-var min = 2;
-var max = steps;
+function init(){
+	document.getElementById('generate').onclick = generateCombinations;
+	document.getElementById('pins').onkeyup = buildPinsHeight;
+}
 
-var pins = new Array(size);
-var count = 0;
-var pin = 0;
-var valid;
+function buildPinsHeight(){
+	var heights = document.getElementById('heights');
+	var val = Number(this.value);
+	if(isNaN(val)){
+		postResult('Value is not a number!', true);
+	} else {
+		postResult('', true);
+	}
+	if(val > 12){
+		this.value = 12;
+		val = this.value;
+	}
+	var model = [];
+	for(var i = 1; i <= val; i++){
+		model.push(i);
+	}
+	
+	heights.innerHTML = '<div><strong>Enter the height of the each pin (in mm.):</strong></div>' + Template('<div class="cell"><label>Pin |item|</label><input type="text" id="id|item|"></div>')(model);
+	heights.removeEventListener('keyup', gatheringHeights);
+	heights.addEventListener('keyup', gatheringHeights);
+}
 
-var system = {};
+function validateNumber(val){
+	return !isNaN(Number(val));
+}
+
+var storage = {};
+
+function gatheringHeights(e){
+	if(validateNumber(e.target.value)){
+		storage[e.target.id] = e.target.value;
+	} else {
+		e.target.value = '';
+	}
+}
+
+function generateCombinations(){
+	var pinsCount = Number(document.getElementById('pins').value);
+	var pins = Object.keys(storage);
+
+	if(pins.length === pinsCount){
+		var pinsArray = [];
+		var hasValues = pins.every(function(key){
+			if(storage[key] !== undefined){
+				pinsArray.push(storage[key]);
+			}
+			return storage[key] !== undefined;
+		});
+		if(hasValues){
+			var allValues = combinations({str:pinsArray.join('')});
+			postResult('All possible values: ' + allValues.length);
+			allValues.forEach(function(item){
+				postResult(item);
+			});
+		} else {
+			postResult('Some pin is absent!', true);
+		}
+	} else {
+		postResult('Something went wrong!', true);
+	}
+}
+
+function generate(){
+	var node = {
+		pins: document.getElementById('pins'),
+		steps: document.getElementById('steps'),
+		levels: document.getElementById('levels'),
+		result: document.getElementById('result')
+	};
+
+	window.val = {
+		pins: Number(node.pins.value),
+		steps: Number(node.steps.value),
+		levels: Number(node.levels.value),
+		min: 2,
+		max: Number(node.steps.value)
+	};
+
+	if(!val.pins || !val.steps){
+		postResult("Values or Pins are empty!", true);
+		return;
+	}
+
+	if(isNaN(val.pins) || isNaN(val.steps)){
+		postResult("Values or Pins are not a number!", true);
+		return;
+	}
+
+	var stringResult = LoopIt(val.pins, '|', possiblePinValues(val.min, val.steps));
+	var allResults = stringResult.split('|').filter(function(item){ return !!item; });
+	var uniqueResults = allResults.filter(function(item){ return !!item && isKeyValid(item.split('')); });
+	
+	postResult('-------------');
+	postResult('All possible values: ' + allResults.length);
+	postResult('Unique values: ' + uniqueResults.length);
+
+	postResult('-------------');
+	allResults.forEach(function(item){
+		postResult(item);
+	});
+
+	if(window.location.search === '?show'){
+		postResult('-------------');
+		uniqueResults.forEach(function(item){
+			postResult(item);
+		});
+	}
+}
+
+function postResult(msg, clean){
+	if(clean){
+		document.getElementById('result').innerHTML = msg;
+	} else {
+		document.getElementById('result').innerHTML += msg + '<br>';
+	}
+}
+
+function possiblePinValues(min, max){
+	var res = [];
+	for(var i = min; i <= max; i++){
+		res.push(i);
+	}
+	return res;
+}
 
 function isPinEquals(arr, i){
 	return arr[i - 1] === undefined ? false : arr[i - 1] === arr[i];
 }
 
 function isStepSizeValid(arr, i){
-	return arr[i] >= min && arr[i] <= max;
+	return arr[i] >= val.min && arr[i] <= val.max;
 }
 
 function isStepsValid(arr, i){
-	return arr[i - 1] === undefined ? true : Math.abs(arr[i - 1] - arr[i]) <= min;
+	return arr[i - 1] === undefined ? true : Math.abs(arr[i - 1] - arr[i]) <= val.min;
 }
 
 function verify(arr, i){
@@ -34,20 +152,6 @@ function verify(arr, i){
 	}
 }
 
-function createKey(){
-	while(count < pins.length){
-		pins[count] = pin;
-		valid = verify(pins, count);
-		
-		while(!valid){
-			pins[count]++;
-			valid = verify(pins, count);
-		}
-
-		count++;
-	}
-}
-
 function isKeyValid(pins){
 	for(var i = 0; i < pins.length; i++){
 		if(!verify(pins, i)){
@@ -57,89 +161,6 @@ function isKeyValid(pins){
 	return true;
 }
 
-function defineKey(pins){
-	var count = 0;
-	var pin = 0;
-
-	while(count < pins.length){
-		pins[count] = pin;
-		valid = verify(pins, count);
-		
-		while(!valid){
-			pins[count]++;
-			valid = verify(pins, count);
-		}
-
-		count++;
-	}
-
-	system[pins.join('')] = pins;
-}
-
-function defineKeyFromExists(pins, currentPin){
-	if(currentPin <= pins.length - 1){
-		pins[currentPin]++;
-
-		if(isKeyValid(pins)){
-			return pins;
-		} else {
-			// pins[currentPin]--;
-			return defineKeyFromExists(pins, ++currentPin);
-		}
-	} else {
-		return false;
-	}
-}
-
-function buildSystem(){
-	var isExistMoreKeys = true;
-	var pins, index = 0;
-
-	while(isExistMoreKeys){
-
-		var systemKeys = Object.keys(system);
-		var keySample = !!systemKeys.length ? systemKeys.length - 1 : 0;
-		if(keySample === 0) {
-			defineKey(new Array(size));
-			index = -1;
-		}
-		systemKeys = Object.keys(system);
-		pins = system[systemKeys[keySample]].slice();
-
-		if(index >= size) index = 0;
-		else index++;
-		var extendedPins = defineKeyFromExists(pins, index);
-
-		if(!extendedPins){
-			index = 0;
-			pins = system[systemKeys[keySample]].slice();
-			extendedPins = defineKeyFromExists(pins, index);
-			isExistMoreKeys = !!extendedPins
-		}
-
-		if(isExistMoreKeys){
-			if(!system.hasOwnProperty(extendedPins.join(''))){
-				system[extendedPins.join('')] = extendedPins;
-			}
-		}
-	}
-
-}
-
-buildSystem();
-
-console.log(system);
-
-var arrLetters = [2,3,4,5];
-var comboDepth = 3;
-var resString = LoopIt(6, "|", arrLetters);
-var result = resString.split('|');
-var unique = result.filter(function(item){
-	return !!item && isKeyValid(item.split(''));
-});
-
-console.log(unique);
-
 function LoopIt(depth, baseString, arrLetters) {
 	var returnValue = "";
 	for (var i = 0; i < arrLetters.length; i++) {
@@ -147,3 +168,130 @@ function LoopIt(depth, baseString, arrLetters) {
 	}
   return returnValue;
 }
+
+function Template(html){
+    return function (obj) {
+        var key, text = '';
+        if (isArray(obj)) {
+            obj.forEach(function (item) {
+                text += html.replace(/\|([a-z]+)*\|/gim, function (match, key) {
+                    return isObject(item) ? item[key] : item;
+                });
+            });
+            return text;
+        } else if (isObject(obj)) {
+            return html.replace(/\|([a-z]+)*\|/gim, function (match, key) {
+                return obj[key] || '';
+            });
+        }
+    };
+}
+
+function isExists(item){
+	return !!item;
+}
+
+function isArray(item){
+    if (isExists(item)) {
+        if (item instanceof Array) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function isObject(item){
+    if (isExists(item)) {
+        if (!isArray(item) && item instanceof Object) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+var permArr = [],
+  usedChars = [];
+
+function permute(input) {
+  var i, ch;
+  for (i = 0; i < input.length; i++) {
+    ch = input.splice(i, 1)[0];
+    usedChars.push(ch);
+    if (input.length == 0) {
+      permArr.push(usedChars.slice());
+    }
+    permute(input);
+    input.splice(i, 0, ch);
+    usedChars.pop();
+  }
+  return permArr
+};
+
+
+/*
+Here are some examples of how you could use this code:
+  alert(combinations({str: "ABC"}).join(", "));
+  Displays:
+  AAA, AAB, AAC, ABA, ABB, ABC, ACA, ACB, ACC,
+  BAA, BAB, BAC, BBA, BBB, BBC, BCA, BCB, BCC,
+  CAA, CAB, CAC, CBA, CBB, CBC, CCA, CCB, CCC
+or
+  alert(combinations({arr: ["AB","CD","EF"]}).join(", "));
+  Displays:
+  ACE, ACF, ADE, ADF, BCE, BCF, BDE, BDF
+*/
+function combinations(args) {
+  var n, inputArr = [], copyArr = [], results = [],
+  subfunc = function(copies, prefix) {
+    var i, myCopy = [], exprLen, currentChar = "", result = "";
+    // if no prefix, set default to empty string
+    if (typeof prefix === "undefined") {
+      prefix = "";
+    }
+    // no copies, nothing to do... return
+    if (!isArray(copies) || typeof copies[0] === "undefined") {
+      return;
+    }
+    // remove first element from "copies" and store in "myCopy"
+    myCopy = copies.splice(0, 1)[0];
+    // store the number of characters to loop through
+    exprLen = myCopy.length;
+    for (i = 0; i < exprLen; i += 1) {
+      currentChar = myCopy[i];
+      result = prefix + currentChar;
+      // if resulting string length is the number of characters of original string,
+      // we have a result
+      if (result.length === n) {
+        results.push(result);
+      }
+      // if there are copies left,
+      //   pass remaining copies (by value) and result (as new prefix)
+      //   into subfunc (recursively)
+      if (typeof copies[0] !== "undefined") {
+        subfunc(copies.slice(0), result);
+      }
+    }
+  };
+  // for each character in original string
+  //   create array (inputArr) which contains original string (converted to array of char)
+  if (typeof args.str === "string") {
+    inputArr = args.str.split("");
+    for (n = 0; n < inputArr.length; n += 1) {
+      copyArr.push(inputArr.slice(0));
+    }
+  }
+  if (isArray(args.arr)) {
+    for (n = 0; n < args.arr.length; n += 1) {
+      copyArr.push(args.arr[n].split(""));
+    }
+  }
+  // pass copyArr into sub-function for recursion
+  subfunc(copyArr);
+  return results;
+};

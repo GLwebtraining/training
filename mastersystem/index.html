@@ -5,8 +5,32 @@
   <title>Master System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="index.js"></script>
+  <style>
+  	.row{
+  		width: 100%;
+  		overflow: hidden;
+  		margin-bottom: 5px;
+  	}
+  	.row .cell{
+  		display: inline-block;
+  		margin-right: 1%;
+  	}
+  	.row .cell input{
+  		width: 100%;
+  	}
+  </style>
 </head>
 <body>
-	
+	<div id="wrapper">
+		<div class="row">
+			<label>Pins:</label>
+			<input type="text" id="pins" >
+		</div>
+		<div id="heights" class="row"></div>
+		<div class="row">
+			<button id="generate">Generate</button>
+		</div>
+		<div id="result"></div>
+	</div>
 </body>
 </html>
